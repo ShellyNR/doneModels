@@ -1,5 +1,4 @@
 setup.py
-dark_vs_bright_model/__init__.py
 dark_vs_bright_model/run.py
 models.egg-info/PKG-INFO
 models.egg-info/SOURCES.txt
