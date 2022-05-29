@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-name="models",
+name="doneModels",
 version="0.0.1",
 author="Sample Project Author",
 author_email="author@sample.com",
