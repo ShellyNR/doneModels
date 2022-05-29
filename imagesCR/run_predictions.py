@@ -3,7 +3,8 @@ import hashlib
 
 import cv2
 import os
-from doneModels.dark_vs_bright_model.run import isBright
+import dark_vs_bright_model
+from dark_vs_bright_model.run import isBright
 from messy_room_classifier_master.predict import isMessy
 import json
 import numpy as np
