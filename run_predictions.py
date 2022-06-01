@@ -9,7 +9,10 @@ import json
 import numpy as np
 from download_images import get, remove
 from textModel.textModel import text_model
+#import boto3
 import base64
+# from PIL import Image
+# from io import BytesIO
 
 def load_from_url(url):
     get(url)
@@ -49,7 +52,7 @@ def calc_preds():
         # find if image is bright or dark
         # higher mean means that the image is brighter
         bright_rate = isBright(image)
-        messy_rate = isMessy(path)
+        # messy_rate = isMessy(path)
 
         bright_rates.append((np.float64(bright_rate), "desc", path))
         messy_rates.append((np.float64(messy_rate), "desc", path))
@@ -75,13 +78,9 @@ def temp_function_user_simulator(url_file):
             except Exception as e:
                 print(e)
 
-def create_ec2_instance():{
-
-}
 
 #temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
 #temp_function_user_simulator("../dark_vs_bright_model/assets/bright.txt")
-decode_images()
+#decode_images()
 calc_preds()
 #remove()
-
