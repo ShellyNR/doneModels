@@ -1,5 +1,0 @@
-setup.py
-doneModels.egg-info/PKG-INFO
-doneModels.egg-info/SOURCES.txt
-doneModels.egg-info/dependency_links.txt
-doneModels.egg-info/top_level.txt
