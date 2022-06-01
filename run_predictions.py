@@ -55,7 +55,7 @@ def calc_preds():
         # messy_rate = isMessy(path)
 
         bright_rates.append((np.float64(bright_rate), "desc", path))
-        messy_rates.append((np.float64(messy_rate), "desc", path))
+        # messy_rates.append((np.float64(messy_rate), "desc", path))
 
         #print ([path],bright_rate,",",messy_rate)
 
