@@ -9,10 +9,7 @@ import json
 import numpy as np
 from download_images import get, remove
 from textModel.textModel import text_model
-#import boto3
 import base64
-# from PIL import Image
-# from io import BytesIO
 
 def load_from_url(url):
     get(url)
