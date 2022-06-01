@@ -4,7 +4,7 @@ import hashlib
 import cv2
 import os
 from dark_vs_bright_model.run import isBright
-from messy_room_classifier_master.predict import isMessy
+# from messy_room_classifier_master.predict import isMessy
 import json
 import numpy as np
 from download_images import get, remove
