@@ -50,10 +50,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    print("h")
     return "Hello World!"
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    app.run()
 
 def load_from_url(url):
     get(url)
