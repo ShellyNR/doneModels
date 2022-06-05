@@ -1,5 +1,8 @@
 import glob
 import hashlib
+import requests
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 
 import cv2
 import os
@@ -13,6 +16,29 @@ from textModel.textModel import text_model
 import base64
 # from PIL import Image
 # from io import BytesIO
+
+from twisted.internet import reactor, protocol
+
+
+class Echo(protocol.Protocol):
+    """This is just about the simplest possible protocol"""
+
+    def dataReceived(self, data):
+        "As soon as any data is received, write it back."
+        self.transport.write(data)
+
+
+def main():
+    """This runs the protocol on port 8000"""
+    factory = protocol.ServerFactory()
+    factory.protocol = Echo
+    reactor.listenTCP(80, factory)
+    reactor.run()
+
+
+# this only runs if the module was *not* imported
+if __name__ == '__main__':
+    main()
 
 def load_from_url(url):
     get(url)
@@ -82,5 +108,5 @@ def temp_function_user_simulator(url_file):
 #temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
 #temp_function_user_simulator("../dark_vs_bright_model/assets/bright.txt")
 #decode_images()
-calc_preds()
+# calc_preds()
 #remove()
