@@ -25,14 +25,14 @@ class Echo(protocol.Protocol):
 
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
-        self.transport.write(data)
+        self.transport.write(data.decode('utf-8'))
 
 
 def main():
     """This runs the protocol on port 8000"""
     factory = protocol.ServerFactory()
     factory.protocol = Echo
-    reactor.listenTCP(2000, factory)
+    reactor.listenTCP(8000, factory)
     reactor.run()
 
 
