@@ -32,7 +32,7 @@ def main():
     """This runs the protocol on port 8000"""
     factory = protocol.ServerFactory()
     factory.protocol = Echo
-    reactor.listenTCP(2000, factory)
+    reactor.listenTCP(8000, factory)
     reactor.run()
 
 
