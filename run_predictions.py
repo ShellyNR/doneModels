@@ -23,11 +23,13 @@ from twisted.internet import reactor, protocol
 class Echo(protocol.Protocol):
     """This is just about the simplest possible protocol"""
 
+
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
-        request = json.loads(data)
-        self.factory.handle[request['command']](self.factory, **request)
-        self.transport.write(data)
+        print (help(data))
+        f = open('resp.txt')
+        self.transport.write(f.read().encode('utf-8'))
+        f.close()
 
 
 def main():
