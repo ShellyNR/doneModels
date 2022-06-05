@@ -18,32 +18,42 @@ import base64
 # from io import BytesIO
 
 from twisted.internet import reactor, protocol
+#
+#
+# class Echo(protocol.Protocol):
+#     """This is just about the simplest possible protocol"""
+#
+#
+#     def dataReceived(self, data):
+#         "As soon as any data is received, write it back."
+#         j = json.loads(data.decode('utf-8'))
+#         print(j["description"])
+#         f = open('resp.json')
+#         self.transport.write(f.read().encode('utf-8'))
+#         f.close()
+#
+#
+# def main():
+#     """This runs the protocol on port 8000"""
+#     factory = protocol.ServerFactory()
+#     factory.protocol = Echo
+#     reactor.listenTCP(8000, factory)
+# #     reactor.run()
+#
+#
+# # this only runs if the module was *not* imported
+# if __name__ == '__main__':
+#     main()
 
+from flask import Flask
+app = Flask(__name__)
 
-class Echo(protocol.Protocol):
-    """This is just about the simplest possible protocol"""
+@app.route("/")
+def hello():
+    return "Hello World!"
 
-
-    def dataReceived(self, data):
-        "As soon as any data is received, write it back."
-        j = json.loads(data.decode('utf-8'))
-        print(j["description"])
-        f = open('resp.json')
-        self.transport.write(f.read().encode('utf-8'))
-        f.close()
-
-
-def main():
-    """This runs the protocol on port 8000"""
-    factory = protocol.ServerFactory()
-    factory.protocol = Echo
-    reactor.listenTCP(8000, factory)
-    reactor.run()
-
-
-# this only runs if the module was *not* imported
 if __name__ == '__main__':
-    main()
+    app.run(port=8000)
 
 def load_from_url(url):
     get(url)
