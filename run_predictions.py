@@ -25,6 +25,8 @@ class Echo(protocol.Protocol):
 
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
+        request = json.loads(data)
+        self.factory.handle[request['command']](self.factory, **request)
         self.transport.write(data)
 
 
