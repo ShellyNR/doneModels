@@ -27,7 +27,7 @@ class Echo(protocol.Protocol):
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
         print (help(data))
-        f = open('resp.txt')
+        f = open('resp.json')
         self.transport.write(f.read().encode('utf-8'))
         f.close()
 
