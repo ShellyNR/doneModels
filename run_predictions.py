@@ -69,10 +69,14 @@ def hello():
     photosFileNames = list(photos.keys())
     for fileName in photosFileNames:
         photo = photos.get(fileName)
+        print(fileName)
         byte_data = str.encode(photo)
         parsedPhoto = base64.b64decode(byte_data)
+        print(parsedPhoto.__sizeof__())
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName  # need to open the folder first!
+        print(fullpath)
+        image.show()
         image.save(fullpath)
     return "hello"
 
