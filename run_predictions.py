@@ -45,16 +45,17 @@ from twisted.internet import reactor, protocol
 # if __name__ == '__main__':
 #     main()
 
-from flask import Flask
-app = Flask(__name__)
+from flask import Flask, request
+be = Flask(__name__)
 
-@app.route("/")
+# both - text and photos endpoint
+@be.route('/', methods=['POST'])
 def hello():
-    print("h")
+    print(dir(request))
     return "Hello World!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    be.run(host='0.0.0.0', port=8000)
 
 def load_from_url(url):
     get(url)
