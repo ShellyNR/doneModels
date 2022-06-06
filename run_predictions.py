@@ -76,7 +76,7 @@ def hello():
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName  # need to open the folder first!
         print(fullpath)
-        image.show()
+        image.show(fullpath)
         image.save(fullpath)
     return "hello"
 
