@@ -2,7 +2,9 @@ import glob
 import hashlib
 import requests
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+import io
+import os
+import PIL.Image as Image
 
 import cv2
 import os
@@ -57,8 +59,22 @@ be = Flask(__name__)
 # both - text and photos endpoint
 @be.route('/', methods=['POST'])
 def hello():
-    print(request.get_json()["description"])
-    return "Hello World!"
+    # print(request.get_json()["description"])
+    # return "Hello World!"
+    print("in be server")
+    path = os.path.dirname(os.path.realpath(_file_)) + "\\bar\\"
+    json = request.get_json()
+    description = json["description"]
+    photos = json["photos"]
+    photosFileNames = list(photos.keys())
+    for fileName in photosFileNames:
+        photo = photos.get(fileName)
+        byte_data = str.encode(photo)
+        parsedPhoto = base64.b64decode(byte_data)
+        image = Image.open(io.BytesIO(parsedPhoto))
+        fullpath = path + fileName  # need to open the folder first!
+        image.save(fullpath)
+    return "hello"
 
 
 if __name__ == '__main__':
