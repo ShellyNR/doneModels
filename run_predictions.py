@@ -62,7 +62,7 @@ def hello():
     # print(request.get_json()["description"])
     # return "Hello World!"
     print("in be server")
-    path = os.path.dirname(os.path.realpath(_file_)) + "\\bar\\"
+    path = os.path.dirname(os.path.realpath(__file__)) + "\\bar\\"
     json = request.get_json()
     description = json["description"]
     photos = json["photos"]
