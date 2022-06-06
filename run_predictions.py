@@ -78,7 +78,7 @@ def hello():
         print(fullpath)
         image.show(fullpath)
         image.save(fullpath)
-    return "hello"
+    return calc_preds()
 
 
 if __name__ == '__main__':
@@ -109,13 +109,13 @@ def calc_preds():
         "grammar_model": -1
     }
 
-    if (len(glob.glob("images/*")) < 4):
+    if (len(glob.glob("bar/*")) < 4):
         dict["num_of_images"] = "Please add more images to your listing"
 
     bright_rates = []
     messy_rates = []
 
-    for i, path in enumerate(glob.glob("images/*")):
+    for i, path in enumerate(glob.glob("bar/*")):
         # load image from path
         image = cv2.imread(path)
 
@@ -137,6 +137,7 @@ def calc_preds():
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
         f.write(json_object)
+    return json_object
 
 def temp_function_user_simulator(url_file):
     path="images/"
