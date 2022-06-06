@@ -51,7 +51,7 @@ be = Flask(__name__)
 # both - text and photos endpoint
 @be.route('/', methods=['POST'])
 def hello():
-    print(dir(request))
+    print(request.get_json()["description"])
     return "Hello World!"
 
 if __name__ == '__main__':
