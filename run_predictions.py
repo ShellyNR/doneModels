@@ -54,35 +54,6 @@ from twisted.internet import reactor, protocol
 #     main()
 
 from flask import Flask, request
-be = Flask(__name__)
-
-# both - text and photos endpoint
-@be.route('/', methods=['POST'])
-def hello():
-    # print(request.get_json()["description"])
-    # return "Hello World!"
-    print("in be server")
-    path = os.path.dirname(os.path.realpath(__file__)) + "/bar/"
-    json = request.get_json()
-    description = json["description"]
-    photos = json["photos"]
-    photosFileNames = list(photos.keys())
-    for fileName in photosFileNames:
-        photo = photos.get(fileName)
-        print(fileName)
-        byte_data = str.encode(photo)
-        parsedPhoto = base64.b64decode(byte_data)
-        print(parsedPhoto.__sizeof__())
-        image = Image.open(io.BytesIO(parsedPhoto))
-        fullpath = path + fileName  # need to open the folder first!
-        print(fullpath)
-        image.show(fullpath)
-        image.save(fullpath)
-    return calc_preds()
-
-
-if __name__ == '__main__':
-    be.run(host='0.0.0.0', port=8000,debug=True)
 
 def load_from_url(url):
     get(url)
@@ -148,6 +119,38 @@ def temp_function_user_simulator(url_file):
                 get(url, path=path)
             except Exception as e:
                 print(e)
+
+
+be = Flask(__name__)
+
+# both - text and photos endpoint
+@be.route('/', methods=['POST'])
+def hello():
+    # print(request.get_json()["description"])
+    # return "Hello World!"
+    print("in be server")
+    path = os.path.dirname(os.path.realpath(__file__)) + "/bar/"
+    json = request.get_json()
+    description = json["description"]
+    photos = json["photos"]
+    photosFileNames = list(photos.keys())
+    for fileName in photosFileNames:
+        photo = photos.get(fileName)
+        print(fileName)
+        byte_data = str.encode(photo)
+        parsedPhoto = base64.b64decode(byte_data)
+        print(parsedPhoto.__sizeof__())
+        image = Image.open(io.BytesIO(parsedPhoto))
+        fullpath = path + fileName  # need to open the folder first!
+        print(fullpath)
+        image.show(fullpath)
+        image.save(fullpath)
+    return calc_preds()
+
+
+if __name__ == '__main__':
+    be.run(host='0.0.0.0', port=8000,debug=True)
+
 
 
 #temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
