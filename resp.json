@@ -1,16 +1,177 @@
 {
-    "num_of_images": "Please add more images to your listing",
-    "i_bright_rate": [],
-    "i_messy_rate": [],
-    "i_triq_model": -1,
-    "i_quality_rate": -1,
+    "num_of_images": -1,
+    "i_bright_rate": [
+        [
+            0.5707480314960629,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+        ],
+        [
+            0.3379133858267717,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+        ],
+        [
+            0.49599999999999994,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+        ],
+        [
+            0.358695652173913,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+        ],
+        [
+            0.6045454545454545,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+        ],
+        [
+            0.5742352941176471,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+        ]
+    ],
+    "i_messy_rate": [
+        [
+            0.460319846868515,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+        ],
+        [
+            0.36022257804870605,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+        ],
+        [
+            0.47111353278160095,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+        ],
+        [
+            0.17338436841964722,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+        ],
+        [
+            0.15413999557495117,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+        ],
+        [
+            0.2813308835029602,
+            "desc",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+        ]
+    ],
+    "i_triq_model": [
+        [
+            0.4701178668900763,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+        ],
+        [
+            0.734978158241683,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+        ],
+        [
+            0.5477807075732201,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+        ],
+        [
+            0.7267765016597983,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+        ],
+        [
+            0.8264133297834605,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+        ],
+        [
+            0.8140733159025293,
+            "desc",
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+        ]
+    ],
+    "i_blur_rate": [
+        [
+            1.1017462263565536,
+            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg - Blurry: 1.1017462263565536",
+            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+        ],
+        [
+            4.343089873850047,
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg - Not Blurry: 4.343089873850047",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+        ],
+        [
+            1.4881047852771572,
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg - Blurry: 1.4881047852771572",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+        ],
+        [
+            2.168858726164286,
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg - Blurry: 2.168858726164286",
+            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+        ],
+        [
+            2.680986423312822,
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg - Blurry: 2.680986423312822",
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+        ],
+        [
+            3.3249240143446777,
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg - Blurry: 3.3249240143446777",
+            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+        ]
+    ],
+    "i_fake_rate": [
+        [
+            1535.4277018039,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+        ],
+        [
+            1730.3497921432986,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+        ],
+        [
+            1097.1032444954071,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+        ],
+        [
+            1603.2019458414898,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+        ],
+        [
+            1587.0617120430707,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+        ],
+        [
+            2016.152093360624,
+            "fake_decs_here",
+            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+        ]
+    ],
     "grammar_model": {
         "issues": [
-            "This sentence does not start with an uppercase letter.",
             "Possible spelling mistake found."
         ],
-        "main_response": "Pay attention to multiple grammar corrections",
-        "grade": 33,
-        "replacement_description": "Add disc here"
+        "main_response": "Please notice minor grammar corrections",
+        "grade": 92,
+        "replacement_description": "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road Na Na Na more info la la la. great day"
+    },
+    "buzzwords_model": {
+        "length Grade": 47.43589743589743,
+        "repeated Words Grade": 50.32258064516128,
+        "BuzzWords Grade": 90.625,
+        "good description words Grade": 90
     }
 }
