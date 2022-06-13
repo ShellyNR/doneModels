@@ -168,6 +168,8 @@
         "grade": 92,
         "replacement_description": "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road Na Na Na more info la la la. great day"
     },
+    "semantic_model": [0.8119215686274509,
+    "semantic main response"],
     "buzzwords_model": {
         "length Grade": 47.43589743589743,
         "repeated Words Grade": 50.32258064516128,
