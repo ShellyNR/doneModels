@@ -2,162 +2,162 @@
     "num_of_images": -1,
     "i_bright_rate": [
         [
-            0.5707480314960629,
+            0.5684705882352942,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+            "images\\1.jpeg"
         ],
         [
-            0.3379133858267717,
+            0.30239215686274507,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+            "images\\2.jpeg"
         ],
         [
-            0.49599999999999994,
+            0.6001968503937009,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+            "images\\3.jpeg"
         ],
         [
-            0.358695652173913,
+            0.5734801762114539,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+            "images\\4.jpeg"
         ],
         [
             0.6045454545454545,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+            "images\\5.jpg"
         ],
         [
-            0.5742352941176471,
+            0.5739215686274509,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+            "images\\6.jpg"
         ]
     ],
     "i_messy_rate": [
         [
-            0.460319846868515,
+            0.47773054242134094,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+            "images\\1.jpeg"
         ],
         [
-            0.36022257804870605,
+            0.08008238673210144,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+            "images\\2.jpeg"
         ],
         [
-            0.47111353278160095,
+            0.38759541511535645,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+            "images\\3.jpeg"
         ],
         [
-            0.17338436841964722,
+            0.41123276948928833,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+            "images\\4.jpeg"
         ],
         [
             0.15413999557495117,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+            "images\\5.jpg"
         ],
         [
-            0.2813308835029602,
+            0.2954569458961487,
             "desc",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+            "images\\6.jpg"
         ]
     ],
     "i_triq_model": [
         [
-            0.4701178668900763,
+            0.4653190649807838,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+            "images\\1.jpeg"
         ],
         [
-            0.734978158241683,
+            0.4305420683300676,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+            "images\\2.jpeg"
         ],
         [
-            0.5477807075732201,
+            0.6361917699416197,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+            "images\\3.jpeg"
         ],
         [
-            0.7267765016597983,
+            0.7052800863587322,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+            "images\\4.jpeg"
         ],
         [
             0.8264133297834605,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+            "images\\5.jpg"
         ],
         [
-            0.8140733159025293,
+            0.8110428143142203,
             "desc",
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+            "images\\6.jpg"
         ]
     ],
     "i_blur_rate": [
         [
-            1.1017462263565536,
-            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg - Blurry: 1.1017462263565536",
-            "temp\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+            0.004290436463112802,
+            "images\\1.jpeg - Blurry: 0.004290436463112802",
+            "images\\1.jpeg"
         ],
         [
-            4.343089873850047,
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg - Not Blurry: 4.343089873850047",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+            0.004517579593158724,
+            "images\\2.jpeg - Blurry: 0.004517579593158724",
+            "images\\2.jpeg"
         ],
         [
-            1.4881047852771572,
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg - Blurry: 1.4881047852771572",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+            0.0048762143532083075,
+            "images\\3.jpeg - Blurry: 0.0048762143532083075",
+            "images\\3.jpeg"
         ],
         [
-            2.168858726164286,
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg - Blurry: 2.168858726164286",
-            "temp\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+            0.009734791671075308,
+            "images\\4.jpeg - Blurry: 0.009734791671075308",
+            "images\\4.jpeg"
         ],
         [
-            2.680986423312822,
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg - Blurry: 2.680986423312822",
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+            0.010513672248285576,
+            "images\\5.jpg - Blurry: 0.010513672248285576",
+            "images\\5.jpg"
         ],
         [
-            3.3249240143446777,
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg - Blurry: 3.3249240143446777",
-            "temp\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+            0.013658202296995626,
+            "images\\6.jpg - Blurry: 0.013658202296995626",
+            "images\\6.jpg"
         ]
     ],
     "i_fake_rate": [
         [
-            1535.4277018039,
+            1535.5906249690454,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.12.52 PM.jpeg"
+            "images\\1.jpeg"
         ],
         [
-            1730.3497921432986,
+            1141.2367175123593,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.05 PM.jpeg"
+            "images\\2.jpeg"
         ],
         [
-            1097.1032444954071,
+            1773.9314757879172,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.15 PM.jpeg"
+            "images\\3.jpeg"
         ],
         [
-            1603.2019458414898,
+            1330.1798435444305,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.13.31 PM.jpeg"
+            "images\\4.jpeg"
         ],
         [
             1587.0617120430707,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.10 PM.jpeg"
+            "images\\5.jpg"
         ],
         [
-            2016.152093360624,
+            2476.52742652695,
             "fake_decs_here",
-            "bar\\WhatsApp Image 2022-06-12 at 8.14.18 PM.jpeg"
+            "images\\6.jpg"
         ]
     ],
     "grammar_model": {
