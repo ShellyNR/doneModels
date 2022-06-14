@@ -1,31 +1,20 @@
 import glob
-import hashlib
-import requests
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import io
-import os
-import PIL.Image as Image
 
 import cv2
-import os
 from dark_vs_bright_model.run import isBright
-# from messy_room_classifier_master.predict import isMessy
+from messy_room_classifier_master.predict import isMessy
+from triq.src.image_quality_prediction import triq_pred
+from image_manipulation_detection.detect_manipulation import detect_manupulation
 import json
 import numpy as np
-from download_images import get, remove
+from download_images import get
 from textModel.textModel import text_model
-#import boto3
-import base64
-
-
+from blurDetection.blur_detection import blur_detect
 import io
 import os
 import PIL.Image as Image
 import base64
-# from PIL import Image
-# from io import BytesIO
-
-from twisted.internet import reactor, protocol
+from check_BuzzWords.checkBuzzWords import check_text_quality
 #
 #
 # class Echo(protocol.Protocol):
@@ -76,42 +65,56 @@ def calc_preds():
         "i_bright_rate": -1,
         "i_messy_rate": -1,
         "i_triq_model": -1,
-        "i_quality_rate": -1,
-        "grammar_model": -1
+        "i_blur_rate": -1,
+        "i_fake_rate": -1,
+        "grammar_model": -1,
+        "sentiment_model": -1,
+        "buzzwords_model": -1
     }
 
-    if (len(glob.glob("bar/*")) < 4):
+    if (len(glob.glob("images/*")) < 4):
         dict["num_of_images"] = "Please add more images to your listing"
 
     bright_rates = []
     messy_rates = []
 
-    for i, path in enumerate(glob.glob("bar/*")):
+    for i, path in enumerate(glob.glob("images/*")):
+
         # load image from path
         image = cv2.imread(path)
 
         # find if image is bright or dark
         # higher mean means that the image is brighter
         bright_rate = isBright(image)
-        # messy_rate = isMessy(path)
+        messy_rate = isMessy(path)
+
+        resizeInTemp(path)
 
         bright_rates.append((np.float64(bright_rate), "desc", path))
-        # messy_rates.append((np.float64(messy_rate), "desc", path))
+        messy_rates.append((np.float64(messy_rate), "desc", path))
 
         #print ([path],bright_rate,",",messy_rate)
 
+    description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
+
     dict["i_bright_rate"] = bright_rates
     dict["i_messy_rate"] = messy_rates
-    dict["grammar_model"] = text_model("add desc here")
+    dict["i_triq_model"] = triq_pred(path)
+    dict["i_blur_rate"] = blur_detect()
+    dict["i_fake_rate"] = detect_manupulation()
+    dict["grammar_model"] = text_model(description)
+    dict["buzzwords_model"] = check_text_quality(description)
 
+    removeTemp()
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
         f.write(json_object)
+        f.close()
     return json_object
 
 def temp_function_user_simulator(url_file):
-    path="images/"
+    path= "images/"
     os.makedirs(path, exist_ok=True)
     with open(url_file, "r") as f:
         for url in f.read().split("\n"):
@@ -119,6 +122,26 @@ def temp_function_user_simulator(url_file):
                 get(url, path=path)
             except Exception as e:
                 print(e)
+
+
+
+def resizeInTemp(path):
+    im = Image.open(path)
+    # resizedImage = im.resize((1024, 768))
+    resizedImage = im.resize((512, 384))
+    name = os.path.basename(path)
+    imgPath = os.path.join("temp/" + name)
+    os.makedirs(os.path.dirname(imgPath), exist_ok=True)
+    resizedImage.save(imgPath)
+    return
+
+def removeTemp():
+    # if os.path.isdir("temp/"):
+    files = glob.glob('temp/*')
+    for f in files:
+        os.remove(f)
+    return
+
 
 
 be = Flask(__name__)
@@ -129,7 +152,7 @@ def hello():
     # print(request.get_json()["description"])
     # return "Hello World!"
     print("in be server")
-    path = os.path.dirname(os.path.realpath(__file__)) + "/bar/"
+    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
     json = request.get_json()
     description = json["description"]
     photos = json["photos"]
@@ -150,6 +173,7 @@ def hello():
 
 if __name__ == '__main__':
     be.run(host='0.0.0.0', port=8000,debug=True)
+    # calc_preds()
 
 
 

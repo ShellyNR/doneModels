@@ -1,5 +1,4 @@
 import language_tool_python
-import json
 
 def get_mistakes() :
     return tool.check(text)
@@ -32,14 +31,15 @@ def initialize(description):
 
 def get_issues() :
     issues_array = []
+    issues_set = set()
     mistakes = get_mistakes()
     for mistake in mistakes :
-        issues_array.append(mistake.message)
+        issues_set.add(mistake.message)
+    issues_array = list(issues_set)
     return issues_array
 
 def text_model(description) :
     initialize(description)
     response = {"issues": get_issues(), "main_response": get_main_response(), "grade": get_grade(),
                 "replacement_description": get_replacement_sentence()}
-    print(type(response))
     return response

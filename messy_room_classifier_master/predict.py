@@ -67,7 +67,7 @@ def predict(image, images_rgb):
 
     # make predictions
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    room_model = load_model('../messy_room_classifier_master/model/room_model_1552970840.h5')
+    room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
     #np.expand_dims(images[0], axis=0)
     img_test = np.expand_dims(image, axis=0)
     features = base_model(img_test, training=False)
