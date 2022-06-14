@@ -171,9 +171,13 @@
     "semantic_model": [0.8119215686274509,
     "semantic main response"],
     "buzzwords_model": {
-        "length Grade": 47.43589743589743,
-        "repeated Words Grade": 50.32258064516128,
-        "BuzzWords Grade": 90.625,
-        "good description words Grade": 90
+        "length_Grade": 47.43589743589743,
+        "length_text": "you shold short this sentence : ' Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la '.\n",
+        "repeated_Words_Grade": 50.32258064516128,
+        "repeated_text": "\"la\" is repeated 2 times - please do not repeat it.\n\"large\" is repeated 3 times - please do not repeat it.\n\"na\" is repeated 3 times - please do not repeat it.\n",
+        "BuzzWords_Grade": 90.625,
+        "BuzzWords_text": "We recommend you to had details to your add about: nature of the neighborhood , tax, street - it's very important information for most peoples.",
+        "good_description_words_Grade": 90,
+        "good_description_words_text": "The better way to write your description is: large vintage apartment in tel aviv city, a large and beautiful living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
     }
 }
