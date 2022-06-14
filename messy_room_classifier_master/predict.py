@@ -2,7 +2,6 @@ from keras.applications.xception import Xception
 from keras.models import load_model
 from glob import glob
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2 as cv
 import os
 
@@ -43,7 +42,7 @@ def load_test_images(image):
 
 def load_from_directory_a():
     # load test images
-    test_dir = 'C:\\Users\\snahir\\Desktop\\uni\\3A\\סדנה פרוייקטים\\done models\\imagesCR\\images'
+    test_dir = r'images/*'
     filenames = glob(os.path.join(test_dir, '*.png')) + glob(os.path.join(test_dir, '*.jpg'))
     images, images_rgb = load_test_images(filenames)
     return images, images_rgb
@@ -77,25 +76,7 @@ def predict(image, images_rgb):
 
     return prediction
 
-def show(images_rgb, predictions):
-    # plot results
-    fig = plt.figure()
-    fig.suptitle('Predictions on Test Images', size=15, weight='bold')
-    fig.subplots_adjust(hspace=0.3, wspace=0.2)
-    for i in range(10):
-        ax = fig.add_subplot(3, 4, i+1)
-        ax.set_xticks([])
-        ax.set_yticks([])
-        ax.imshow(images_rgb[i], aspect='auto')
-        result = 'Messy Prob: {:.2f}'.format(predictions[i][0])
-        ax.set_xlabel(result, color='g', size=10, weight='bold', horizontalalignment='center')
-
-    plt.show()
-
 def isMessy(image):
     images, images_rgb = load_from_directory(image)
     prediction = predict(images, images_rgb)
     return prediction.numpy()[0][0]
-
-
-# show(images_rgb, predictions)
