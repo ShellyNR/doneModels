@@ -68,64 +68,64 @@
         [
             0.4653190649807838,
             "desc",
-            "images\\1.jpeg"
+            "temp\\1.jpeg"
         ],
         [
             0.4305420683300676,
             "desc",
-            "images\\2.jpeg"
+            "temp\\2.jpeg"
         ],
         [
             0.6361917699416197,
             "desc",
-            "images\\3.jpeg"
+            "temp\\3.jpeg"
         ],
         [
             0.7052800863587322,
             "desc",
-            "images\\4.jpeg"
+            "temp\\4.jpeg"
         ],
         [
             0.8264133297834605,
             "desc",
-            "images\\5.jpg"
+            "temp\\5.jpg"
         ],
         [
             0.8110428143142203,
             "desc",
-            "images\\6.jpg"
+            "temp\\6.jpg"
         ]
     ],
     "i_blur_rate": [
         [
             0.004290436463112802,
-            "images\\1.jpeg - Blurry: 0.004290436463112802",
-            "images\\1.jpeg"
+            "temp\\1.jpeg - Blurry: 0.004290436463112802",
+            "temp\\1.jpeg"
         ],
         [
             0.004517579593158724,
-            "images\\2.jpeg - Blurry: 0.004517579593158724",
-            "images\\2.jpeg"
+            "temp\\2.jpeg - Blurry: 0.004517579593158724",
+            "temp\\2.jpeg"
         ],
         [
             0.0048762143532083075,
-            "images\\3.jpeg - Blurry: 0.0048762143532083075",
-            "images\\3.jpeg"
+            "temp\\3.jpeg - Blurry: 0.0048762143532083075",
+            "temp\\3.jpeg"
         ],
         [
             0.009734791671075308,
-            "images\\4.jpeg - Blurry: 0.009734791671075308",
-            "images\\4.jpeg"
+            "temp\\4.jpeg - Blurry: 0.009734791671075308",
+            "temp\\4.jpeg"
         ],
         [
             0.010513672248285576,
-            "images\\5.jpg - Blurry: 0.010513672248285576",
-            "images\\5.jpg"
+            "temp\\5.jpg - Blurry: 0.010513672248285576",
+            "temp\\5.jpg"
         ],
         [
             0.013658202296995626,
-            "images\\6.jpg - Blurry: 0.013658202296995626",
-            "images\\6.jpg"
+            "temp\\6.jpg - Blurry: 0.013658202296995626",
+            "temp\\6.jpg"
         ]
     ],
     "i_fake_rate": [
@@ -168,8 +168,7 @@
         "grade": 92,
         "replacement_description": "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road Na Na Na more info la la la. great day"
     },
-    "semantic_model": [0.8119215686274509,
-    "semantic main response"],
+    "sentiment_model": -1,
     "buzzwords_model": {
         "length_Grade": 47.43589743589743,
         "length_text": "you shold short this sentence : ' Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la '.\n",
