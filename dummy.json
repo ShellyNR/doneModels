@@ -179,5 +179,5 @@
         "length_text": "you shold short this sentence : ' Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la '.\n",
         "repeated_Words_Grade": 50.32258064516128,
         "repeated_text": "\"la\" is repeated 2 times - please do not repeat it.\n\"large\" is repeated 3 times - please do not repeat it.\n\"na\" is repeated 3 times - please do not repeat it.\n"
-  }
+    }
 }
