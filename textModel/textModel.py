@@ -1,6 +1,7 @@
 import language_tool_python
 
 def get_mistakes() :
+    print("hey: ", text)
     return tool.check(text)
 
 def get_grade() :
@@ -27,7 +28,7 @@ def initialize(description):
     global tool
     global text
     tool = language_tool_python.LanguageTool('en-US')
-    text = description
+    text = "description"
 
 def get_issues() :
     issues_array = []
@@ -40,8 +41,6 @@ def get_issues() :
 
 def text_model(description) :
     initialize(description)
-    print (tool)
-    print(text)
     response = {"issues": get_issues(), "main_response": get_main_response(), "grade": get_grade(),
                 "replacement_description": get_replacement_sentence()}
     return response
