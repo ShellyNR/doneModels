@@ -1,0 +1,179 @@
+{
+    "num_of_images": -1,
+    "i_bright_rate": [
+        [
+            0.5684705882352942,
+            "desc",
+            "images\\1.jpeg"
+        ],
+        [
+            0.30239215686274507,
+            "desc",
+            "images\\2.jpeg"
+        ],
+        [
+            0.6001968503937009,
+            "desc",
+            "images\\3.jpeg"
+        ],
+        [
+            0.5734801762114539,
+            "desc",
+            "images\\4.jpeg"
+        ],
+        [
+            0.6045454545454545,
+            "desc",
+            "images\\5.jpg"
+        ],
+        [
+            0.5739215686274509,
+            "desc",
+            "images\\6.jpg"
+        ]
+    ],
+    "i_messy_rate": [
+        [
+            0.47773054242134094,
+            "desc",
+            "images\\1.jpeg"
+        ],
+        [
+            0.08008238673210144,
+            "desc",
+            "images\\2.jpeg"
+        ],
+        [
+            0.38759541511535645,
+            "desc",
+            "images\\3.jpeg"
+        ],
+        [
+            0.41123276948928833,
+            "desc",
+            "images\\4.jpeg"
+        ],
+        [
+            0.15413999557495117,
+            "desc",
+            "images\\5.jpg"
+        ],
+        [
+            0.2954569458961487,
+            "desc",
+            "images\\6.jpg"
+        ]
+    ],
+    "i_triq_model": [
+        [
+            0.4653190649807838,
+            "desc",
+            "images\\1.jpeg"
+        ],
+        [
+            0.4305420683300676,
+            "desc",
+            "images\\2.jpeg"
+        ],
+        [
+            0.6361917699416197,
+            "desc",
+            "images\\3.jpeg"
+        ],
+        [
+            0.7052800863587322,
+            "desc",
+            "images\\4.jpeg"
+        ],
+        [
+            0.8264133297834605,
+            "desc",
+            "images\\5.jpg"
+        ],
+        [
+            0.8110428143142203,
+            "desc",
+            "images\\6.jpg"
+        ]
+    ],
+    "i_blur_rate": [
+        [
+            0.004290436463112802,
+            "images\\1.jpeg - Blurry: 0.004290436463112802",
+            "images\\1.jpeg"
+        ],
+        [
+            0.004517579593158724,
+            "images\\2.jpeg - Blurry: 0.004517579593158724",
+            "images\\2.jpeg"
+        ],
+        [
+            0.0048762143532083075,
+            "images\\3.jpeg - Blurry: 0.0048762143532083075",
+            "images\\3.jpeg"
+        ],
+        [
+            0.009734791671075308,
+            "images\\4.jpeg - Blurry: 0.009734791671075308",
+            "images\\4.jpeg"
+        ],
+        [
+            0.010513672248285576,
+            "images\\5.jpg - Blurry: 0.010513672248285576",
+            "images\\5.jpg"
+        ],
+        [
+            0.013658202296995626,
+            "images\\6.jpg - Blurry: 0.013658202296995626",
+            "images\\6.jpg"
+        ]
+    ],
+    "i_fake_rate": [
+        [
+            1535.5906249690454,
+            "fake_decs_here",
+            "images\\1.jpeg"
+        ],
+        [
+            1141.2367175123593,
+            "fake_decs_here",
+            "images\\2.jpeg"
+        ],
+        [
+            1773.9314757879172,
+            "fake_decs_here",
+            "images\\3.jpeg"
+        ],
+        [
+            1330.1798435444305,
+            "fake_decs_here",
+            "images\\4.jpeg"
+        ],
+        [
+            1587.0617120430707,
+            "fake_decs_here",
+            "images\\5.jpg"
+        ],
+        [
+            2476.52742652695,
+            "fake_decs_here",
+            "images\\6.jpg"
+        ]
+    ],
+    "grammar_model": {
+        "issues": [
+            "Possible spelling mistake found."
+        ],
+        "main_response": "Please notice minor grammar corrections",
+        "grade": 92,
+        "replacement_description": "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road Na Na Na more info la la la. great day"
+    },
+    "semantic_model": [0.8119215686274509,
+    "semantic main response"],
+    "buzzwords_model": {
+        "length Grade": 47.43589743589743,
+        "repeated Words Grade": 50.32258064516128,
+        "BuzzWords Grade": 90.625,
+        "good description words Grade": 90
+    }
+}
