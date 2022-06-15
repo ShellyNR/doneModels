@@ -87,22 +87,22 @@ def calc_preds():
 
         # find if image is bright or dark
         # higher mean means that the image is brighter
-        bright_rate = isBright(image)
-        messy_rate = isMessy(path)
+        # bright_rate = isBright(image)
+        # messy_rate = isMessy(path)
 
         resizeInTemp(path)
 
-        bright_rates.append((np.float64(bright_rate), "desc", path))
-        messy_rates.append((np.float64(messy_rate), "desc", path))
+        # bright_rates.append((np.float64(bright_rate), "desc", path))
+        # messy_rates.append((np.float64(messy_rate), "desc", path))
 
         #print ([path],bright_rate,",",messy_rate)
 
     description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
-    dict["i_bright_rate"] = bright_rates
-    dict["i_messy_rate"] = messy_rates
-    dict["i_triq_model"] = triq_pred()
-    dict["i_blur_rate"] = blur_detect()
+    # dict["i_bright_rate"] = bright_rates
+    # dict["i_messy_rate"] = messy_rates
+    # dict["i_triq_model"] = triq_pred()
+    # dict["i_blur_rate"] = blur_detect()
     dict["i_fake_rate"] = detect_manupulation()
     dict["grammar_model"] = text_model(description)
     dict["buzzwords_model"] = check_text_quality(description)
@@ -175,8 +175,7 @@ def hello():
 
 if __name__ == '__main__':
     # be.run(host='0.0.0.0', port=8000,debug=True)
-    # calc_preds()
-    text_model("hey")
+    calc_preds()
 
 
 
