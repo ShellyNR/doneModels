@@ -40,6 +40,8 @@ def get_issues() :
 
 def text_model(description) :
     initialize(description)
+    print (tool)
+    print(text)
     response = {"issues": get_issues(), "main_response": get_main_response(), "grade": get_grade(),
                 "replacement_description": get_replacement_sentence()}
     return response
