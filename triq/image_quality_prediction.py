@@ -9,7 +9,7 @@ from scipy.stats import norm
 #
 # def predict_image_quality(model_weights_path, image_path):
 #     image = Image.open(image_path)
-def predict_image_quality(model_weights_path, image):
+def predict_image_quality(model_weights_path):
     model = create_triq_model(n_quality_levels=5)
     model.load_weights(model_weights_path)
 
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     predict_mos = predict_image_quality(model_weights_path, image_path)
     print('Predicted MOS: {}'.format(predict_mos))
 
-def triq_pred(path):
+def triq_pred():
     model_weights_path = r'triq/src/pretrained_weights/TRIQ.h5'
-    predict_mos = predict_image_quality(model_weights_path, path)
+    predict_mos = predict_image_quality(model_weights_path)
     return predict_mos
