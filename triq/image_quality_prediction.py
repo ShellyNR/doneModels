@@ -43,6 +43,6 @@ if __name__ == '__main__':
     print('Predicted MOS: {}'.format(predict_mos))
 
 def triq_pred():
-    model_weights_path = r'triq/src/pretrained_weights/TRIQ.h5'
+    model_weights_path = r'triq/pretrained_weights/TRIQ.h5'
     predict_mos = predict_image_quality(model_weights_path)
     return predict_mos
