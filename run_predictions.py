@@ -174,8 +174,8 @@ def hello():
 
 
 if __name__ == '__main__':
-    be.run(host='0.0.0.0', port=8000,debug=True)
-#     calc_preds()
+    # be.run(host='0.0.0.0', port=8000,debug=True)
+    calc_preds()
 
 
 
