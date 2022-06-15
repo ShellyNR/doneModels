@@ -1,7 +1,7 @@
 import glob
 
 
-from src.models.triq_model import create_triq_model
+from models.triq_model import create_triq_model
 import numpy as np
 from PIL import Image
 
