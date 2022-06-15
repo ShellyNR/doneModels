@@ -175,9 +175,7 @@ def hello():
 
 if __name__ == '__main__':
     # be.run(host='0.0.0.0', port=8000,debug=True)
-    # calc_preds()
-    description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
-    print (check_text_quality(description))
+    calc_preds()
 
 
 
