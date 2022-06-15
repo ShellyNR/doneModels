@@ -103,7 +103,7 @@ def calc_preds():
     dict["i_messy_rate"] = messy_rates
     dict["i_triq_model"] = triq_pred()
     dict["i_blur_rate"] = blur_detect()
-    # dict["i_fake_rate"] = detect_manupulation()
+    dict["i_fake_rate"] = detect_manupulation()
     dict["grammar_model"] = text_model(description)
     dict["buzzwords_model"] = check_text_quality(description)
 
@@ -175,7 +175,8 @@ def hello():
 
 if __name__ == '__main__':
     # be.run(host='0.0.0.0', port=8000,debug=True)
-    calc_preds()
+    # calc_preds()
+    text_model("hey")
 
 
 
