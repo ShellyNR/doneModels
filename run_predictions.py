@@ -1,10 +1,12 @@
+import os
 import glob
+
 
 import cv2
 from dark_vs_bright_model.run import isBright
 from messy_room_classifier_master.predict import isMessy
 from image_manipulation_detection.detect_manipulation import detect_manupulation
-from triq.src.image_quality_prediction import triq_pred
+from triq.image_quality_prediction import triq_pred
 import json
 import numpy as np
 from download_images import get
