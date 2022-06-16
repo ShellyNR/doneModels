@@ -55,7 +55,7 @@ def load_from_directory(image):
 
 # def predict(image, images_rgb):
 def predict():
-
+    keras.backend.clear_session()
     # make predictions
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
     room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
