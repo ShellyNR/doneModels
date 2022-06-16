@@ -74,6 +74,8 @@ def calc_preds():
         "buzzwords_model": -1
     }
 
+    description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
+
     dict["i_blur_rate"] = blur_detect()
     dict["i_fake_rate"] = detect_manupulation()
     dict["grammar_model"] = text_model(description)
@@ -101,8 +103,6 @@ def calc_preds():
         messy_rates.append((np.float64(messy_rate), "desc", path))
 
         #print ([path],bright_rate,",",messy_rate)
-
-    description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
     dict["i_bright_rate"] = bright_rates
     dict["i_messy_rate"] = messy_rates
