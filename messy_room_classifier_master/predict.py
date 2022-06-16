@@ -56,9 +56,6 @@ def load_from_directory(image):
 # def predict(image, images_rgb):
 def predict():
     keras.backend.clear_session()
-    # make predictions
-    base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
 
     # calculate from the training set
     channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
@@ -67,6 +64,8 @@ def predict():
     predictions = []
 
     for i, path in enumerate(glob("images/*")):
+        base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
+        room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
         print ("in here")
         image, images_rgb = load_test_images(path)
         # normalize images
