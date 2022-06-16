@@ -74,6 +74,11 @@ def calc_preds():
         "buzzwords_model": -1
     }
 
+    dict["i_blur_rate"] = blur_detect()
+    dict["i_fake_rate"] = detect_manupulation()
+    dict["grammar_model"] = text_model(description)
+    dict["buzzwords_model"] = check_text_quality(description)
+
     if (len(glob.glob("images/*")) < 4):
         dict["num_of_images"] = "Please add more images to your listing"
 
@@ -102,10 +107,6 @@ def calc_preds():
     dict["i_bright_rate"] = bright_rates
     dict["i_messy_rate"] = messy_rates
     dict["i_triq_model"] = triq_pred()
-    dict["i_blur_rate"] = blur_detect()
-    dict["i_fake_rate"] = detect_manupulation()
-    dict["grammar_model"] = text_model(description)
-    dict["buzzwords_model"] = check_text_quality(description)
 
     removeTemp()
 
