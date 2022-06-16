@@ -88,12 +88,12 @@ def calc_preds():
         # find if image is bright or dark
         # higher mean means that the image is brighter
         bright_rate = isBright(image)
-        # messy_rate = isMessy(path)
+        messy_rate = isMessy(path)
 
         resizeInTemp(path)
 
         bright_rates.append((np.float64(bright_rate), "desc", path))
-        # messy_rates.append((np.float64(messy_rate), "desc", path))
+        messy_rates.append((np.float64(messy_rate), "desc", path))
 
         #print ([path],bright_rate,",",messy_rate)
 
