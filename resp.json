@@ -4,32 +4,32 @@
         [
             0.5684705882352942,
             "desc",
-            "images\\1.jpeg"
+            "1.jpeg"
         ],
         [
             0.30239215686274507,
             "desc",
-            "images\\2.jpeg"
+            "2.jpeg"
         ],
         [
             0.6001968503937009,
             "desc",
-            "images\\3.jpeg"
+            "3.jpeg"
         ],
         [
             0.5734801762114539,
             "desc",
-            "images\\4.jpeg"
+            "4.jpeg"
         ],
         [
             0.6045454545454545,
             "desc",
-            "images\\5.jpg"
+            "5.jpg"
         ],
         [
             0.5739215686274509,
             "desc",
-            "images\\6.jpg"
+            "6.jpg"
         ]
     ],
     "i_messy_rate": [
@@ -161,12 +161,10 @@
         ]
     ],
     "grammar_model": {
-        "issues": [
-            "Possible spelling mistake found."
-        ],
-        "main_response": "Please notice minor grammar corrections",
-        "grade": 92,
-        "replacement_description": "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road Na Na Na more info la la la. great day"
+        "issues": [],
+        "main_response": "No grammar mistakes were found!",
+        "grade": 100,
+        "replacement_description": "description"
     },
     "sentiment_model": -1,
     "buzzwords_model": {

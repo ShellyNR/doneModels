@@ -1,5 +1,6 @@
 from keras.applications.xception import Xception
 from keras.models import load_model
+import keras
 from glob import glob
 import numpy as np
 import cv2 as cv
@@ -52,31 +53,43 @@ def load_from_directory(image):
     images, images_rgb = load_test_images(image)
     return images, images_rgb
 
-def predict(image, images_rgb):
+# def predict(image, images_rgb):
+def predict():
+
+    # make predictions
+    base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
+    room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
 
     # calculate from the training set
     channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
     channel_std = np.array([69.39734207, 67.48444001, 66.66808662])
 
-    # normalize images
-    image = image.astype('float32')
+    predictions = []
 
-    for j in range(3):
-        image[ :, :, j] = (image[ :, :, j] - channel_mean[j]) / channel_std[j]
+    for i, path in enumerate(glob("images/*")):
+        print ("in here")
+        image, images_rgb = load_test_images(path)
+        # normalize images
+        image = image.astype('float32')
 
-    # make predictions
-    base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
-    #np.expand_dims(images[0], axis=0)
-    img_test = np.expand_dims(image, axis=0)
-    features = base_model(img_test, training=False)
-    prediction = room_model(features, training=False)
+        for j in range(3):
+            image[ :, :, j] = (image[ :, :, j] - channel_mean[j]) / channel_std[j]
+
+        #np.expand_dims(images[0], axis=0)
+        img_test = np.expand_dims(image, axis=0)
+        features = base_model(img_test, training=False)
+        prediction = room_model(features, training=False)
+        print (np.float64(prediction.numpy()[0][0]))
+        predictions.append((np.float64(prediction.numpy()[0][0]), "desc", path))
+
+    keras.backend.clear_session()
     # features = base_model.predict(images, training=False)
     # predictions = room_model.predict(features)
+    return predictions
 
-    return prediction
-
-def isMessy(image):
-    images, images_rgb = load_from_directory(image)
-    prediction = predict(images, images_rgb)
-    return prediction.numpy()[0][0]
+# def isMessy(image):
+def isMessy():
+    # images, images_rgb = load_from_directory(image)
+    # prediction = predict(images, images_rgb)
+    # return prediction.numpy()[0][0]
+    return predict()

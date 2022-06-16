@@ -1,5 +1,6 @@
 import glob
 
+import keras
 
 from triq.models.triq_model import create_triq_model
 import numpy as np
@@ -30,7 +31,7 @@ def predict_image_quality(model_weights_path):
         if pdf > 3:
             pdf = 1 - pdf
         triq_rates.append((np.float64(pdf), "desc", path))
-
+    keras.backend.clear_session()
     return triq_rates
 
 

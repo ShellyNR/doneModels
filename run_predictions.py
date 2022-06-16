@@ -76,36 +76,18 @@ def calc_preds():
 
     description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
+    if (len(glob.glob("images/*")) < 4):
+        dict["num_of_images"] = "Please add more images to your listing"
+
+    for i, path in enumerate(glob.glob("images/*")):
+        resizeInTemp(path)
+
     dict["i_blur_rate"] = blur_detect()
     dict["i_fake_rate"] = detect_manupulation()
     dict["grammar_model"] = text_model(description)
     dict["buzzwords_model"] = check_text_quality(description)
-
-    if (len(glob.glob("images/*")) < 4):
-        dict["num_of_images"] = "Please add more images to your listing"
-
-    bright_rates = []
-    messy_rates = []
-
-    for i, path in enumerate(glob.glob("images/*")):
-
-        # load image from path
-        image = cv2.imread(path)
-
-        # find if image is bright or dark
-        # higher mean means that the image is brighter
-        bright_rate = isBright(image)
-        messy_rate = isMessy(path)
-
-        resizeInTemp(path)
-
-        bright_rates.append((np.float64(bright_rate), "desc", path))
-        messy_rates.append((np.float64(messy_rate), "desc", path))
-
-        #print ([path],bright_rate,",",messy_rate)
-
-    dict["i_bright_rate"] = bright_rates
-    dict["i_messy_rate"] = messy_rates
+    dict["i_bright_rate"] = isBright()
+    dict["i_messy_rate"] = isMessy()
     dict["i_triq_model"] = triq_pred()
 
     removeTemp()
