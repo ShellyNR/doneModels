@@ -9,7 +9,7 @@ import time
 
 
 epochs = 10
-batch_size = 2
+batch_size = 1
 iterations = 120     # 192 * 20 / 32
 weight_decay = 0.01
 

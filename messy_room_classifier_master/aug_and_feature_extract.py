@@ -35,7 +35,7 @@ train_labels = y_train.copy()
 
 # flow in advance, get augmented training data and corresponding labels
 for i in range(19):
-    for img, label in datagen.flow(x_train, y_train, batch_size=192):
+    for img, label in datagen.flow(x_train, y_train, batch_size=1):
         print(i)
         augmented_data = np.vstack((augmented_data, img))
         print(augmented_data.shape)
