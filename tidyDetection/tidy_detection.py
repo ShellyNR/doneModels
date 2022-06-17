@@ -100,4 +100,7 @@ def tidy_detect():
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
     tidyRates = createResponse(filesname, predictions)
+    print("tidyyyyy")
+    print(tidyRates)
+    print("tidyyyyy")
     return tidyRates
