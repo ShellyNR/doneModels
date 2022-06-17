@@ -43,9 +43,7 @@ def preprocessing():
         filenames.remove(analyzePath)
     print(filenames)
     for file in filenames:
-        print(file)
         filename = file.split('/')[2]
-        print(filename)
         stream = open(file, "rb")
         bytes = bytearray(stream.read())
         numpyarray = np.asarray(bytes, dtype=np.uint8)
@@ -106,7 +104,5 @@ def tidy_detect():
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
     tidyRates = createResponse(filesname, predictions)
-    print("tidyyyyy")
     print(tidyRates)
-    print("tidyyyyy")
     return tidyRates
