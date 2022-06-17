@@ -36,15 +36,15 @@ def preprocessing():
     if not os.path.exists(analyzeImagesPath):
         os.mkdir(analyzeImagesPath)
     clearAnalyzeDir(analyzeImagesPath)
-    analyzePath = imagesPath + '\\analyze'
+    analyzePath = imagesPath + '/analyze'
     filenames = glob(os.path.join(imagesPath, '*'))
     print(filenames)
     if analyzePath in filenames:
         filenames.remove(analyzePath)
     print(filenames)
-    print()
-    for i, file in enumerate(filenames):
-        filename = file.split('\\')[1]
+    for file in enumerate(filenames):
+        filename = file.split('/')[2]
+        print(filename)
         stream = open(file, "rb")
         bytes = bytearray(stream.read())
         numpyarray = np.asarray(bytes, dtype=np.uint8)
