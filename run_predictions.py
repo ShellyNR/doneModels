@@ -4,7 +4,7 @@ import glob
 
 import cv2
 from dark_vs_bright_model.run import isBright
-from messy_room_classifier_master.predict import isMessy
+from tidyDetection.tidy_detection import tidy_detect
 from image_manipulation_detection.detect_manipulation import detect_manupulation
 from triq.image_quality_prediction import triq_pred
 import json
@@ -83,12 +83,12 @@ def calc_preds():
         resizeInTemp(path)
 
     dict["i_blur_rate"] = blur_detect()
-    dict["i_fake_rate"] = detect_manupulation()
-    dict["grammar_model"] = text_model(description)
-    dict["buzzwords_model"] = check_text_quality(description)
-    dict["i_bright_rate"] = isBright()
+    # dict["i_fake_rate"] = detect_manupulation()
+    # dict["grammar_model"] = text_model(description)
+    # dict["buzzwords_model"] = check_text_quality(description)
+    # dict["i_bright_rate"] = isBright()
 
-    # dict["i_messy_rate"] = isMessy()
+    dict["i_messy_rate"] = tidy_detect()
 #     dict["i_triq_model"] = triq_pred()
 
 
@@ -131,31 +131,31 @@ def removeTemp():
 
 
 
-be = Flask(__name__)
+# be = Flask(__name__)
 
 # both - text and photos endpoint
-@be.route('/', methods=['POST'])
-def hello():
-    # print(request.get_json()["description"])
-    # return "Hello World!"
-    print("in be server")
-    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
-    json = request.get_json()
-    description = json["description"]
-    photos = json["photos"]
-    photosFileNames = list(photos.keys())
-    for fileName in photosFileNames:
-        photo = photos.get(fileName)
-        print(fileName)
-        byte_data = str.encode(photo)
-        parsedPhoto = base64.b64decode(byte_data)
-        print(parsedPhoto.__sizeof__())
-        image = Image.open(io.BytesIO(parsedPhoto))
-        fullpath = path + fileName  # need to open the folder first!
-        print(fullpath)
-        image.show(fullpath)
-        image.save(fullpath)
-    return calc_preds()
+# @be.route('/', methods=['POST'])
+# def hello():
+#     # print(request.get_json()["description"])
+#     # return "Hello World!"
+#     print("in be server")
+#     path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
+#     json = request.get_json()
+#     description = json["description"]
+#     photos = json["photos"]
+#     photosFileNames = list(photos.keys())
+#     for fileName in photosFileNames:
+#         photo = photos.get(fileName)
+#         print(fileName)
+#         byte_data = str.encode(photo)
+#         parsedPhoto = base64.b64decode(byte_data)
+#         print(parsedPhoto.__sizeof__())
+#         image = Image.open(io.BytesIO(parsedPhoto))
+#         fullpath = path + fileName  # need to open the folder first!
+#         print(fullpath)
+#         image.show(fullpath)
+#         image.save(fullpath)
+#     return calc_preds()
 
 
 if __name__ == '__main__':
