@@ -20,7 +20,7 @@ def checkBuzzWords(description):
             if len(missingBuzz) != 0:
                 strMissing = strMissing + ", "
         strMissing = strMissing + ', '.join(missingBuzz)
-        text = "We recommend you to had details to your add about: " + strMissing + " - it's very important information for most peoples."
+        text = strMissing + " - it's very important information for most peoples."
     grade = ((buzzWordsCounter - missingBuzzCounter * 0.25) / buzzWordsCounter) * 100
     return grade, text
 
@@ -32,7 +32,7 @@ def checkLength(description):
     for sentence in sentences:
         wordsCounter = len(sentence.split())
         if 30 <= wordsCounter:
-            text = text + "you shold short this sentence : ' " + sentence + " '.\r\n"
+            text = text + "you should short this sentence : ' " + sentence + " '.\r\n"
             counter += wordsCounter
     grade = (counter/descriptionWordCount) * 50
     return grade, text
@@ -69,7 +69,7 @@ def checkGoodDescriptionWords(description):
             convertedDescription = convertedDescription.replace(key, betterWordsConvertor[key])
     text = ""
     if description != convertedDescription:
-        text = "The better way to write your description is: " + convertedDescription
+        text = convertedDescription
     grade = 100 - wrongWordsCounter * 5
     return grade, text
 
