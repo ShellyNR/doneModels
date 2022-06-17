@@ -34,5 +34,8 @@ def blur_detect():
 
         blurry_rates.append((grade, text, path))
 
+    print("DONE BLUR")
+    print(blurry_rates)
+    print("DONE BLUR")
     return blurry_rates
 
