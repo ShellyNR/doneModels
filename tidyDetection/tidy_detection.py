@@ -42,7 +42,8 @@ def preprocessing():
     if analyzePath in filenames:
         filenames.remove(analyzePath)
     print(filenames)
-    for file in enumerate(filenames):
+    for file in filenames:
+        print(file)
         filename = file.split('/')[2]
         print(filename)
         stream = open(file, "rb")
