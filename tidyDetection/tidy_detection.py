@@ -38,10 +38,8 @@ def preprocessing():
     clearAnalyzeDir(analyzeImagesPath)
     analyzePath = imagesPath + '/analyze'
     filenames = glob(os.path.join(imagesPath, '*'))
-    print(filenames)
     if analyzePath in filenames:
         filenames.remove(analyzePath)
-    print(filenames)
     for file in filenames:
         filename = file.split('/')[2]
         stream = open(file, "rb")
@@ -104,5 +102,4 @@ def tidy_detect():
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
     tidyRates = createResponse(filesname, predictions)
-    print(tidyRates)
     return tidyRates
