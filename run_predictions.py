@@ -86,17 +86,17 @@ def calc_preds():
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
 
-    # dict["i_bright_rate"] = isBright()
+    dict["i_bright_rate"] = isBright()
     # dict["i_messy_rate"] = tidy_detect()
-    if os.path.exists("images/analyze"):
-        os.rmdir("images/analyze")
+    # if os.path.exists("images/analyze"):
+    #     os.rmdir("images/analyze")
     # dict["i_triq_model"] = triq_pred()
     # dict["i_blur_rate"] = blur_detect()
     # dict["i_fake_rate"] = detect_manupulation()
     # dict["grammar_model"] = text_model(description)
     # dict["sentiment_model"] = sentiments_model(description)
     # dict["buzzwords_model"] = check_text_quality(description)
-    dict["roomType_model"] = roomType_model(description)
+    # dict["roomType_model"] = roomType_model(description)
 
     removeTemp()
 
