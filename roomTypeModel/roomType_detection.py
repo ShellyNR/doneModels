@@ -36,9 +36,9 @@ def typeIsInObj(type, obj):
 def buildResponse(missingInDescription, missingInPhotos):
   response = ""
   if len(missingInDescription) != 0:
-    response = "We saw that you attached a photo of: " + ', '.join(missingInDescription) + " - but you didn't mentioned it in the description.\n"
+    response = "We saw that you attached a photo of: " + ', '.join(missingInDescription) + " - but you didn't mentioned it in the description.\r\n"
   if len(missingInPhotos) != 0:
-    response = response + "We saw that in the description you mentioned: " + ', '.join(missingInPhotos) + " - but we didn't see matching image attached.\n"
+    response = response + "We saw that in the description you mentioned: " + ', '.join(missingInPhotos) + " - but we didn't see matching image attached.\r\n"
   if response != "":
     response = response + "We recommend you to complete this information."
   return response

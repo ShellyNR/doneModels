@@ -32,7 +32,7 @@ def checkLength(description):
     for sentence in sentences:
         wordsCounter = len(sentence.split())
         if 30 <= wordsCounter:
-            text = text + "you shold short this sentence : ' " + sentence + " '.\n"
+            text = text + "you shold short this sentence : ' " + sentence + " '.\r\n"
             counter += wordsCounter
     grade = (counter/descriptionWordCount) * 50
     return grade, text
@@ -48,7 +48,7 @@ def repeatedWords(description):
     text = ""
     for word, count in sorted(word_counts.items()):
         if word not in repeatableWords and count >= 2:
-            text  = text + '"%s" is repeated %d times - please do not repeat it.\n' % (word, count)
+            text  = text + '"%s" is repeated %d times - please do not repeat it.\r\n' % (word, count)
             repeatingCounter += count
             repeatWords += 1
     grade = (((diffWords - repeatWords)/diffWords) * 100) - (repeatingCounter*5)
