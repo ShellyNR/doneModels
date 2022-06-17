@@ -89,7 +89,7 @@ def calc_preds():
     dict["i_bright_rate"] = isBright()
 
     # dict["i_messy_rate"] = isMessy()
-    dict["i_triq_model"] = triq_pred()
+#     dict["i_triq_model"] = triq_pred()
 
 
     removeTemp()
