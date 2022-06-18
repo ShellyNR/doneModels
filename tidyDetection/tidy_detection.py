@@ -8,11 +8,6 @@ import json
 
 imagesPath = './images'
 
-def clearAnalyzeDir(analyzeImagesPath):
-    files = glob(os.path.join(analyzeImagesPath, '*'))
-    for f in files:
-        os.remove(f)
-
 def resize(image):
     img_size = 299  # match Xception input size
     h, w, c = image.shape
@@ -36,7 +31,6 @@ def preprocessing():
     analyzeImagesPath = os.path.join(imagesPath, 'analyze')
     if not os.path.exists(analyzeImagesPath):
         os.mkdir(analyzeImagesPath)
-    clearAnalyzeDir(analyzeImagesPath)
     filenames = glob(os.path.join(imagesPath, '*'))
     if analyzeImagesPath in filenames:
         filenames.remove(analyzeImagesPath)
