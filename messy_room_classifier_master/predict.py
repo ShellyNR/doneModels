@@ -1,4 +1,4 @@
-import base64
+# import base64
 import json
 
 from keras.applications.xception import Xception
@@ -122,6 +122,5 @@ def isMessy():
     # images, images_rgb = load_from_directory(image)
     # prediction = predict(images, images_rgb)
     # return prediction.numpy()[0][0]
-    print (predict_a())
+    return predict_a()
 
-isMessy()
