@@ -38,9 +38,9 @@ def checkLength(description):
     grade = (counter/descriptionWordCount) * 50
     if len(longSentenceNum) != 0:
         if len(longSentenceNum) == 1:
-            finalText = "You should shorten sentence #" + str(longSentenceNum[0]) + ".\r\n"
+            finalText = "You should shorten sentence #" + str(longSentenceNum[0]) + '.\r\n'
         else:
-            finalText = "You should shorten those sentence - #" + ', #'.join(longSentenceNum) + ".\r\n"
+            finalText = "You should shorten those sentence - #" + ', #'.join(longSentenceNum) + '.\r\n'
         if len(longSentenceNum) != len(sentences):
             if len(sentences) == len(longSentenceNum)+1:
                 finalText += "The other sentence is in great length."
