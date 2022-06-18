@@ -1,4 +1,3 @@
-import base64
 import json
 
 from keras.applications.xception import Xception
@@ -88,9 +87,9 @@ def predict_a():
     channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
     channel_std = np.array([69.39734207, 67.48444001, 66.66808662])
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    for i, path in enumerate(glob("temp/*")):
+    predictions = []
+    for i, path in enumerate(glob("images/*")):
 
-        print ("in here a")
         image = cv.imread(path)
         images_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
         # normalize images
@@ -109,13 +108,12 @@ def predict_a():
                                            Body=payload)
         result = json.loads(response['Body'].read().decode())
         res = result['predictions']
-        print (type(res[0][0]))
-        print(res[0][0])
+        predictions.append((res[0][0],"desc", path))
 
     keras.backend.clear_session()
     # features = base_model.predict(images, training=False)
     # predictions = room_model.predict(features)
-    return
+    return predictions
 
 
 # def isMessy(image):
@@ -123,6 +121,6 @@ def isMessy():
     # images, images_rgb = load_from_directory(image)
     # prediction = predict(images, images_rgb)
     # return prediction.numpy()[0][0]
-    print (predict_a())
+    return predict_a()
 
 isMessy()
