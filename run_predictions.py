@@ -71,16 +71,6 @@ def decode_images():
     return;
 
 def calc_preds(description):
-    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
-    print(path)
-    print(os.path.exists(path))
-    if not os.path.exists(path):
-        print("create new file")
-        os.mkdir(path)
-    print("before clear file")
-    clearDir(path)
-    print("after clear file")
-
     dict = {
         "num_of_images": -1,
         "i_bright_rate": -1,
@@ -188,7 +178,7 @@ def hello():
         print(fileName)
         byte_data = str.encode(photo)
         parsedPhoto = base64.b64decode(byte_data)
-        print(parsedPhoto.__sizeof__())
+        # print(parsedPhoto.__sizeof__())
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName  # need to open the folder first!
         image.save(fullpath)
