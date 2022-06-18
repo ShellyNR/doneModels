@@ -1,7 +1,7 @@
 from keras.applications.xception import Xception
 from keras.models import load_model
 from glob import glob
-import numpy as np
+import numpy
 import cv2 as cv
 import os
 import boto3
@@ -50,7 +50,7 @@ def preprocessing():
             filename = file.split('/')[2]
         stream = open(file, "rb")
         bytes = bytearray(stream.read())
-        numpyarray = np.asarray(bytes, dtype=np.uint8)
+        numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
         img = cv.imdecode(numpyarray, cv.IMREAD_UNCHANGED)
         resized = resize(img)
         filepath = os.path.join(analyzeImagesPath, filename)
@@ -64,11 +64,11 @@ def load_test_images(filespath):
         img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
         test_set.append(img)
         test_set_rgb.append(img_rgb)
-    return np.asarray(test_set), np.asarray(test_set_rgb)
+    return numpy.asarray(test_set), numpy.asarray(test_set_rgb)
 
 def normalizeData(images):
-    channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
-    channel_std = np.array([69.39734207, 67.48444001, 66.66808662])
+    channel_mean = numpy.array([110.73151039, 122.90935242, 136.82249855])
+    channel_std = numpy.array([69.39734207, 67.48444001, 66.66808662])
     images = images.astype('float32')
     for j in range(3):
         images[:, :, :, j] = (images[:, :, :, j] - channel_mean[j]) / channel_std[j]
@@ -85,7 +85,7 @@ def predict(images):
     features = base_model.predict(images)
     # room_model = load_model(os.path.join(path, 'tidyModel.h5'))
 
-    data = np.array(features.np())
+    data = numpy.array(features.numpy())
     payload = json.dumps(data.tolist())
     response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
     # predictions = room_model.predict(features)
