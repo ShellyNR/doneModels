@@ -1,7 +1,7 @@
 import language_tool_python
 
 def get_mistakes() :
-    print("hey: ", text)
+    # print("hey: ", text)
     return tool.check(text)
 
 def get_grade() :
