@@ -16,11 +16,13 @@ def renderList(list):
   return returnList
 
 def predictAllPhotos():
-  photosNameList = os.listdir('/content/workspace/test')
+  # photosNameList = os.listdir('/content/workspace/test')
+  photosNameList = os.listdir('images')
   predictionsList = []
 
   for photoName in photosNameList:
-    photoPath = "workspace/test/" + photoName
+    # photoPath = "workspace/test/" + photoName
+    photoPath = "images" + photoName
     predictions = gtf.Infer(img_name=photoPath);
     predictionsList.append(predictions["predicted_class"])
 
