@@ -17,7 +17,7 @@ def train_all_models():
     return X, y
 
 def load_data():
-    path = './sentiment_data/opinions.tsv'
+    path = 'sentiment_model/sentiment_data/opinions.tsv'
     data = pd.read_table(path, header=None, skiprows=1, names=['Sentiment', 'Review'])
     X = data.Review
     y = data.Sentiment
