@@ -44,7 +44,7 @@ def predict_image_quality(model_weights_path):
         grade = np.float64(pdf)
         response = get_response(grade)
         path.replace("temp/", "images\\")
-        triq_rates.append((grade, response, response_path))
+        triq_rates.append((grade, response, path))
     keras.backend.clear_session()
     return triq_rates
 
