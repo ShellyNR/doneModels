@@ -39,5 +39,5 @@ def isBright():
         # higher mean means that the image is brighter
         mean = calc_brightness(image)
         response, grade = getResponse(int(mean*100))
-        bright_rates.append((grade, response, os.path.join("images\\" + path)))
+        bright_rates.append((grade/100, response, os.path.join("images\\" + path)))
     return bright_rates

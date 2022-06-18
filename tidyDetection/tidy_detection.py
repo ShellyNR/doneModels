@@ -101,7 +101,7 @@ def createResponse(filesname, predictions):
         messyGrade = int(float(predictions[i]) * 100)
         grade = 100 - messyGrade
         text = getTextPerGrade(grade)
-        tidyRates.append((grade, text, path))
+        tidyRates.append((grade/100, text, path))
     return tidyRates
 
 def tidy_detect():

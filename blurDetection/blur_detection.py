@@ -39,7 +39,7 @@ def blur_detect():
 
         text = getText(fm, grade)
 
-        blurry_rates.append((grade, text, parsePath(path)))
+        blurry_rates.append((grade/100, text, parsePath(path)))
 
     return blurry_rates
 
