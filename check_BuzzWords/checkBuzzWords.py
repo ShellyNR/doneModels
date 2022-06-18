@@ -24,18 +24,31 @@ def checkBuzzWords(description):
     grade = ((buzzWordsCounter - missingBuzzCounter * 0.25) / buzzWordsCounter) * 100
     return grade, text
 
+
 def checkLength(description):
     sentences = description.split(".")
     descriptionWordCount = len(description.split())
     counter = 0
-    text = ""
-    for sentence in sentences:
+    longSentenceNum = []
+    for i, sentence in enumerate(sentences):
         wordsCounter = len(sentence.split())
+        counter += wordsCounter
         if 30 <= wordsCounter:
-            text = text + "You should shorten this sentence : ' " + sentence + " '.\r\n"
-            counter += wordsCounter
+            longSentenceNum.append(str(i+1))
     grade = (counter/descriptionWordCount) * 50
-    return grade, text
+    if len(longSentenceNum) != 0:
+        if len(longSentenceNum) == 1:
+            finalText = "You should shorten the sentence #" + str(longSentenceNum[0]) + ".\r\n"
+        else:
+            finalText = "You should shorten those sentence numbers: #" + ', #'.join(longSentenceNum) + ".\r\n"
+        if len(longSentenceNum) != len(sentences):
+            if len(sentences) == len(longSentenceNum)+1:
+                finalText += "The other sentence is in great length."
+            else:
+                finalText += "The other sentences are in great length."
+    else:
+        finalText = "Your sentences are in great length!"
+    return grade, finalText
 
 def repeatedWords(description):
     repeatableWords = ["the", "and", "a", "that", "it", "not", "as", "there"] #insert as lower-case
