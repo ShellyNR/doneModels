@@ -34,7 +34,7 @@ def checkLength(description):
         if 30 <= wordsCounter:
             counter += wordsCounter
             longSentenceNum.append(str(i+1))
-    grade = (counter/descriptionWordCount) * 50
+    grade = ((descriptionWordCount - counter)/descriptionWordCount) * 100
     if len(longSentenceNum) != 0:
         if len(longSentenceNum) == 1:
             finalText = "You should shorten sentence #" + str(longSentenceNum[0]) + ".\r\n"
