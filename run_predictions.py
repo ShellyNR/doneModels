@@ -51,7 +51,7 @@ from flask import Flask, request
 def clearDir(path):
     # files = glob(os.path.join(path, '*'))
     print(path)
-    files = os.path.join(os.path.dirname(os.path.realpath(__file__)), '*')
+    files = os.path.join(path, '*')
     print(files)
     for f in files:
         os.remove(f)
@@ -177,13 +177,9 @@ be = Flask(__name__)
 @be.route('/', methods=['POST'])
 def hello():
     print("in be server")
-    print(request.get_json()["description"])
-    # return "Hello World!"
     path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
-    print(path)
     if not os.path.exists(path):
         os.mkdir(path)
-    clearDir(path)
     json = request.get_json()
     description = json["description"]
     photos = json["photos"]
@@ -199,7 +195,10 @@ def hello():
         print(fullpath)
         image.show(fullpath)
         image.save(fullpath)
-    return calc_preds(description)
+    response = calc_preds(description)
+    clearDir(path)
+    os.rmdir(path)
+    return response
 
 if __name__ == '__main__':
     be.run(host='0.0.0.0', port=8000, debug=True)
