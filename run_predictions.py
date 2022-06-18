@@ -91,7 +91,7 @@ def calc_preds(description):
 
     # description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
-    if (len(glob.glob("images/*")) < 4):
+    if (len(glob.glob("images/*")) <= 2):
         dict["num_of_images"] = "Please add more images to your listing."
 
     for i, path in enumerate(glob.glob("images/*")):
