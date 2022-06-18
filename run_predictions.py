@@ -2,7 +2,7 @@ import os
 import glob
 
 
-# import cv2
+import cv2
 from dark_vs_bright_model.run import isBright
 from tidyDetection.tidy_detection import tidy_detect
 from image_manipulation_detection.detect_manipulation import detect_manupulation
@@ -86,24 +86,33 @@ def calc_preds():
 
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
+        
+    dict["i_triq_model"] = triq_pred()
+    print("model triq done")
 
     dict["i_bright_rate"] = isBright()
     print ("model bright done")
+    
     dict["i_messy_rate"] = isMessy()
     print("model messy done")
+    
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
 
-    dict["i_triq_model"] = triq_pred()
-    print("model triq done")
     dict["i_blur_rate"] = blur_detect()
     print("model blur done")
+    
     # dict["i_fake_rate"] = detect_manupulation()
+    
     dict["grammar_model"] = text_model(description)
     print("model grammar done")
-    # dict["sentiment_model"] = sentiments_model(description)
+    
+    dict["sentiment_model"] = sentiments_model(description)
+    print("model sentiment done")
+    
     dict["buzzwords_model"] = check_text_quality(description)
     print("model buzzwords done")
+    
     # dict["roomType_model"] = roomType_model(description)
 
     removeTemp()
