@@ -89,8 +89,8 @@ def calc_preds():
 
     dict["i_bright_rate"] = isBright()
     print ("model bright done")
-    dict["i_messy_rate"] = isMessy()
-    print("model messy done")
+#     dict["i_messy_rate"] = isMessy()
+#     print("model messy done")
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
 
