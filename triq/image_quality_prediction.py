@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # model_weights_path = r'C:\Users\snahir\Desktop\uni\3A\סדנה פרוייקטים\transformer\triq\triq\src\pretrained_weights\resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
     model_weights_path=r'.\pretrained_weights\TRIQ.h5'
     predict_mos = predict_image_quality(model_weights_path, image_path)
-    print('Predicted MOS: {}'.format(predict_mos))
+    # print('Predicted MOS: {}'.format(predict_mos))
 
 def triq_pred():
     model_weights_path = r'triq/pretrained_weights/TRIQ.h5'
