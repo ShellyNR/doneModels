@@ -4,7 +4,6 @@ import glob
 import cv2
 from dark_vs_bright_model.run import isBright
 from tidyDetection.tidy_detection import tidy_detect
-import tidyDetection
 from image_manipulation_detection.detect_manipulation import detect_manupulation
 from messy_room_classifier_master.predict import isMessy
 from triq.image_quality_prediction import triq_pred
@@ -20,8 +19,8 @@ import PIL.Image as Image
 import base64
 from check_BuzzWords.checkBuzzWords import check_text_quality
 from sentiment_model.sentiment import sentiments_model
-#
-#
+
+
 # class Echo(protocol.Protocol):
 #     """This is just about the simplest possible protocol"""
 #
@@ -64,7 +63,7 @@ def decode_images():
     f.close()
     return;
 
-def calc_preds():
+def calc_preds(description):
     dict = {
         "num_of_images": -1,
         "i_bright_rate": -1,
@@ -84,7 +83,7 @@ def calc_preds():
     #     os.rmdir("images/analyze")
     #
 
-    description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
+    # description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
     if (len(glob.glob("images/*")) < 4):
         dict["num_of_images"] = "Please add more images to your listing"
@@ -156,35 +155,35 @@ def removeTemp():
         os.remove(f)
     return
 
-# be = Flask(__name__)
+be = Flask(__name__)
 
 # both - text and photos endpoint
-# @be.route('/', methods=['POST'])
-# def hello():
-#     # print(request.get_json()["description"])
-#     # return "Hello World!"
-#     print("in be server")
-#     path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
-#     json = request.get_json()
-#     description = json["description"]
-#     photos = json["photos"]
-#     photosFileNames = list(photos.keys())
-#     for fileName in photosFileNames:
-#         photo = photos.get(fileName)
-#         print(fileName)
-#         byte_data = str.encode(photo)
-#         parsedPhoto = base64.b64decode(byte_data)
-#         print(parsedPhoto.__sizeof__())
-#         image = Image.open(io.BytesIO(parsedPhoto))
-#         fullpath = path + fileName  # need to open the folder first!
-#         print(fullpath)
-#         image.show(fullpath)
-#         image.save(fullpath)
-#     return calc_preds()
+@be.route('/', methods=['POST'])
+def hello():
+    print(request.get_json()["description"])
+    # return "Hello World!"
+    print("in be server")
+    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
+    json = request.get_json()
+    description = json["description"]
+    photos = json["photos"]
+    photosFileNames = list(photos.keys())
+    for fileName in photosFileNames:
+        photo = photos.get(fileName)
+        print(fileName)
+        byte_data = str.encode(photo)
+        parsedPhoto = base64.b64decode(byte_data)
+        print(parsedPhoto.__sizeof__())
+        image = Image.open(io.BytesIO(parsedPhoto))
+        fullpath = path + fileName  # need to open the folder first!
+        print(fullpath)
+        image.show(fullpath)
+        image.save(fullpath)
+    return calc_preds(description)
 
 if __name__ == '__main__':
-    # be.run(host='0.0.0.0', port=8000,debug=True)
-    calc_preds()
+    be.run(host='0.0.0.0', port=8000,debug=True)
+    # calc_preds()
 
 #temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
 #temp_function_user_simulator("../dark_vs_bright_model/assets/bright.txt")
