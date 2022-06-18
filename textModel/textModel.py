@@ -14,11 +14,11 @@ def get_main_response() :
     if grade == 100 :
         return "No grammar mistakes were found!"
     if grade > 80 :
-        return "Please notice minor grammar corrections"
+        return "Please notice minor grammar corrections."
     if grade > 50 :
-        return "Please notice several grammar corrections"
+        return "Please notice several grammar corrections."
     else :
-        return "Pay attention to multiple grammar corrections"
+        return "Pay attention to multiple grammar corrections."
 
 def get_replacement_sentence() :
     mistakes_num = tool.check(text)
