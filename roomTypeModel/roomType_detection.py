@@ -1,4 +1,4 @@
-# from monk.gluon_prototype import prototype
+from monk.gluon_prototype import prototype
 import os
 import string
 
