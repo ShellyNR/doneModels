@@ -6,7 +6,7 @@ import os
 import boto3
 import json
 
-imagesPath = './images'
+imagesPath = 'images'
 
 def resize(image):
     img_size = 299  # match Xception input size
@@ -28,12 +28,8 @@ def resize(image):
         return cropped
 
 def preprocessing():
-    analyzeImagesPath = os.path.join(imagesPath, 'analyze')
-    if not os.path.exists(analyzeImagesPath):
-        os.mkdir(analyzeImagesPath)
+    analyzeImagesPath = "analyze"
     filenames = glob(os.path.join(imagesPath, '*'))
-    if analyzeImagesPath in filenames:
-        filenames.remove(analyzeImagesPath)
     for file in filenames:
         if "\\" in file:
             filename = file.split('\\')[1]
@@ -100,7 +96,7 @@ def createResponse(filesname, predictions):
 
 def tidy_detect():
     preprocessing()
-    imagePrediectionPath = os.path.join(imagesPath, 'analyze')
+    imagePrediectionPath = 'analyze'
     filesname = os.listdir(imagePrediectionPath)
     filespath = glob(os.path.join(imagePrediectionPath, '*'))
     images, images_rgb = load_test_images(filespath)
