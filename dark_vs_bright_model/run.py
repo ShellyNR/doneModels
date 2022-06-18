@@ -16,13 +16,13 @@ def calc_brightness(image, dim=10):
     return np.mean(L)
 
 def getResponse(grade):
-    if grade > 75:
+    if grade > 80:
         text = "The image is too bright."
-    elif grade < 45:
+    elif grade < 50:
         text = "The image is too dark, consider taking the photo again with more light."
     else:
         text = "The image brightness is alright!"
-    grade = round(100 - (abs(60 - grade)))
+    grade = round(100 - (abs(65 - grade)))
     return text, grade
 
 # create output directories if not exists
