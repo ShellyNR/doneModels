@@ -2,7 +2,7 @@ import collections
 import string
 
 def checkBuzzWords(description):
-    buzzWords = ["city", "living", "room", "balcony", "parking", "tax", "street","neighborhood"] #insert as lower-case
+    buzzWords = ["city", "living room", "rooms", "balcony", "parking", "tax", "street","neighborhood"] #insert as lower-case
     buzzWordsCounter = len(buzzWords)
     missingBuzz = []
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
@@ -51,7 +51,7 @@ def checkLength(description):
 
 def repeatedWords(description):
     repeatableWords = ["the", "and", "a", "that", "it", "not", "as", "there"] #insert as lower-case
-    description = description.lower()
+    description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     word_counts = collections.Counter(words)
     diffWords = len(word_counts)
@@ -64,9 +64,9 @@ def repeatedWords(description):
             repeatingCounter += count
             repeatWords += 1
     if repeatWords != 0:
-        text = text + "It is recommend to avoid repetitiveness in the description."
+        text = text + "It is recommended to avoid repeating words in the description."
     else:
-        text = text + "Excellent! Your sentence does not contain repetition."
+        text = text + "Excellent! Your description does not contain repeating words."
     grade = (((diffWords - repeatWords)/diffWords) * 100) - (repeatingCounter*5)
     return grade, text
 
