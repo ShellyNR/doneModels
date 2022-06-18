@@ -99,8 +99,8 @@ def calc_preds():
     # dict["i_bright_rate"] = isBright()
     # print ("model bright done")
 
-    # dict["i_messy_rate"] =isMessy()
-    dict["i_messy_rate"] = tidy_detect()
+    dict["i_messy_rate"] =isMessy()
+    # dict["i_messy_rate"] = tidy_detect()
     print("model messy done")
     
     if os.path.exists("images/analyze"):
