@@ -50,10 +50,7 @@ from flask import Flask, request
 
 def clearDir(path):
     filesPath = os.path.join(path, '*')
-    print(filesPath)
     files = glob.glob(filesPath)
-    print(files)
-
     for f in files:
         os.remove(f)
 
