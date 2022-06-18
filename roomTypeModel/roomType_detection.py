@@ -43,7 +43,7 @@ def buildResponse(missingInDescription, missingInPhotos):
     response = response + "We recommend you to complete this information."
   return response
 
-def roomType_model():
+def roomType_model(description):
   print("INSIDEEEEEEEEEEEEEEEEEE")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
   description = "I love my bedroom it's nice"
