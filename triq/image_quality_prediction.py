@@ -7,7 +7,18 @@ import numpy as np
 from PIL import Image
 
 from scipy.stats import norm
-#
+
+def get_response(grade):
+    if grade > 0.85:
+        response = "The image quality is great!"
+    elif grade > 0.75:
+        response = "The image quality is good."
+    elif grade > 0.6:
+        response = "The image quality is not good."
+    else:
+        response = "The image quality is not good, you should consider taking another photo."
+    return response
+
 # def predict_image_quality(model_weights_path, image_path):
 #     image = Image.open(image_path)
 def predict_image_quality(model_weights_path):
@@ -30,7 +41,9 @@ def predict_image_quality(model_weights_path):
         pdf = norm.cdf(predicted_mos, loc=3, scale=0.6666666666666666666666666666666)
         if pdf > 3:
             pdf = 1 - pdf
-        triq_rates.append((np.float64(pdf), "desc", path))
+        grade = np.float64(pdf)
+        response = get_response(grade)
+        triq_rates.append((grade, response, path))
     keras.backend.clear_session()
     return triq_rates
 
