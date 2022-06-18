@@ -1,13 +1,10 @@
 from keras.applications.xception import Xception
-from keras.models import load_model
 from glob import glob
 import numpy
 import cv2 as cv
 import os
 import boto3
 import json
-
-
 
 imagesPath = './images'
 
@@ -91,9 +88,11 @@ def predict(images):
     return predictions
 
 def getTextPerGrade(grade):
-    if grade <= 65:
-        return "your room is messy - we recommend that you tidy up the room and upload new pictures."
-    return "your room is nety."
+    if 90 <= grade:
+        return "your room is very net!"
+    if 65 <= grade:
+        return "your room is quite messy."
+    return "your room is messy - we recommend that you tidy up the room and upload new pictures."
 
 def createResponse(filesname, predictions):
     tidyRates = []
@@ -116,5 +115,4 @@ def tidy_detect():
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
     tidyRates = createResponse(filesname, predictions)
-    print(tidyRates)
     return tidyRates
