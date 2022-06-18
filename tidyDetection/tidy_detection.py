@@ -31,6 +31,7 @@ def preprocessing():
     analyzeImagesPath = "analyze"
     filenames = glob(os.path.join(imagesPath, '*'))
     for file in filenames:
+        print(file)
         if "\\" in file:
             filename = file.split('\\')[1]
         else:
