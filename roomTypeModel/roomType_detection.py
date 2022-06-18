@@ -64,6 +64,4 @@ def roomType_model(description):
       missingInDescription.append(firstType)
 
   response = buildResponse(missingInDescription, missingInPhotos)
-
-  print(response)
   return response

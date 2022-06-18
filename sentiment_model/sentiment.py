@@ -91,7 +91,7 @@ def infer(description, trainingVector, LR_complete):
 
     # tags = ['Negative','Positive']
     # Display Output
-    print('The review is predicted', prediction[0])
+    # print('The review is predicted', prediction[0])
 
     prediction = prediction[0]
     return prediction[1]

@@ -64,7 +64,7 @@ def checkGoodDescriptionWords(description):
     convertedDescription = description
     for key in betterKeys:
         if key in words:
-            print("We recommend you to change the word " + key + " to " + betterWordsConvertor[key])
+            # print("We recommend you to change the word " + key + " to " + betterWordsConvertor[key])
             wrongWordsCounter += 1
             convertedDescription = convertedDescription.replace(key, betterWordsConvertor[key])
     text = ""
