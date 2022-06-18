@@ -16,6 +16,9 @@ def get_grade(fm):
         grade = grade + 20
     return grade
 
+def parsePath(path):
+    return path.replace("/", "\\")
+
 def blur_detect():
     blurry_rates = []
 
@@ -31,8 +34,7 @@ def blur_detect():
             text = "is blurry."
         else:
             text = "is sharp."
-
-        blurry_rates.append((grade, text, path))
+        blurry_rates.append((grade, text, parsePath(path)))
 
     return blurry_rates
 
