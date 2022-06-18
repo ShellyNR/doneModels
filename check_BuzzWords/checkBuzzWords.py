@@ -31,7 +31,7 @@ def checkLength(description):
     longSentenceNum = []
     for i, sentence in enumerate(sentences):
         wordsCounter = len(sentence.split())
-        if 30 <= wordsCounter:
+        if 35 <= wordsCounter:
             counter += wordsCounter
             longSentenceNum.append(str(i+1))
     grade = ((descriptionWordCount - counter)/descriptionWordCount) * 100
