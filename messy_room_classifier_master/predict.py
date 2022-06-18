@@ -43,7 +43,7 @@ def load_from_directory_a():
     return images, images_rgb
 
 def load_from_directory(image):
-    # load test images
+    # load test image
     images, images_rgb = load_test_images(image)
     return images, images_rgb
 
