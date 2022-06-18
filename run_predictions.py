@@ -96,9 +96,6 @@ def calc_preds(description):
         dict["i_messy_rate"] = tidy_detect()
         print("model messy done")
 
-        if os.path.exists("images/analyze"):
-            os.rmdir("images/analyze")
-
         dict["i_blur_rate"] = blur_detect()
         print("model blur done")
 
@@ -151,6 +148,8 @@ def resetDirs(path):
     os.mkdir(forImages)
     if os.path.exists(forTemp):
         shutil.rmtree(forTemp)
+    os.mkdir(forTemp)
+
 
 be = Flask(__name__)
 @be.route('/', methods=['POST'])
