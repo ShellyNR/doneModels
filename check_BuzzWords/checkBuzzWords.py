@@ -65,6 +65,8 @@ def repeatedWords(description):
             repeatWords += 1
     if repeatWords != 0:
         text = text + "It is recommend to avoid repetitiveness in the description."
+    else:
+        text = text + "Excellent! you not repeating words."
     grade = (((diffWords - repeatWords)/diffWords) * 100) - (repeatingCounter*5)
     return grade, text
 
