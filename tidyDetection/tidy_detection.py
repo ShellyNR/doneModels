@@ -81,9 +81,11 @@ def predict(images):
 def getTextPerGrade(grade):
     if 90 <= grade:
         return "Your room is very neat!"
-    if 65 <= grade:
+    if 70 <= grade:
+        return "Your room needs a little bit of work."
+    if 50 <= grade:
         return "Your room is quite messy."
-    return "Your room is messy - we recommend that you tidy up the room and upload new pictures."
+    return "Your room is messy - we recommend that you tidy up the room and upload a new picture."
 
 def createResponse(filesname, predictions):
     tidyRates = []
