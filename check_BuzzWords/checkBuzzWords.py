@@ -31,8 +31,8 @@ def checkLength(description):
     longSentenceNum = []
     for i, sentence in enumerate(sentences):
         wordsCounter = len(sentence.split())
-        counter += wordsCounter
         if 30 <= wordsCounter:
+            counter += wordsCounter
             longSentenceNum.append(str(i+1))
     grade = (counter/descriptionWordCount) * 50
     if len(longSentenceNum) != 0:
@@ -66,7 +66,7 @@ def repeatedWords(description):
     if repeatWords != 0:
         text = text + "It is recommend to avoid repetitiveness in the description."
     else:
-        text = text + "Excellent! you not repeating words."
+        text = text + "Excellent! Your sentence does not contain repetition."
     grade = (((diffWords - repeatWords)/diffWords) * 100) - (repeatingCounter*5)
     return grade, text
 

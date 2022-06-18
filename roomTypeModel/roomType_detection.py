@@ -1,9 +1,11 @@
-# from monk.gluon_prototype import prototype
+from monk.gluon_prototype import prototype
 import os
 import string
 
-# gtf = prototype(verbose=1);
-# gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
+print("success!")
+
+gtf = prototype(verbose=1);
+gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
 
 def renderList(list):
   list = set(list)
@@ -46,6 +48,7 @@ def buildResponse(missingInDescription, missingInPhotos):
   return response
 
 def roomType_model(description):
+  print("extra success!")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
   description = "I love my bedroom it's nice"
   description = description.lower().translate(str.maketrans('', '', string.punctuation))

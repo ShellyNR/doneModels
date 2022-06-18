@@ -115,7 +115,8 @@ def hello():
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName  # need to open the folder first!
         image.save(fullpath)
-    response = calc_preds(description)
+    # response = calc_preds(description)
+    response = roomType_model(description)
     return response
 
 if __name__ == '__main__':
