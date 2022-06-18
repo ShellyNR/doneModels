@@ -94,8 +94,8 @@ def calc_preds():
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
 
-    dict["i_triq_model"] = triq_pred()
-    print("model triq done")
+#     dict["i_triq_model"] = triq_pred()
+#     print("model triq done")
     dict["i_blur_rate"] = blur_detect()
     print("model blur done")
     # dict["i_fake_rate"] = detect_manupulation()
