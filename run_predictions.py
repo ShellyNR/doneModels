@@ -48,6 +48,11 @@ from sentiment_model.sentiment import sentiments_model
 
 from flask import Flask, request
 
+def clearDir(path):
+    files = glob(os.path.join(path, '*'))
+    for f in files:
+        os.remove(f)
+
 def load_from_url(url):
     get(url)
 
@@ -79,7 +84,7 @@ def calc_preds(description):
 
     }
 
-    # tidyDetection.tidy_detection.clearAnalyzeDir("images/analyze")
+    # path("images/analyze")
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
     #
@@ -165,6 +170,9 @@ def hello():
     print(request.get_json()["description"])
     # return "Hello World!"
     path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
+    if not os.path.exists(path):
+        os.mkdir(path)
+    clearDir(path)
     json = request.get_json()
     description = json["description"]
     photos = json["photos"]
@@ -183,7 +191,6 @@ def hello():
     return calc_preds(description)
 
 if __name__ == '__main__':
-    print("hi before run server")
     be.run(host='0.0.0.0', port=8000, debug=True)
     # calc_preds()
 
