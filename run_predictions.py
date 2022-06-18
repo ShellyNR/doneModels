@@ -49,9 +49,9 @@ from sentiment_model.sentiment import sentiments_model
 from flask import Flask, request
 
 def clearDir(path):
-    print(path)
     files = os.path.join(path, '*')
     print(files)
+    print(os.path.join(path, '*'))
     for f in files:
         os.remove(f)
 
@@ -183,7 +183,9 @@ def hello():
         fullpath = path + fileName  # need to open the folder first!
         image.save(fullpath)
     response = calc_preds(description)
+    print("after pred")
     clearDir(path)
+    print("rm dir")
     os.rmdir(path)
     return response
 
