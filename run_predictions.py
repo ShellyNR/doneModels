@@ -7,7 +7,7 @@ from dark_vs_bright_model.run import isBright
 from tidyDetection.tidy_detection import tidy_detect
 from image_manipulation_detection.detect_manipulation import detect_manupulation
 from triq.image_quality_prediction import triq_pred
-from roomTypeModel.roomType_detection import roomType_model
+# from roomTypeModel.roomType_detection import roomType_model
 import json
 import numpy as np
 from download_images import get
@@ -91,12 +91,12 @@ def calc_preds():
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
     # dict["i_triq_model"] = triq_pred()
-    # dict["i_blur_rate"] = blur_detect()
+    dict["i_blur_rate"] = blur_detect()
     # dict["i_fake_rate"] = detect_manupulation()
     # dict["grammar_model"] = text_model(description)
     dict["sentiment_model"] = sentiments_model(description)
     # dict["buzzwords_model"] = check_text_quality(description)
-    dict["roomType_model"] = roomType_model(description)
+    # dict["roomType_model"] = roomType_model(description)
 
     removeTemp()
 
