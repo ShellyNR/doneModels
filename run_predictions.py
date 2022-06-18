@@ -177,7 +177,7 @@ def hello():
     photosFileNames = list(photos.keys())
     for fileName in photosFileNames:
         photo = photos.get(fileName)
-        print(fileName)
+        # print(fileName)
         byte_data = str.encode(photo)
         parsedPhoto = base64.b64decode(byte_data)
         # print(parsedPhoto.__sizeof__())
@@ -185,9 +185,7 @@ def hello():
         fullpath = path + fileName  # need to open the folder first!
         image.save(fullpath)
     response = calc_preds(description)
-    print("########after pred")
     clearDir(path)
-    print("rm dir")
     os.rmdir(path)
     return response
 
