@@ -75,13 +75,10 @@ def normalizeData(images):
     return images
 
 def predict(images):
-
     endpoint_name = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
     runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
-    # runtime = boto3.client('runtime.sagemaker')
-
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-
+    predictions = []
     for img in images:
         img_test = numpy.expand_dims(img, axis=0)
         features = base_model(img_test, training=False)
@@ -90,16 +87,8 @@ def predict(images):
         response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
         result = json.loads(response['Body'].read().decode())
         res = result['predictions']
-        print(res)
-        print(res[0][0])
-        print()
-        # predictions.append((res[0][0],"desc", path))
-
-    print("mess res: ")
-    # print(response)
-    # print()
-    # return response
-    return 0
+        predictions.append(res[0][0])
+    return predictions
 
 def getTextPerGrade(grade):
     if grade <= 65:
@@ -110,7 +99,7 @@ def createResponse(filesname, predictions):
     tidyRates = []
     for i, imgName in enumerate(filesname):
         path = 'images\\' + imgName
-        messyGrade = int(float(predictions[i][0]) * 100)
+        messyGrade = int(float(predictions[i]) * 100)
         grade = 100 - messyGrade
         text = getTextPerGrade(grade)
         tidyRates.append((grade, text, path))
@@ -126,6 +115,6 @@ def tidy_detect():
     predictions = predict(images)
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
-    # tidyRates = createResponse(filesname, predictions)
-    # return tidyRates
-    return 0
+    tidyRates = createResponse(filesname, predictions)
+    print(tidyRates)
+    return tidyRates
