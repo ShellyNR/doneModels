@@ -89,13 +89,13 @@ def calc_preds():
 
     dict["i_bright_rate"] = isBright()
     print ("model bright done")
-    dict["i_messy_rate"] = isMessy()
-    print("model messy done")
+#     dict["i_messy_rate"] = isMessy()
+#     print("model messy done")
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
 
-    dict["i_triq_model"] = triq_pred()
-    print("model triq done")
+#     dict["i_triq_model"] = triq_pred()
+#     print("model triq done")
     dict["i_blur_rate"] = blur_detect()
     print("model blur done")
     # dict["i_fake_rate"] = detect_manupulation()
