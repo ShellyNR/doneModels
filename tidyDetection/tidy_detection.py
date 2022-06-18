@@ -35,7 +35,7 @@ def preprocessing():
         if "\\" in file:
             filename = file.split('\\')[1]
         else:
-            filename = file.split('/')[2]
+            filename = file.split('/')[1]
         stream = open(file, "rb")
         bytes = bytearray(stream.read())
         numpyarray = numpy.asarray(bytes, dtype=numpy.uint8)
