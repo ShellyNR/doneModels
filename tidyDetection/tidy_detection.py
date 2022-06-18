@@ -89,7 +89,7 @@ def predict(images):
 
 def getTextPerGrade(grade):
     if 90 <= grade:
-        return "your room is very net!"
+        return "your room is very neat!"
     if 65 <= grade:
         return "your room is quite messy."
     return "your room is messy - we recommend that you tidy up the room and upload new pictures."
