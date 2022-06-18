@@ -93,6 +93,7 @@ def calc_preds():
     print("model messy done")
     # if os.path.exists("images/analyze"):
     #     os.rmdir("images/analyze")
+
     dict["i_triq_model"] = triq_pred()
     print("model triq done")
     dict["i_blur_rate"] = blur_detect()
