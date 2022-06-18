@@ -2,7 +2,7 @@ import os
 import glob
 
 
-import cv2
+# import cv2
 from dark_vs_bright_model.run import isBright
 from tidyDetection.tidy_detection import tidy_detect
 from image_manipulation_detection.detect_manipulation import detect_manupulation
