@@ -81,18 +81,25 @@ def predict(images):
     # runtime = boto3.client('runtime.sagemaker')
 
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    path = os.path.dirname(os.path.abspath(__file__))
-    features = base_model.predict(images)
-    # room_model = load_model(os.path.join(path, 'tidyModel.h5'))
 
-    data = numpy.array(features.numpy())
-    payload = json.dumps(data.tolist())
-    response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
-    # predictions = room_model.predict(features)
+    for img in images:
+        img_test = numpy.expand_dims(img, axis=0)
+        features = base_model(img_test, training=False)
+        data = numpy.array(features.numpy())
+        payload = json.dumps(data.tolist())
+        response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
+        result = json.loads(response['Body'].read().decode())
+        res = result['predictions']
+        print(res)
+        print(res[0][0])
+        print()
+        # predictions.append((res[0][0],"desc", path))
+
     print("mess res: ")
-    print(response)
-    print()
-    return response
+    # print(response)
+    # print()
+    # return response
+    return 0
 
 def getTextPerGrade(grade):
     if grade <= 65:
@@ -119,5 +126,6 @@ def tidy_detect():
     predictions = predict(images)
     clearAnalyzeDir(imagePrediectionPath)
     os.rmdir(imagePrediectionPath)
-    tidyRates = createResponse(filesname, predictions)
-    return tidyRates
+    # tidyRates = createResponse(filesname, predictions)
+    # return tidyRates
+    return 0
