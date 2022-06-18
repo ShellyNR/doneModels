@@ -49,7 +49,6 @@ from sentiment_model.sentiment import sentiments_model
 from flask import Flask, request
 
 def clearDir(path):
-    # files = glob(os.path.join(path, '*'))
     print(path)
     files = os.path.join(path, '*')
     print(files)
@@ -192,8 +191,6 @@ def hello():
         print(parsedPhoto.__sizeof__())
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName  # need to open the folder first!
-        print(fullpath)
-        image.show(fullpath)
         image.save(fullpath)
     response = calc_preds(description)
     clearDir(path)
