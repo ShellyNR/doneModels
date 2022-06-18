@@ -28,7 +28,7 @@ def initialize(description):
     global tool
     global text
     tool = language_tool_python.LanguageTool('en-US')
-    text = "description"
+    text = description
 
 def get_issues() :
     issues_array = []
