@@ -1,4 +1,3 @@
-import os
 import glob
 
 
@@ -9,7 +8,7 @@ import tidyDetection
 from image_manipulation_detection.detect_manipulation import detect_manupulation
 from messy_room_classifier_master.predict import isMessy
 from triq.image_quality_prediction import triq_pred
-# from roomTypeModel.roomType_detection import roomType_model
+from roomTypeModel.roomType_detection import roomType_model
 import json
 import numpy as np
 from download_images import get
@@ -72,7 +71,7 @@ def calc_preds():
         "i_messy_rate": -1,
         "i_triq_model": -1,
         "i_blur_rate": -1,
-        "i_fake_rate": -1,
+        # "i_fake_rate": -1,
         "grammar_model": -1,
         "sentiment_model": -1,
         "buzzwords_model": -1,
@@ -80,10 +79,10 @@ def calc_preds():
 
     }
 
-    tidyDetection.tidy_detection.clearAnalyzeDir("images/analyze")
-    if os.path.exists("images/analyze"):
-        os.rmdir("images/analyze")
-
+    # tidyDetection.tidy_detection.clearAnalyzeDir("images/analyze")
+    # if os.path.exists("images/analyze"):
+    #     os.rmdir("images/analyze")
+    #
 
     description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
 
@@ -93,34 +92,34 @@ def calc_preds():
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
         
-    # dict["i_triq_model"] = triq_pred()
-    # print("model triq done")
-    #
-    # dict["i_bright_rate"] = isBright()
-    # print ("model bright done")
+    dict["i_triq_model"] = triq_pred()
+    print("model triq done")
 
-    # dict["i_messy_rate"] =isMessy()
+    dict["i_bright_rate"] = isBright()
+    print("model bright done")
+
     dict["i_messy_rate"] = tidy_detect()
     print("model messy done")
-    
+
     if os.path.exists("images/analyze"):
         os.rmdir("images/analyze")
 
-    # dict["i_blur_rate"] = blur_detect()
-    # print("model blur done")
-    
+    dict["i_blur_rate"] = blur_detect()
+    print("model blur done")
+
     # dict["i_fake_rate"] = detect_manupulation()
+
+    dict["grammar_model"] = text_model(description)
+    print("model grammar done")
+
+    dict["sentiment_model"] = sentiments_model(description)
+    print("model sentiment done")
+
+    dict["buzzwords_model"] = check_text_quality(description)
+    print("model buzzwords done")
     
-    # dict["grammar_model"] = text_model(description)
-    # print("model grammar done")
-    #
-    # dict["sentiment_model"] = sentiments_model(description)
-    # print("model sentiment done")
-    #
-    # dict["buzzwords_model"] = check_text_quality(description)
-    # print("model buzzwords done")
-    
-    # dict["roomType_model"] = roomType_model(description)
+    dict["roomType_model"] = roomType_model(description)
+    print("model roomType_model done")
 
     removeTemp()
 
@@ -186,7 +185,6 @@ def removeTemp():
 if __name__ == '__main__':
     # be.run(host='0.0.0.0', port=8000,debug=True)
     calc_preds()
-    # isMessy()
 
 #temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
 #temp_function_user_simulator("../dark_vs_bright_model/assets/bright.txt")
