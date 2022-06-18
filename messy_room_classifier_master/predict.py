@@ -81,8 +81,8 @@ def predict():
 
 def predict_a():
     endpoint_name = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
-    # runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
-    runtime = boto3.client('runtime.sagemaker')
+    runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
+    # runtime = boto3.client('runtime.sagemaker')
 
     # calculate from the training set
     channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
