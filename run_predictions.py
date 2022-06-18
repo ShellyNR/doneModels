@@ -7,7 +7,7 @@ from dark_vs_bright_model.run import isBright
 from tidyDetection.tidy_detection import tidy_detect
 from image_manipulation_detection.detect_manipulation import detect_manupulation
 from triq.image_quality_prediction import triq_pred
-from roomTypeModel.roomType_detection import roomType_model
+# from roomTypeModel.roomType_detection import roomType_model
 import json
 import numpy as np
 from download_images import get
