@@ -88,7 +88,7 @@ def predict_a():
     channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
     channel_std = np.array([69.39734207, 67.48444001, 66.66808662])
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-    for i, path in enumerate(glob("temp/*")):
+    for i, path in enumerate(glob("images/*")):
 
         print ("in here a")
         image = cv.imread(path)
