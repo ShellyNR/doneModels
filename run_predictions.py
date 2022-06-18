@@ -83,11 +83,13 @@ def resizeInTemp(path):
     resizedImage.save(imgPath)
 
 def resetDirs(path):
+    print("reset images dir")
     forImages = path + "/images"
     if os.path.exists(forImages):
         shutil.rmtree(forImages)
     os.mkdir(forImages)
 
+    print("reset temp dir")
     forTemp = path + "/temp"
     if os.path.exists(forTemp):
         shutil.rmtree(forTemp)
