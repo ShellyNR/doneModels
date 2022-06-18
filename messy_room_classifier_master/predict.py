@@ -112,8 +112,6 @@ def predict_a():
         predictions.append((res[0][0],"desc", path))
 
     keras.backend.clear_session()
-    # features = base_model.predict(images, training=False)
-    # predictions = room_model.predict(features)
     return predictions
 
 
