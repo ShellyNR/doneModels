@@ -4,6 +4,10 @@ from glob import glob
 import numpy as np
 import cv2 as cv
 import os
+import boto3
+import json
+
+
 
 imagesPath = './images'
 
@@ -36,12 +40,14 @@ def preprocessing():
     if not os.path.exists(analyzeImagesPath):
         os.mkdir(analyzeImagesPath)
     clearAnalyzeDir(analyzeImagesPath)
-    analyzePath = imagesPath + '/analyze'
     filenames = glob(os.path.join(imagesPath, '*'))
-    if analyzePath in filenames:
-        filenames.remove(analyzePath)
+    if analyzeImagesPath in filenames:
+        filenames.remove(analyzeImagesPath)
     for file in filenames:
-        filename = file.split('/')[2]
+        if "\\" in file:
+            filename = file.split('\\')[1]
+        else:
+            filename = file.split('/')[2]
         stream = open(file, "rb")
         bytes = bytearray(stream.read())
         numpyarray = np.asarray(bytes, dtype=np.uint8)
@@ -69,12 +75,21 @@ def normalizeData(images):
     return images
 
 def predict(images):
+
+    endpoint_name = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
+    runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
+    # runtime = boto3.client('runtime.sagemaker')
+
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
     path = os.path.dirname(os.path.abspath(__file__))
-    room_model = load_model(os.path.join(path, 'tidyModel.h5'))
     features = base_model.predict(images)
-    predictions = room_model.predict(features)
-    return predictions
+    # room_model = load_model(os.path.join(path, 'tidyModel.h5'))
+
+    data = np.array(features.numpy())
+    payload = json.dumps(data.tolist())
+    response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
+    # predictions = room_model.predict(features)
+    return response
 
 def getTextPerGrade(grade):
     if grade <= 65:
