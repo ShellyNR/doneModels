@@ -89,6 +89,12 @@ def resetDirs(path):
         shutil.rmtree(forImages)
     os.mkdir(forImages)
 
+    print("reset analyze dir")
+    forAnalyze = path + "/analyze"
+    if os.path.exists(forAnalyze):
+        shutil.rmtree(forAnalyze)
+    os.mkdir(forAnalyze)
+
     print("reset temp dir")
     forTemp = path + "/temp"
     if os.path.exists(forTemp):
