@@ -2,7 +2,7 @@ import collections
 import string
 
 def checkBuzzWords(description):
-    buzzWords = ["city", "living room", "rooms", "balcony", "parking", "tax", "street","neighborhood"] #insert as lower-case
+    buzzWords = ["city", "living room", "rooms", "balcony", "parking", "price", "street","neighborhood"] #insert as lower-case
     buzzWordsCounter = len(buzzWords)
     missingBuzz = []
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
