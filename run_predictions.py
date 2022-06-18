@@ -49,7 +49,10 @@ from sentiment_model.sentiment import sentiments_model
 from flask import Flask, request
 
 def clearDir(path):
-    files = glob(os.path.join(path, '*'))
+    # files = glob(os.path.join(path, '*'))
+    print(path)
+    files = os.path.join(os.path.dirname(os.path.realpath(__file__)), '*')
+    print(files)
     for f in files:
         os.remove(f)
 
@@ -69,6 +72,15 @@ def decode_images():
     return;
 
 def calc_preds(description):
+    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
+    print(path)
+    print(os.path.exists(path))
+    if not os.path.exists(path):
+        print("create new file")
+        os.mkdir(path)
+    print("before clear file")
+    clearDir(path)
+    print("after clear file")
 
     dict = {
         "num_of_images": -1,
@@ -162,14 +174,13 @@ def removeTemp():
     return
 
 be = Flask(__name__)
-
-# both - text and photos endpoint
 @be.route('/', methods=['POST'])
 def hello():
     print("in be server")
     print(request.get_json()["description"])
     # return "Hello World!"
     path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
+    print(path)
     if not os.path.exists(path):
         os.mkdir(path)
     clearDir(path)
