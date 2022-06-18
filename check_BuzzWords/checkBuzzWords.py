@@ -15,12 +15,12 @@ def checkBuzzWords(description):
     if missingBuzzCounter != 0:
         strMissing = ""
         if "neighborhood" in missingBuzz:
-            strMissing = "nature of the neighborhood "
+            strMissing = "nature of the neighborhood"
             missingBuzz.remove("neighborhood")
             if len(missingBuzz) != 0:
                 strMissing = strMissing + ", "
         strMissing = strMissing + ', '.join(missingBuzz)
-        text = strMissing + " - it is a very important information for most people."
+        text = strMissing + ".\r\nIt will help you reach the relevant target audience."
     grade = ((buzzWordsCounter - missingBuzzCounter * 0.25) / buzzWordsCounter) * 100
     return grade, text
 
