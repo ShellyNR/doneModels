@@ -24,7 +24,6 @@ def checkBuzzWords(description):
     grade = ((buzzWordsCounter - missingBuzzCounter * 0.25) / buzzWordsCounter) * 100
     return grade, text
 
-
 def checkLength(description):
     sentences = description.split(".")
     descriptionWordCount = len(description.split())
@@ -61,9 +60,11 @@ def repeatedWords(description):
     text = ""
     for word, count in sorted(word_counts.items()):
         if word not in repeatableWords and count >= 2:
-            text  = text + '"%s" is repeated %d times - please do not repeat it.\r\n' % (word, count)
+            text = text + '"%s" is repeated %d times.\r\n' % (word, count)
             repeatingCounter += count
             repeatWords += 1
+    if repeatWords != 0:
+        text = text + "It is recommend to avoid repetitiveness in the description."
     grade = (((diffWords - repeatWords)/diffWords) * 100) - (repeatingCounter*5)
     return grade, text
 
