@@ -50,7 +50,7 @@ def checkLength(description):
     return grade, finalText
 
 def repeatedWords(description):
-    repeatableWords = ["the", "and", "a", "that", "it", "not", "as", "there"] #insert as lower-case
+    repeatableWords = ["to","two","with","of","the", "and", "a", "that", "it", "not", "as", "there"] #insert as lower-case
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     word_counts = collections.Counter(words)
