@@ -8,10 +8,7 @@ from glob import glob
 import numpy as np
 import cv2 as cv
 import os
-import sagemaker
-from sagemaker.tensorflow.model import TensorFlowModel
 import boto3
-from sagemaker.tensorflow import TensorFlowPredictor
 
 def load(image):
     img = cv.imread(image)
