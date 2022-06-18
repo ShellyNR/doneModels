@@ -30,7 +30,7 @@ def blur_detect():
         if fm <= threshold and grade < 50:
             text = "is blurry."
         else:
-            text = "is sharpness."
+            text = "is sharp."
 
         blurry_rates.append((grade, text, path))
 
