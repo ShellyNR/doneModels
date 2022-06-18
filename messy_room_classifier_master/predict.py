@@ -117,8 +117,5 @@ def predict_a():
 
 # def isMessy(image):
 def isMessy():
-    # images, images_rgb = load_from_directory(image)
-    # prediction = predict(images, images_rgb)
-    # return prediction.numpy()[0][0]
     return predict_a()
 
