@@ -19,6 +19,13 @@ def get_grade(fm):
 def parsePath(path):
     return path.replace("/", "\\")
 
+def getText(fm, grade):
+    if fm <= threshold and grade < 50:
+        return "The image is too blurry."
+    if fm <= threshold and 65 < grade:
+        return "The image is quite blurry."
+    return "The image is sharp!"
+
 def blur_detect():
     blurry_rates = []
 
@@ -30,10 +37,8 @@ def blur_detect():
 
         grade = get_grade(fm)
 
-        if fm <= threshold and grade < 50:
-            text = "is blurry."
-        else:
-            text = "is sharp."
+        text = getText(fm, grade)
+
         blurry_rates.append((grade, text, parsePath(path)))
 
     return blurry_rates
