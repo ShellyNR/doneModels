@@ -1,3 +1,6 @@
+import base64
+import json
+
 from keras.applications.xception import Xception
 from keras.models import load_model
 import keras
@@ -5,19 +8,10 @@ from glob import glob
 import numpy as np
 import cv2 as cv
 import os
-
-# pre-process test images
-# import preprocessing
-# test_dir = './images/test'
-# filenames = glob(os.path.join(test_dir, '*.jpg'))
-#
-# for i, file in enumerate(filenames):
-#     print('processing:', file)
-#     img = cv.imread(file)
-#     resized = preprocessing.resize(img)
-#     img_name = str(i) + '.png'
-#     filepath = os.path.join(test_dir, img_name)
-#     cv.imwrite(filepath, resized)
+import sagemaker
+from sagemaker.tensorflow.model import TensorFlowModel
+import boto3
+from sagemaker.tensorflow import TensorFlowPredictor
 
 def load(image):
     img = cv.imread(image)
@@ -63,11 +57,14 @@ def predict():
 
     predictions = []
 
-    for i, path in enumerate(glob("images/*")):
+    for i, path in enumerate(glob("temp/*")):
         base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
-        room_model = load_model('messy_room_classifier_master/model/room_model_1552970840.h5')
+        room_model = load_model('model/room_model_1552970840.h5')
         print ("in here")
-        image, images_rgb = load_test_images(path)
+        # image, images_rgb = load_test_images(path)
+        image = cv.imread(path)
+        images_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+
         # normalize images
         image = image.astype('float32')
 
@@ -78,17 +75,57 @@ def predict():
         img_test = np.expand_dims(image, axis=0)
         features = base_model(img_test, training=False)
         prediction = room_model(features, training=False)
-        print (np.float64(prediction.numpy()[0][0]))
+
         predictions.append((np.float64(prediction.numpy()[0][0]), "desc", path))
+
+    keras.backend.clear_session()
+
+    return predictions
+
+def predict_a():
+    endpoint_name = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
+    # runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
+    runtime = boto3.client('runtime.sagemaker')
+
+    # calculate from the training set
+    channel_mean = np.array([110.73151039, 122.90935242, 136.82249855])
+    channel_std = np.array([69.39734207, 67.48444001, 66.66808662])
+    base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
+    for i, path in enumerate(glob("temp/*")):
+
+        print ("in here a")
+        image = cv.imread(path)
+        images_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        # normalize images
+        image = image.astype('float32')
+
+        for j in range(3):
+            image[ :, :, j] = (image[ :, :, j] - channel_mean[j]) / channel_std[j]
+
+        img_test = np.expand_dims(image, axis=0)
+        features = base_model(img_test, training=False)
+
+        data = np.array(features.numpy())
+        payload = json.dumps(data.tolist())
+        response = runtime.invoke_endpoint(EndpointName=endpoint_name,
+                                           ContentType='application/json',
+                                           Body=payload)
+        result = json.loads(response['Body'].read().decode())
+        res = result['predictions']
+        print (type(res[0][0]))
+        print(res[0][0])
 
     keras.backend.clear_session()
     # features = base_model.predict(images, training=False)
     # predictions = room_model.predict(features)
-    return predictions
+    return
+
 
 # def isMessy(image):
 def isMessy():
     # images, images_rgb = load_from_directory(image)
     # prediction = predict(images, images_rgb)
     # return prediction.numpy()[0][0]
-    return predict()
+    print (predict_a())
+
+isMessy()
