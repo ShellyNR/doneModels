@@ -1,4 +1,5 @@
 import glob
+import shutil
 
 
 import cv2
@@ -48,12 +49,6 @@ from sentiment_model.sentiment import sentiments_model
 
 from flask import Flask, request
 
-def clearDir(path):
-    filesPath = os.path.join(path, '*')
-    files = glob.glob(filesPath)
-    for f in files:
-        os.remove(f)
-
 def load_from_url(url):
     get(url)
 
@@ -84,35 +79,34 @@ def calc_preds(description):
 
     }
 
-    # path("images/analyze")
-    # if os.path.exists("images/analyze"):
-    #     os.rmdir("images/analyze")
-    #
-
-    # description = "Large old apartment in Tel Aviv city, a large and nice living room and a large balcony with a beautiful view no parking but have many on the road na na na more info la la la. great day"
-
-    if (len(glob.glob("images/*")) <= 2):
+    numOfImages = len(glob.glob("images/*"))
+    if (numOfImages <= 2):
         dict["num_of_images"] = "Please add more images to your listing."
 
-    for i, path in enumerate(glob.glob("images/*")):
-        resizeInTemp(path)
-        
-    dict["i_triq_model"] = triq_pred()
-    print("model triq done")
+    if numOfImages != 0:
+        for i, path in enumerate(glob.glob("images/*")):
+            resizeInTemp(path)
 
-    dict["i_bright_rate"] = isBright()
-    print("model bright done")
+        dict["i_triq_model"] = triq_pred()
+        print("model triq done")
 
-    dict["i_messy_rate"] = tidy_detect()
-    print("model messy done")
+        dict["i_bright_rate"] = isBright()
+        print("model bright done")
 
-    if os.path.exists("images/analyze"):
-        os.rmdir("images/analyze")
+        dict["i_messy_rate"] = tidy_detect()
+        print("model messy done")
 
-    dict["i_blur_rate"] = blur_detect()
-    print("model blur done")
+        if os.path.exists("images/analyze"):
+            os.rmdir("images/analyze")
 
-    # dict["i_fake_rate"] = detect_manupulation()
+        dict["i_blur_rate"] = blur_detect()
+        print("model blur done")
+
+        dict["roomType_model"] = roomType_model(description)
+        print("model roomType_model done")
+
+        # dict["i_fake_rate"] = detect_manupulation()
+
 
     dict["grammar_model"] = text_model(description)
     print("model grammar done")
@@ -122,11 +116,6 @@ def calc_preds(description):
 
     dict["buzzwords_model"] = check_text_quality(description)
     print("model buzzwords done")
-    
-    dict["roomType_model"] = roomType_model(description)
-    print("model roomType_model done")
-
-    removeTemp()
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
@@ -154,20 +143,22 @@ def resizeInTemp(path):
     resizedImage.save(imgPath)
     return
 
-def removeTemp():
-    # if os.path.isdir("temp/"):
-    files = glob.glob('temp/*')
-    for f in files:
-        os.remove(f)
-    return
+def resetDirs(path):
+    forImages = path + "/images"
+    forTemp = path + "/temp"
+    if os.path.exists(forImages):
+        shutil.rmtree(forImages)
+    os.mkdir(forImages)
+    if os.path.exists(forTemp):
+        shutil.rmtree(forTemp)
 
 be = Flask(__name__)
 @be.route('/', methods=['POST'])
 def hello():
     print("in be server")
-    path = os.path.dirname(os.path.realpath(__file__)) + "/images/"
-    if not os.path.exists(path):
-        os.mkdir(path)
+    path = os.path.dirname(os.path.realpath(__file__))
+    resetDirs(path)
+    path = path + "/images/"
     json = request.get_json()
     description = json["description"]
     photos = json["photos"]
@@ -182,16 +173,7 @@ def hello():
         fullpath = path + fileName  # need to open the folder first!
         image.save(fullpath)
     response = calc_preds(description)
-    clearDir(path)
-    os.rmdir(path)
     return response
 
 if __name__ == '__main__':
     be.run(host='0.0.0.0', port=8000, debug=True)
-    # calc_preds()
-
-#temp_function_user_simulator("../dark_vs_bright_model/assets/dark.txt")
-#temp_function_user_simulator("../dark_vs_bright_model/assets/bright.txt")
-#decode_images()
-# calc_preds()
-#remove()

@@ -112,7 +112,5 @@ def tidy_detect():
     images, images_rgb = load_test_images(filespath)
     images = normalizeData(images)
     predictions = predict(images)
-    clearAnalyzeDir(imagePrediectionPath)
-    os.rmdir(imagePrediectionPath)
     tidyRates = createResponse(filesname, predictions)
     return tidyRates
