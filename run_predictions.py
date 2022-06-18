@@ -96,7 +96,7 @@ def calc_preds():
     # dict["grammar_model"] = text_model(description)
     dict["sentiment_model"] = sentiments_model(description)
     # dict["buzzwords_model"] = check_text_quality(description)
-    # dict["roomType_model"] = roomType_model(description)
+    dict["roomType_model"] = roomType_model(description)
 
     removeTemp()
 
