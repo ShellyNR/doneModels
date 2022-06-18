@@ -21,7 +21,7 @@ def parsePath(path):
 
 def getText(fm, grade):
     if fm <= threshold and grade < 50:
-        return "The image is too blurry."
+        return "The image is too blurry, you should consider taking another photo."
     if fm <= threshold and 65 < grade:
         return "The image is quite blurry."
     return "The image is sharp!"
