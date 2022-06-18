@@ -1,41 +1,38 @@
 import glob
-
 import cv2
 import numpy as np
+import random
 
-
+threshold = 0.00175
 
 def variance_of_laplacian(image):
-    # compute the Laplacian of the image and then return the focus
-    # measure, which is simply the variance of the Laplacian
     return cv2.Laplacian(image, cv2.CV_64F).var()
 
-
+def get_grade(fm):
+    grade = int((fm * 50 / threshold+3))
+    if grade > 100:
+        return random.randint(90,100)
+    if grade < 20:
+        grade = grade + 20
+    return grade
 
 def blur_detect():
-    threshold = 1000
-
     blurry_rates = []
 
-    # loop over the input images
-    for i, path in enumerate(glob.glob("temp/*")):
-        # load the image, convert it to grayscale, and compute the
-        # focus measure of the image using the Variance of Laplacian
-        # method
+    for i, path in enumerate(glob.glob("images/*")):
         image = cv2.imread(path)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gray = gray/np.max(gray)
         fm = variance_of_laplacian(gray)
 
-        if fm > threshold:
-            text = path + " - Not Blurry: " + str(fm)
+        grade = get_grade(fm)
 
-        # if the focus measure is less than the supplied threshold,
-        # then the image should be considered "blurry"
-        if fm < threshold:
-            text = path + " - Blurry: " + str(fm)
+        if fm <= threshold and grade < 50:
+            text = "is blurry."
+        else:
+            text = "is sharpness."
 
-        blurry_rates.append((np.float64(fm), text , path))
+        blurry_rates.append((grade, text, path))
+
     return blurry_rates
-
 

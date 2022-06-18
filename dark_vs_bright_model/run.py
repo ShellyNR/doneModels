@@ -1,5 +1,7 @@
 import os
 import glob
+import random
+
 import cv2
 import numpy as np
 
@@ -13,24 +15,28 @@ def calc_brightness(image, dim=10):
     # higher mean means that the image is brighter
     return np.mean(L)
 
+def getResponse(grade):
+    text = "it's dark"
+    if grade > 50:
+        text = "it's bright"
+        grade = grade + 30
+        if grade > 100:
+            grade = random.randint(90,100)
+    return text, grade
+
 # create output directories if not exists
 # os.makedirs("output/bright", exist_ok=True)
 # os.makedirs("output/dark", exist_ok=True)
 def isBright():
     bright_rates = []
     # iterate through images directory
-    for i, path in enumerate(glob.glob("images/*")):
+    for path in glob.glob("images/*"):
         # load image from path
         image = cv2.imread(path)
-        thresh = 0.45
         # find if image is bright or dark
         path = os.path.basename(path)
         # higher mean means that the image is brighter
         mean = calc_brightness(image)
-        bright_rates.append((np.float64(mean), "desc", path))
-        # text ="bright" if mean > thresh else "dark"
+        response, grade = getResponse(int(mean*100))
+        bright_rates.append((grade, response, path))
     return bright_rates
-
-        # save image to disk
-        # cv2.imwrite("output/{}/{}".format(text, path), image)
-        # print(path, "=>", text, ". Scale -", mean)
