@@ -85,10 +85,13 @@ def predict(images):
     features = base_model.predict(images)
     # room_model = load_model(os.path.join(path, 'tidyModel.h5'))
 
-    data = np.array(features.numpy())
+    data = np.array(features.np())
     payload = json.dumps(data.tolist())
     response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
     # predictions = room_model.predict(features)
+    print("mess res: ")
+    print(response)
+    print()
     return response
 
 def getTextPerGrade(grade):
