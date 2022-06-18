@@ -16,15 +16,15 @@ def renderList(list):
   return returnList
 
 def predictAllPhotos():
-  # photosNameList = os.listdir('/content/workspace/test')
+  photosNameList = os.listdir('/content/workspace/test')
   predictionsList = []
-  #
-  # for photoName in photosNameList:
-  #   photoPath = "workspace/test/" + photoName
-  #   predictions = gtf.Infer(img_name=photoPath);
-  #   predictionsList.append(predictions["predicted_class"])
-  #
-  # return renderList(predictionsList)
+
+  for photoName in photosNameList:
+    photoPath = "workspace/test/" + photoName
+    predictions = gtf.Infer(img_name=photoPath);
+    predictionsList.append(predictions["predicted_class"])
+
+  return renderList(predictionsList)
 
 def typeIsInObj(type, obj):
   types = type.split(",")
