@@ -1,11 +1,11 @@
-from monk.gluon_prototype import prototype
-import os
-import string
-
-print("success!")
-
-gtf = prototype(verbose=1);
-gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
+# from monk.gluon_prototype import prototype
+# import os
+# import string
+#
+# print("success!")
+#
+# gtf = prototype(verbose=1);
+# gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
 
 def renderList(list):
   list = set(list)
