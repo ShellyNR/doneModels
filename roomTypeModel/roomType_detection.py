@@ -1,9 +1,9 @@
-from monk.gluon_prototype import prototype
+# from monk.gluon_prototype import prototype
 import os
 import string
 
-gtf = prototype(verbose=1);
-gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
+# gtf = prototype(verbose=1);
+# gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
 
 def renderList(list):
   list = set(list)
@@ -15,18 +15,18 @@ def renderList(list):
   returnList = [x.lower() for x in list]
   return returnList
 
-def predictAllPhotos():
-  # photosNameList = os.listdir('/content/workspace/test')
-  photosNameList = os.listdir('images')
-  predictionsList = []
-
-  for photoName in photosNameList:
-    # photoPath = "workspace/test/" + photoName
-    photoPath = "images" + photoName
-    predictions = gtf.Infer(img_name=photoPath);
-    predictionsList.append(predictions["predicted_class"])
-
-  return renderList(predictionsList)
+# def predictAllPhotos():
+#   # photosNameList = os.listdir('/content/workspace/test')
+#   photosNameList = os.listdir('images')
+#   predictionsList = []
+#
+#   for photoName in photosNameList:
+#     # photoPath = "workspace/test/" + photoName
+#     photoPath = "images" + photoName
+#     predictions = gtf.Infer(img_name=photoPath);
+#     predictionsList.append(predictions["predicted_class"])
+#
+#   return renderList(predictionsList)
 
 def typeIsInObj(type, obj):
   types = type.split(",")
@@ -46,11 +46,11 @@ def buildResponse(missingInDescription, missingInPhotos):
   return response
 
 def roomType_model(description):
-  print("INSIDEEEEEEEEEEEEEEEEEE")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
   description = "I love my bedroom it's nice"
   description = description.lower().translate(str.maketrans('', '', string.punctuation))
-  predictionsList = predictAllPhotos()
+  # predictionsList = predictAllPhotos()
+  predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
   missingInDescription = []
   missingInPhotos = []
 
