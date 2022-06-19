@@ -1,6 +1,5 @@
 import os
 import glob
-import random
 
 import cv2
 import numpy as np
@@ -19,7 +18,7 @@ def getResponse(grade):
     if grade > 80:
         text = "The image is too bright."
     elif grade < 50:
-        text = "The image is too dark, consider taking the photo again with more light."
+        text = "The image is dark, consider taking the photo again with more light."
     else:
         text = "The image brightness is alright!"
     grade = round(100 - (abs(65 - grade)))
