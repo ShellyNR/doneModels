@@ -2,12 +2,11 @@ import glob
 
 import keras
 
-from models.doneModels.quality_model.models.triq_model import create_triq_model
+from quality_model.models.triq_model import create_triq_model
 import numpy as np
 from PIL import Image
+
 from scipy.stats import norm
-
-
 
 def get_response(grade):
     if grade > 0.85:
