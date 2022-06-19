@@ -8,7 +8,7 @@ import string
 def buildResponse(missingInDescription, missingInPhotos):
   response = ""
   if len(missingInDescription) != 0:
-    response = "We saw that you attached a photo of: " + ', '.join(missingInDescription) + " - but you didn't mentioned it in the description.\r\n"
+    response = "We saw that you attached a photo of: " + ', '.join(missingInDescription) + " - but you didn't mention it in the description.\r\n"
   if len(missingInPhotos) != 0:
     response = response + "We saw that in the description you mentioned: " + ', '.join(missingInPhotos) + " - but we didn't see matching image attached.\r\n"
   if response != "":
@@ -32,20 +32,17 @@ def renderList(list):
   return returnList
 
 def predictAllPhotos():
-  print("in predictAllPhotos")
   ptf = prototype(verbose=1);
   ptf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
   photosNameList = os.listdir('images')
   predictionsList = []
   for photoName in photosNameList:
     photoPath = "images/" + photoName
-    print(photoPath)
     predictions = ptf.Infer(img_name=photoPath);
     predictionsList.append(predictions["predicted_class"])
   return renderList(predictionsList)
 
 def roomType_model(description):
-  print("super success!")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
   description = description.lower().translate(str.maketrans('', '', string.punctuation))
   missingInDescription = []
