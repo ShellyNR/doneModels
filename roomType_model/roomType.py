@@ -31,17 +31,13 @@ def renderList(list):
 def predictAllPhotos():
   print("in predictAllPhotos")
   ptf = prototype(verbose=1);
-  print("1")
   ptf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
-  print("2")
   photosNameList = os.listdir('images')
   predictionsList = []
   for photoName in photosNameList:
-    photoPath = "images" + photoName
-    # Inference
-    print("pre Inference")
+    photoPath = "images/" + photoName
+    print(photoPath)
     predictions = ptf.Infer(img_name=photoPath);
-    print("post Inference")
     predictionsList.append(predictions["predicted_class"])
   return renderList(predictionsList)
 
