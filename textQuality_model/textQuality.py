@@ -72,7 +72,7 @@ def repeatedWords(description):
     repeatingCounter = 0
     text = ""
     for word, count in sorted(word_counts.items()):
-        if word not in repeatableWords and count >= 2:
+        if word not in repeatableWords and count > 2:
             text = text + '"%s" is repeated %d times.\r\n' % (word, count)
             repeatingCounter += count
             repeatWords += 1
