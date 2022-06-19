@@ -7,6 +7,8 @@ import numpy as np
 from PIL import Image
 
 from scipy.stats import norm
+import sys
+import os
 
 def get_response(grade):
     if grade > 0.85:
@@ -58,6 +60,12 @@ if __name__ == '__main__':
     # print('Predicted MOS: {}'.format(predict_mos))
 
 def quality_model():
-    model_weights_path = r'quality_model/pretrained_weights/TRIQ.h5'
-    predict_mos = predict_image_quality(model_weights_path)
+        original_stdout = sys.stdout
+
+    with open('output_triq.txt', 'w') as f:
+        sys.stdout = f  # Change the standard output to the file we created.
+        model_weights_path = r'triq/pretrained_weights/TRIQ.h5'
+        predict_mos = predict_image_quality(model_weights_path)
+        sys.stdout = original_stdout
+    os.remove('output_triq.txt')
     return predict_mos
