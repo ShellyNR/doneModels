@@ -45,9 +45,9 @@ def fake_model():
     fake_rates = []
     for i, path in enumerate(glob.glob("images/*")):
         image = imread(path)
-        print(image.size)
+        # print(image.size)
         slices = num_of_slices(image.size)
-        print (slices)
+        # print (slices)
         sliced_images = image_slicer.slice(filtered_image(image),slices, save=False)
         os.makedirs(dir, exist_ok=True)
         image_slicer.save_tiles(sliced_images, directory=dir, prefix='slice')
@@ -67,8 +67,8 @@ def fake_model():
             sum += np.mean(diff_btwn_img_data)
             count +=1
 
-        print ("total score:" + str(np.divide(sum, count)))
-        print (path)
+        # print ("total score:" + str(np.divide(sum, count)))
+        # print (path)
         fake_rates.append((np.float64(np.divide(sum, count)), "fake_decs_here" , path))
         files = glob.glob('data/*')
         for f in files:

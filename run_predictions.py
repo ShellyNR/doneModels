@@ -47,7 +47,7 @@ def runPhotoModels(dict):
     print("model sharpness done")
 
     dict["i_fake_rate"] = fake_model()
-    print("model fake done")
+    # print("model fake done")
 
     return dict
 
