@@ -3,13 +3,13 @@ import string
 
 def isBuzzInDescription(buzz, words):
     buzzSplit = buzz.split(",")
-    isContain = False
     for b in buzzSplit:
-        if b not in words:
-            return False
-    return isContain, buzzSplit[0]
+        if b in words:
+            return True, buzzSplit[0]
+    return False, buzzSplit[0]
 
 def checkBuzzWords(description):
+    description = "im in tel-aviv!!! street num 1"
     buzzWords = ["city,tel-aviv,jerusalem", "living-room,lounge,living,salon", "rooms", "bathroom,toilet,shower", "kitchen,cuisine", "balcony", "parking",
                  "price,prices,tax,fee", "street,st,street,address", "neighborhood,area,location"] #insert as lower-case
 
