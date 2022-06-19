@@ -33,18 +33,18 @@ def runTextModels(dict, description):
 def runPhotoModels(dict):
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
-
-    dict["i_triq_model"] = quality_model()
-    print("model quality done")
-
-    dict["i_bright_rate"] = brightness_model()
-    print("model brightness done")
-
-    dict["i_messy_rate"] = tidy_model()
-    print("model tidy done")
-
-    dict["i_blur_rate"] = sharpness_model()
-    print("model sharpness done")
+    #
+    # dict["i_triq_model"] = quality_model()
+    # print("model quality done")
+    #
+    # dict["i_bright_rate"] = brightness_model()
+    # print("model brightness done")
+    #
+    # dict["i_messy_rate"] = tidy_model()
+    # print("model tidy done")
+    #
+    # dict["i_blur_rate"] = sharpness_model()
+    # print("model sharpness done")
 
     # dict["i_fake_rate"] = fake_model()
     # print("model fake done")

@@ -1,41 +1,6 @@
-# from monk.gluon_prototype import prototype
-# import os
+from monk.gluon_prototype import prototype
+import os
 import string
-
-# print("success!")
-#
-# gtf = prototype(verbose=1);
-# gtf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
-
-def renderList(list):
-  list = set(list)
-  if "Interior" in list:
-    list.remove("Interior")
-  if "living_room" in list:
-    list.remove("living_room")
-    list.add("living room")
-  returnList = [x.lower() for x in list]
-  return returnList
-
-# def predictAllPhotos():
-#   # photosNameList = os.listdir('/content/workspace/test')
-#   photosNameList = os.listdir('images')
-#   predictionsList = []
-#
-#   for photoName in photosNameList:
-#     # photoPath = "workspace/test/" + photoName
-#     photoPath = "images" + photoName
-#     predictions = gtf.Infer(img_name=photoPath);
-#     predictionsList.append(predictions["predicted_class"])
-#
-#   return renderList(predictionsList)
-
-def typeIsInObj(type, obj):
-  types = type.split(",")
-  for t in types:
-    if t in obj:
-      return True
-  return False
 
 def buildResponse(missingInDescription, missingInPhotos):
   response = ""
@@ -47,20 +12,57 @@ def buildResponse(missingInDescription, missingInPhotos):
     response = response + "We recommend you to complete this information."
   return response
 
+def typeIsInObj(types, obj):
+  for t in types:
+    if t in obj:
+      return True
+  return False
+
+def renderList(list):
+  list = set(list)
+  if "Interior" in list:
+    list.remove("Interior")
+  if "living_room" in list:
+    list.remove("living_room")
+    list.add("living room")
+  returnList = [x.lower() for x in list]
+  return returnList
+
+def predictAllPhotos():
+  print("in predictAllPhotos")
+  ptf = prototype(verbose=1);
+  print("1")
+  ptf.Prototype("Task", "gluon_resnet18_v1_train_all_layers", eval_infer=True);
+  print("2")
+  photosNameList = os.listdir('images')
+  predictionsList = []
+  for photoName in photosNameList:
+    photoPath = "images" + photoName
+    # Inference
+    print("pre Inference")
+    predictions = ptf.Infer(img_name=photoPath);
+    print("post Inference")
+    predictionsList.append(predictions["predicted_class"])
+  return renderList(predictionsList)
+
 def roomType_model(description):
   print("extra success!")
+  print("super success!")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
-  description = "I love my bedroom it's nice"
   description = description.lower().translate(str.maketrans('', '', string.punctuation))
-  # predictionsList = predictAllPhotos()
-  predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
   missingInDescription = []
   missingInPhotos = []
 
+  # predictionsList = predictAllPhotos()
+  predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
+
   for type in importantRoomType:
-    firstType = type.split(",")[0]
-    isInDescription = typeIsInObj(type, description)
-    isInPredictionsList = typeIsInObj(type, predictionsList)
+    types = type.split(",")
+    firstType = types[0]
+
+    isInDescription = typeIsInObj(types, description)
+    isInPredictionsList = typeIsInObj(types, predictionsList)
+
     if isInDescription and not isInPredictionsList: # is in description but not in images
       missingInPhotos.append(firstType)
     elif isInPredictionsList and not isInDescription: # is in images but not in description
