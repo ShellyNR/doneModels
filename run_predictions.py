@@ -13,7 +13,7 @@ from quality_model.quality import quality_model
 from roomType_model.roomType import roomType_model
 from grammar_model.grammar import grammar_model
 from sharpness_model.sharpness import sharpness_model
-from fewText_model.checkBuzzWords import textQuality_model
+from textQuality_model.textQuality import textQuality_model
 from sentiment_model.sentiment import sentiments_model
 
 from flask import Flask, request
