@@ -18,8 +18,8 @@ def checkBuzzWords(description):
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     for buzz in buzzWords:
-        isBuzzInDescription, firstBuzz = isBuzzInDescription(buzz, words)
-        if not isBuzzInDescription:
+        isBuzzInDes, firstBuzz = isBuzzInDescription(buzz, words)
+        if not isBuzzInDes:
             missingBuzz.append(firstBuzz)
 
     missingBuzzCounter = len(missingBuzz)
