@@ -39,7 +39,7 @@ def get_issues() :
     issues_array = list(issues_set)
     return issues_array
 
-def text_model(description) :
+def grammar_model(description) :
     initialize(description)
     response = {"issues": get_issues(), "main_response": get_main_response(), "grade": get_grade(),
                 "replacement_description": get_replacement_sentence()}

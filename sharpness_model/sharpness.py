@@ -26,7 +26,7 @@ def getText(fm, grade):
         return "The image is quite blurry."
     return "The image is sharp!"
 
-def blur_detect():
+def sharpness_model():
     blurry_rates = []
 
     for i, path in enumerate(glob.glob("images/*")):

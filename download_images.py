@@ -43,6 +43,6 @@ def remove(path="images/"):
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
-#download("../dark_vs_bright_model/assets/dark.txt")
-#download("../dark_vs_bright_model/assets/bright.txt")
+#download("../brightness_model/assets/dark.txt")
+#download("../brightness_model/assets/bright.txt")
 #remove()

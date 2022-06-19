@@ -1,22 +1,54 @@
 {
-    "num_of_images": "Please add more images to your listing",
-    "i_bright_rate": -1,
-    "i_messy_rate": [
+    "num_of_images": "Please add more images to your listing.",
+    "i_bright_rate": [
         [
-            36,
-            "your room is messy - we recommend that you tidy up the room and upload new pictures.",
-            "images\\m2.jpg"
-        ],
-        [
-            75,
-            "your room is nety.",
-            "images\\t.jpg"
+            0.91,
+            "The image brightness is alright!",
+            "images\\1.jpeg"
         ]
     ],
-    "i_triq_model": -1,
-    "i_blur_rate": -1,
-    "i_fake_rate": -1,
-    "grammar_model": -1,
-    "sentiment_model": -1,
-    "buzzwords_model": -1
+    "i_messy_rate": [
+        [
+            0.36,
+            "Your room is messy - we recommend that you tidy up the room and upload new pictures.",
+            "images\\1.jpeg"
+        ]
+    ],
+    "i_triq_model": [
+        [
+            0.4653190646988418,
+            "The image quality is not good, you should consider taking another photo.",
+            "temp\\1.jpeg"
+        ]
+    ],
+    "i_blur_rate": [
+        [
+            0.9,
+            "The image is sharp!",
+            "images\\1.jpeg"
+        ]
+    ],
+    "grammar_model": {
+        "issues": [
+            "Possible spelling mistake found."
+        ],
+        "main_response": "Pay attention to multiple grammar corrections.",
+        "grade": 0,
+        "replacement_description": "HIFI"
+    },
+    "sentiment_model": [
+        0.5717870820945969,
+        "The description sentiment is negative, try using positive words to describe the property."
+    ],
+    "buzzwords_model": {
+        "length_Grade": 50.0,
+        "length_text": "Your sentences are in great length!",
+        "repeated_Words_Grade": 100.0,
+        "repeated_text": "Excellent! you not repeating words.",
+        "BuzzWords_Grade": 75.0,
+        "BuzzWords_text": "nature of the neighborhood, city, living, room, balcony, parking, tax, street.\r\nIt will help you reach the relevant target audience.",
+        "good_description_words_Grade": 100,
+        "good_description_words_text": ""
+    },
+    "roomType_model": "We saw that you attached a photo of: bathroom, kitchen, living room, exterior - but you didn't mentioned it in the description.\r\nWe saw that in the description you mentioned: bedroom - but we didn't see matching image attached.\r\nWe recommend you to complete this information."
 }

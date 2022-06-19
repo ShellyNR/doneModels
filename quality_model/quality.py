@@ -52,12 +52,12 @@ def predict_image_quality(model_weights_path):
 if __name__ == '__main__':
     image_path = r'.\examples\sample_data\640px-Natchez-Trace-Parkway-Highsmith.jpeg'
     # image_path = r'examples/sample_data/example_image_2 (mos=2.865).jpg'
-    # model_weights_path = r'C:\Users\snahir\Desktop\uni\3A\סדנה פרוייקטים\transformer\triq\triq\src\pretrained_weights\resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
+    # model_weights_path = r'C:\Users\snahir\Desktop\uni\3A\סדנה פרוייקטים\transformer\quality_model\quality_model\src\pretrained_weights\resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
     model_weights_path=r'.\pretrained_weights\TRIQ.h5'
     predict_mos = predict_image_quality(model_weights_path, image_path)
     # print('Predicted MOS: {}'.format(predict_mos))
 
-def triq_pred():
-    model_weights_path = r'triq/pretrained_weights/TRIQ.h5'
+def quality_model():
+    model_weights_path = r'quality_model/pretrained_weights/TRIQ.h5'
     predict_mos = predict_image_quality(model_weights_path)
     return predict_mos

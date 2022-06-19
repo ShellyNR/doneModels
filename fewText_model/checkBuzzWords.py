@@ -91,7 +91,7 @@ def checkGoodDescriptionWords(description):
     grade = 100 - wrongWordsCounter * 5
     return grade, text
 
-def check_text_quality(description):
+def textQuality_model(description):
     lengthGrade, lengthText = checkLength(description)
     repeatedWordsGrade, repeatedWordsText = repeatedWords(description)
     BuzzWordsGrade, BuzzWordsText = checkBuzzWords(description)

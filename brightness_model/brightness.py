@@ -27,7 +27,7 @@ def getResponse(grade):
 # create output directories if not exists
 # os.makedirs("output/bright", exist_ok=True)
 # os.makedirs("output/dark", exist_ok=True)
-def isBright():
+def brightness_model():
     bright_rates = []
     # iterate through images directory
     for path in glob.glob("images/*"):

@@ -96,7 +96,7 @@ def createResponse(filesname, predictions):
         tidyRates.append((grade/100, text, path))
     return tidyRates
 
-def tidy_detect():
+def tidy_model():
     preprocessing()
     imagePrediectionPath = 'analyze'
     filesname = os.listdir(imagePrediectionPath)

@@ -6,17 +6,57 @@ import base64
 import io
 import os
 
-from dark_vs_bright_model.run import isBright
-from tidyDetection.tidy_detection import tidy_detect
-from image_manipulation_detection.detect_manipulation import detect_manupulation
-from triq.image_quality_prediction import triq_pred
-from roomTypeModel.roomType_detection import roomType_model
-from textModel.textModel import text_model
-from blurDetection.blur_detection import blur_detect
-from check_BuzzWords.checkBuzzWords import check_text_quality
+from brightness_model.brightness import brightness_model
+from tidy_model.tidy import tidy_model
+from fake_model.fake import fake_model
+from quality_model.quality import quality_model
+from roomType_model.roomType import roomType_model
+from grammar_model.grammar import grammar_model
+from sharpness_model.sharpness import sharpness_model
+from fewText_model.checkBuzzWords import textQuality_model
 from sentiment_model.sentiment import sentiments_model
 
 from flask import Flask, request
+
+def runTextModels(description):
+    dict["grammar_model"] = grammar_model(description)
+    print("model grammar done")
+
+    dict["sentiment_model"] = sentiments_model(description)
+    print("model sentiments done")
+
+    dict["buzzwords_model"] = textQuality_model(description)
+    print("model textQuality done")
+
+    return dict
+
+def runPhotoModels():
+    for i, path in enumerate(glob.glob("images/*")):
+        resizeInTemp(path)
+
+    dict["i_triq_model"] = quality_model()
+    print("model quality done")
+
+    dict["i_bright_rate"] = brightness_model()
+    print("model brightness done")
+
+    dict["i_messy_rate"] = tidy_model()
+    print("model tidy done")
+
+    dict["i_blur_rate"] = sharpness_model()
+    print("model sharpness done")
+
+    # dict["i_fake_rate"] = fake_model()
+    # print("model fake done")
+
+    return dict
+
+def resizeInTemp(path):
+    im = Image.open(path)
+    resizedImage = im.resize((512, 384))
+    name = os.path.basename(path)
+    imgPath = os.path.join("temp/" + name)
+    resizedImage.save(imgPath)
 
 def calc_preds(description):
     dict = {
@@ -32,55 +72,24 @@ def calc_preds(description):
         "roomType_model": -1
 
     }
-
     numOfImages = len(glob.glob("images/*"))
+
     if (numOfImages <= 2):
         dict["num_of_images"] = "Please add more images to your listing."
 
     if numOfImages != 0:
-        for i, path in enumerate(glob.glob("images/*")):
-            resizeInTemp(path)
-
-        dict["i_triq_model"] = triq_pred()
-        print("model triq done")
-
-        dict["i_bright_rate"] = isBright()
-        print("model bright done")
-
-        dict["i_messy_rate"] = tidy_detect()
-        print("model messy done")
-
-        dict["i_blur_rate"] = blur_detect()
-        print("model blur done")
-
+        dict = runPhotoModels()
         dict["roomType_model"] = roomType_model(description)
         print("model roomType_model done")
 
-        # dict["i_fake_rate"] = detect_manupulation()
-
     if len(description) != 0:
-        dict["grammar_model"] = text_model(description)
-        print("model grammar done")
-
-        dict["sentiment_model"] = sentiments_model(description)
-        print("model sentiment done")
-
-        dict["buzzwords_model"] = check_text_quality(description)
-        print("model buzzwords done")
+        dict = runTextModels(description)
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
         f.write(json_object)
         f.close()
     return json_object
-
-def resizeInTemp(path):
-    im = Image.open(path)
-    # resizedImage = im.resize((1024, 768))
-    resizedImage = im.resize((512, 384))
-    name = os.path.basename(path)
-    imgPath = os.path.join("temp/" + name)
-    resizedImage.save(imgPath)
 
 def resetDirs(path):
     print("reset images dir")
@@ -114,15 +123,12 @@ def hello():
     photosFileNames = list(photos.keys())
     for fileName in photosFileNames:
         photo = photos.get(fileName)
-        # print(fileName)
         byte_data = str.encode(photo)
         parsedPhoto = base64.b64decode(byte_data)
-        # print(parsedPhoto.__sizeof__())
         image = Image.open(io.BytesIO(parsedPhoto))
-        fullpath = path + fileName  # need to open the folder first!
+        fullpath = path + fileName
         image.save(fullpath)
     response = calc_preds(description)
-    # response = roomType_model(description)
     return response
 
 if __name__ == '__main__':

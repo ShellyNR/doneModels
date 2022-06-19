@@ -41,7 +41,7 @@ def filtered_image(image):
     io.imsave("out.png", img3)
     return "out.png"
 
-def detect_manupulation():
+def fake_model():
     fake_rates = []
     for i, path in enumerate(glob.glob("images/*")):
         image = imread(path)
