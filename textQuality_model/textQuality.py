@@ -9,7 +9,6 @@ def isBuzzInDescription(buzz, words):
     return False, buzzSplit[0]
 
 def checkBuzzWords(description):
-    description = "im in tel-aviv!!! street num 1"
     buzzWords = ["city,tel-aviv,jerusalem", "living-room,lounge,living,salon", "rooms", "bathroom,toilet,shower", "kitchen,cuisine", "balcony", "parking",
                  "price,prices,tax,fee", "street,st,street,address", "neighborhood,area,location"] #insert as lower-case
 
@@ -33,6 +32,7 @@ def checkBuzzWords(description):
                 strMissing = strMissing + ", "
         strMissing = strMissing + ', '.join(missingBuzz)
         text = strMissing + ".\r\nIt will help you reach the relevant target audience."
+
     grade = ((buzzWordsCounter - missingBuzzCounter * 0.25) / buzzWordsCounter) * 100
     return grade, text
 
