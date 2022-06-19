@@ -15,6 +15,9 @@ from grammar_model.grammar import grammar_model
 from sharpness_model.sharpness import sharpness_model
 from textQuality_model.textQuality import textQuality_model
 from sentiment_model.sentiment import sentiments_model
+from datetime import timedelta
+from flask import session, app
+
 
 from flask import Flask, request
 
@@ -132,6 +135,11 @@ def hello():
         image.save(fullpath)
     response = calc_preds(description)
     return response
+
+@be.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=5)
 
 if __name__ == '__main__':
     be.run(host='0.0.0.0', port=8000, debug=True)
