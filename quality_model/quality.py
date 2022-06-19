@@ -60,8 +60,7 @@ if __name__ == '__main__':
     # print('Predicted MOS: {}'.format(predict_mos))
 
 def quality_model():
-        original_stdout = sys.stdout
-
+    original_stdout = sys.stdout
     with open('output_triq.txt', 'w') as f:
         sys.stdout = f  # Change the standard output to the file we created.
         model_weights_path = r'triq/pretrained_weights/TRIQ.h5'
@@ -69,3 +68,5 @@ def quality_model():
         sys.stdout = original_stdout
     os.remove('output_triq.txt')
     return predict_mos
+
+    
