@@ -18,7 +18,7 @@ from sentiment_model.sentiment import sentiments_model
 
 from flask import Flask, request
 
-def runTextModels(description):
+def runTextModels(dict, description):
     dict["grammar_model"] = grammar_model(description)
     print("model grammar done")
 
@@ -30,7 +30,7 @@ def runTextModels(description):
 
     return dict
 
-def runPhotoModels():
+def runPhotoModels(dict):
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
 
@@ -78,12 +78,12 @@ def calc_preds(description):
         dict["num_of_images"] = "Please add more images to your listing."
 
     if numOfImages != 0:
-        dict = runPhotoModels()
+        dict = runPhotoModels(dict)
         dict["roomType_model"] = roomType_model(description)
         print("model roomType_model done")
 
     if len(description) != 0:
-        dict = runTextModels(description)
+        dict = runTextModels(dict, description)
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
