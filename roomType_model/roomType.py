@@ -49,7 +49,6 @@ def roomType_model(description):
   missingInPhotos = []
 
   predictionsList = predictAllPhotos()
-  # predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
 
   for type in importantRoomType:
     types = type.split(",")

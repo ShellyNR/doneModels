@@ -33,21 +33,21 @@ def runTextModels(dict, description):
 def runPhotoModels(dict):
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
-    #
-    # dict["i_triq_model"] = quality_model()
-    # print("model quality done")
-    #
-    # dict["i_bright_rate"] = brightness_model()
-    # print("model brightness done")
-    #
-    # dict["i_messy_rate"] = tidy_model()
-    # print("model tidy done")
-    #
-    # dict["i_blur_rate"] = sharpness_model()
-    # print("model sharpness done")
 
-    # dict["i_fake_rate"] = fake_model()
-    # print("model fake done")
+    dict["i_triq_model"] = quality_model()
+    print("model quality done")
+
+    dict["i_bright_rate"] = brightness_model()
+    print("model brightness done")
+
+    dict["i_messy_rate"] = tidy_model()
+    print("model tidy done")
+
+    dict["i_blur_rate"] = sharpness_model()
+    print("model sharpness done")
+
+    dict["i_fake_rate"] = fake_model()
+    print("model fake done")
 
     return dict
 
@@ -79,11 +79,13 @@ def calc_preds(description):
 
     if numOfImages != 0:
         dict = runPhotoModels(dict)
-        dict["roomType_model"] = roomType_model(description)
-        print("model roomType_model done")
 
     if len(description) != 0:
         dict = runTextModels(dict, description)
+
+    if numOfImages != 0 and len(description)!=0:
+        dict["roomType_model"] = roomType_model(description)
+        print("model roomType_model done")
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
