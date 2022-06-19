@@ -1,15 +1,27 @@
 import collections
 import string
 
+def isBuzzInDescription(buzz, words):
+    buzzSplit = buzz.split(",")
+    isContain = False
+    for b in buzzSplit:
+        if b not in words:
+            return False
+    return isContain, buzzSplit[0]
+
 def checkBuzzWords(description):
-    buzzWords = ["city", "living room", "rooms", "balcony", "parking", "price", "street","neighborhood"] #insert as lower-case
+    buzzWords = ["city,tel-aviv,jerusalem", "living-room,lounge,living,salon", "rooms", "bathroom,toilet,shower", "kitchen,cuisine", "balcony", "parking",
+                 "price,prices,tax,fee", "street,st,street,address", "neighborhood,area,location"] #insert as lower-case
+
     buzzWordsCounter = len(buzzWords)
     missingBuzz = []
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     for buzz in buzzWords:
-        if buzz not in words:
-            missingBuzz.append(buzz)
+        isBuzzInDescription, firstBuzz = isBuzzInDescription(buzz, words)
+        if not isBuzzInDescription:
+            missingBuzz.append(firstBuzz)
+
     missingBuzzCounter = len(missingBuzz)
     text = ""
     if missingBuzzCounter != 0:
@@ -50,7 +62,8 @@ def checkLength(description):
     return grade, finalText
 
 def repeatedWords(description):
-    repeatableWords = ["to","two","with","of","the", "and", "a", "that", "it", "not", "as", "there"] #insert as lower-case
+    repeatableWords = ["to","level","two","with","of","the","and","a","that","it","not","as","there","in","is","on","for",
+                       "apartment","of","1","2","3","4","5","6"] #insert as lower-case
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     word_counts = collections.Counter(words)
