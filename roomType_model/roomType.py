@@ -46,15 +46,14 @@ def predictAllPhotos():
   return renderList(predictionsList)
 
 def roomType_model(description):
-  print("extra success!")
   print("super success!")
   importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
   description = description.lower().translate(str.maketrans('', '', string.punctuation))
   missingInDescription = []
   missingInPhotos = []
 
-  # predictionsList = predictAllPhotos()
-  predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
+  predictionsList = predictAllPhotos()
+  # predictionsList = ["exterior", "bathroom", "living room", "kitchen"]
 
   for type in importantRoomType:
     types = type.split(",")
