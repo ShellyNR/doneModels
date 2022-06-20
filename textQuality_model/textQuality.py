@@ -61,9 +61,16 @@ def checkLength(description):
         finalText = "Your sentences are in great length!"
     return grade, finalText
 
+def calcGradeRepeatedWords(diffWords, repeatWords, repeatingCounter):
+    grade = (((diffWords - repeatWords)/diffWords) * 100)
+    if grade > repeatingCounter*5:
+        grade = grade - (repeatingCounter*5)
+    return grade
+
 def repeatedWords(description):
     repeatableWords = ["to","level","two","with","of","the","and","a","that","it","not","as","there","in","is","on","for",
                        "apartment","of","1","2","3","4","5","6"] #insert as lower-case
+
     description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     word_counts = collections.Counter(words)
@@ -80,9 +87,8 @@ def repeatedWords(description):
         text = text + "It is recommended to avoid repeating words in the description."
     else:
         text = text + "Excellent! Your description does not contain repeating words."
-    grade = (((diffWords - repeatWords)/diffWords) * 100)
-    if grade > repeatingCounter*5:
-        grade = grade - (repeatingCounter*5)
+
+    grade = calcGradeRepeatedWords(diffWords, repeatWords,repeatingCounter)
     return grade, text
 
 def checkGoodDescriptionWords(description):
@@ -92,24 +98,26 @@ def checkGoodDescriptionWords(description):
     words = description.split()
     words = set(words)
     wrongWordsCounter = 0
+    text = ""
     convertedDescription = description
     for key in betterKeys:
         if key in words:
-            # print("We recommend you to change the word " + key + " to " + betterWordsConvertor[key])
+            text = text + "We recommend you to change the word " + key + " to " + betterWordsConvertor[key]+".\r\n"
             wrongWordsCounter += 1
             convertedDescription = convertedDescription.replace(key, betterWordsConvertor[key])
-    text = ""
-    if description != convertedDescription:
-        text = convertedDescription
+    if text == "":
+        text = "Great job! We didn't find words to change in the description."
     grade = 100 - wrongWordsCounter * 5
-    return grade, text
+    if description != convertedDescription:
+        description = convertedDescription
+    return grade, text, description
 
 def textQuality_model(description):
     lengthGrade, lengthText = checkLength(description)
     repeatedWordsGrade, repeatedWordsText = repeatedWords(description)
     BuzzWordsGrade, BuzzWordsText = checkBuzzWords(description)
-    goodDescriptionWordsGrade, goodDescriptionWordsText = checkGoodDescriptionWords(description)
+    goodDescriptionWordsGrade, goodDescriptionWordsText , newDescription = checkGoodDescriptionWords(description)
     response = {"length_Grade": lengthGrade, "length_text": lengthText , "repeated_Words_Grade": repeatedWordsGrade,
                 "repeated_text": repeatedWordsText, "BuzzWords_Grade": BuzzWordsGrade, "BuzzWords_text": BuzzWordsText,
                 "good_description_words_Grade": goodDescriptionWordsGrade, "good_description_words_text": goodDescriptionWordsText}
-    return response
+    return response, newDescription
