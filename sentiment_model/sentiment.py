@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 
 # Constants
-PATH = 'sentiment_data/opinions.tsv'
+PATH = 'sentiment_model/sentiment_data/opinions.tsv'
 LANGUAGE = 'english'
 PERCENTAGES = 100
 HIGH_DESCRIPTION = "The description sentiment is great!"
