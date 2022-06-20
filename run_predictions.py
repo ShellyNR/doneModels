@@ -20,36 +20,50 @@ from sentiment_model.sentiment import sentiments_model
 from flask import Flask, request
 
 def runTextModels(dict, description):
-    dict["grammar_model"] = grammar_model(description)
-    print("model grammar done")
+    print("## run text models:")
 
+    print("model sentiments start")
     dict["sentiment_model"] = sentiments_model(description)
     print("model sentiments done")
 
-    dict["buzzwords_model"] = textQuality_model(description)
+    print("model textQuality start")
+    dict["buzzwords_model"], description = textQuality_model(description)
     print("model textQuality done")
+
+    print("model grammar start")
+    dict["grammar_model"] = grammar_model(description)
+    print("model grammar done")
+
+    print("## done text models")
 
     return dict
 
 def runPhotoModels(dict):
+    print("## run photo models:")
+
     for i, path in enumerate(glob.glob("images/*")):
         resizeInTemp(path)
 
+    print("model quality start")
     dict["i_triq_model"] = quality_model()
     print("model quality done")
 
+    print("model brightness start")
     dict["i_bright_rate"] = brightness_model()
     print("model brightness done")
 
+    print("model tidy start")
     dict["i_messy_rate"] = tidy_model()
     print("model tidy done")
 
+    print("model sharpness start")
     dict["i_blur_rate"] = sharpness_model()
     print("model sharpness done")
 
 #     dict["i_fake_rate"] = fake_model()
     # print("model fake done")
 
+    print("## done photo models")
     return dict
 
 def resizeInTemp(path):
@@ -84,9 +98,13 @@ def calc_preds(description):
     if len(description) != 0:
         dict = runTextModels(dict, description)
 
-    if numOfImages != 0 and len(description)!=0:
+    if numOfImages != 0 and len(description) != 0:
+        print("## run mixed model:")
+
+        print("model roomType start")
         dict["roomType_model"] = roomType_model(description)
         print("model roomType_model done")
+        print("## done mixed model")
 
     with open('resp.json', 'w') as f:
         json_object = json.dumps(dict, indent=4)
@@ -95,19 +113,16 @@ def calc_preds(description):
     return json_object
 
 def resetDirs(path):
-    print("reset images dir")
     forImages = path + "/images"
     if os.path.exists(forImages):
         shutil.rmtree(forImages)
     os.mkdir(forImages)
 
-    print("reset analyze dir")
     forAnalyze = path + "/analyze"
     if os.path.exists(forAnalyze):
         shutil.rmtree(forAnalyze)
     os.mkdir(forAnalyze)
 
-    print("reset temp dir")
     forTemp = path + "/temp"
     if os.path.exists(forTemp):
         shutil.rmtree(forTemp)
@@ -116,8 +131,9 @@ def resetDirs(path):
 be = Flask(__name__)
 @be.route('/', methods=['POST'])
 def hello():
-    print("in be server")
+    print("in BE Server")
     path = os.path.dirname(os.path.realpath(__file__))
+    print("reset directories")
     resetDirs(path)
     path = path + "/images/"
     json = request.get_json()
@@ -131,6 +147,7 @@ def hello():
         image = Image.open(io.BytesIO(parsedPhoto))
         fullpath = path + fileName
         image.save(fullpath)
+    print("### start to analyze ###")
     response = calc_preds(description)
     return response
 
