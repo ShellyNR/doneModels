@@ -14,7 +14,6 @@ def checkBuzzWords(description):
 
     buzzWordsCounter = len(buzzWords)
     missingBuzz = []
-    description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     for buzz in buzzWords:
         isBuzzInDes, firstBuzz = isBuzzInDescription(buzz, words)
@@ -70,8 +69,6 @@ def calcGradeRepeatedWords(diffWords, repeatWords, repeatingCounter):
 def repeatedWords(description):
     repeatableWords = ["to","level","two","with","of","the","and","a","that","it","not","as","there","in","is","on","for",
                        "apartment","of","1","2","3","4","5","6"] #insert as lower-case
-
-    description = description.translate(str.maketrans('', '', string.punctuation)).lower()
     words = description.split()
     word_counts = collections.Counter(words)
     diffWords = len(word_counts)
@@ -113,9 +110,10 @@ def checkGoodDescriptionWords(description):
     return grade, text, description
 
 def textQuality_model(description):
+    lowerNoPunDesc = description.translate(str.maketrans('', '', string.punctuation)).lower()
     lengthGrade, lengthText = checkLength(description)
-    repeatedWordsGrade, repeatedWordsText = repeatedWords(description)
-    BuzzWordsGrade, BuzzWordsText = checkBuzzWords(description)
+    repeatedWordsGrade, repeatedWordsText = repeatedWords(lowerNoPunDesc)
+    BuzzWordsGrade, BuzzWordsText = checkBuzzWords(lowerNoPunDesc)
     goodDescriptionWordsGrade, goodDescriptionWordsText , newDescription = checkGoodDescriptionWords(description)
     response = {"length_Grade": lengthGrade, "length_text": lengthText , "repeated_Words_Grade": repeatedWordsGrade,
                 "repeated_text": repeatedWordsText, "BuzzWords_Grade": BuzzWordsGrade, "BuzzWords_text": BuzzWordsText,
