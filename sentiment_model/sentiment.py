@@ -14,6 +14,8 @@ PERCENTAGES = 100
 HIGH_DESCRIPTION = "The description sentiment is great!"
 MEDIUM_DESCRIPTION = "The description sentiment is positive, but you can consider improving it a little."
 LOW_DESCRIPTION = "The description sentiment is negative, try using positive words to describe the property."
+HIGH_GRADE = 85
+MEDIUM_GRADE = 60
 
 
 def train_all_models():
@@ -106,9 +108,9 @@ def infer(description, training_vector, logistic_regression):
 # the function gets a grade (0 - 1) and returns a sentence regarding the grade
 def sentence_grade(grade):
     grade = grade * PERCENTAGES
-    if grade > 85:
+    if grade > HIGH_GRADE:
         return HIGH_DESCRIPTION
-    if grade > 60:
+    if grade > MEDIUM_GRADE:
         return MEDIUM_DESCRIPTION
     else:
         return LOW_DESCRIPTION
