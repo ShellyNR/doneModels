@@ -9,7 +9,7 @@ def isBuzzInDescription(buzz, words):
     return False, buzzSplit[0]
 
 def checkBuzzWords(description):
-    buzzWords = ["city,tel-aviv,jerusalem", "livingroom,lounge,living,salon", "bedroom,bedrooms", "#rooms,rooms", "bathroom,bathrooms,toilet,shower", "kitchen,cuisine", "balcony,balconies", "parking",
+    buzzWords = ["city,tel,aviv,jerusalem,greek,colony", "livingroom,lounge,living,salon", "bedroom,bedrooms", "#rooms,rooms", "bathroom,bathrooms,toilet,shower", "kitchen,cuisine", "balcony,balconies", "parking",
                  "price,prices,tax,fee", "street,st,street,address", "neighborhood,area,location", "elevator"] #insert as lower-case
 
     buzzWordsCounter = len(buzzWords)
