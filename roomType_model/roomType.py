@@ -43,7 +43,8 @@ def predictAllPhotos():
   return renderList(predictionsList)
 
 def roomType_model(description):
-  importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,lounge,salon", "exterior,building,house,apartment"]
+  importantRoomType = ["bedroom", "bathroom,toilet,shower", "kitchen,cuisine", "living room,livingroom,living-room,lounge,salon",
+                       "building,exterior,house,apartment"]
   description = description.lower().translate(str.maketrans('', '', string.punctuation))
   missingInDescription = []
   missingInPhotos = []
