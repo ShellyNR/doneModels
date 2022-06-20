@@ -36,8 +36,6 @@ def runTextModels(dict, description):
 
     print("## done text models")
 
-    return dict
-
 def runPhotoModels(dict):
     print("## run photo models:")
 
@@ -95,7 +93,7 @@ def calc_preds(description):
         runPhotoModels(dict)
 
     if len(description) != 0:
-        dict = runTextModels(dict, description)
+        runTextModels(dict, description)
 
     if numOfImages != 0 and len(description) != 0:
         print("## run mixed model:")
