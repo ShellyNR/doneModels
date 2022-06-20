@@ -64,7 +64,6 @@ def runPhotoModels(dict):
     # print("model fake done")
 
     print("## done photo models")
-    return dict
 
 def resizeInTemp(path):
     im = Image.open(path)
@@ -93,7 +92,7 @@ def calc_preds(description):
         dict["num_of_images"] = "Please add more images to your listing."
 
     if numOfImages != 0:
-        dict = runPhotoModels(dict)
+        runPhotoModels(dict)
 
     if len(description) != 0:
         dict = runTextModels(dict, description)
@@ -131,7 +130,6 @@ def resetDirs(path):
 be = Flask(__name__)
 @be.route('/', methods=['POST'])
 def hello():
-    print("in BE Server")
     path = os.path.dirname(os.path.realpath(__file__))
     print("reset directories")
     resetDirs(path)
