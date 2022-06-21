@@ -92,11 +92,9 @@ def calc_preds(description):
 
     if numOfImages != 0:
         t1 = threading.Thread(target=runPhotoModels, args = (dict,))
-        t1.start()
 
     if len(description) != 0:
         t2 = threading.Thread(target=runTextModels, args = (dict, description,))
-        t2.start()        
 
     if numOfImages != 0 and len(description) != 0:
         print("## run mixed model:")
@@ -105,10 +103,14 @@ def calc_preds(description):
         dict["roomType_model"] = roomType_model(description)
         print("model roomType_model done")
         print("## done mixed model")
+
+
     if numOfImages != 0:
+        t1.start()
         t1.join()
         
     if len(description) != 0:
+        t2.start()
         t2.join()
 
     with open('resp.json', 'w') as f:
