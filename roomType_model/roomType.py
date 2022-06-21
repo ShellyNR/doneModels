@@ -36,18 +36,19 @@ def getResText(missingInDescription, missingInPhotos):
     return response
 
 def buildResponse(missingInDescription, missingInPhotos):
-    response = []
     responseText = getResText(missingInDescription, missingInPhotos)
-    response.append(responseText)
-    if responseText == "":
-        response.append([])
-        response.append([])
-        response.append([])
-        return response
-    roomType, responseInText, responseInPhotos = getResList(missingInDescription, missingInPhotos)
-    response.append(roomType)
-    response.append(responseInText)
-    response.append(responseInPhotos)
+    return responseText
+    # response = []
+    # response.append(responseText)
+    # if responseText == "":
+    #     response.append([])
+    #     response.append([])
+    #     response.append([])
+    #     return response
+    # roomType, responseInText, responseInPhotos = getResList(missingInDescription, missingInPhotos)
+    # response.append(roomType)
+    # response.append(responseInText)
+    # response.append(responseInPhotos)
     return response
 
 def typeIsInObj(types, obj):
