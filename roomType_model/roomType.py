@@ -43,25 +43,30 @@ def predictAllPhotos():
   return renderList(predictionsList)
 
 def roomType_model(description):
-  importantRoomType = ["bedroom,bedrooms", "bathroom,bathrooms,toilet,shower", "kitchen,cuisine", "living room,livingroom,living-room,lounge,salon",
-                       "building,exterior,house,apartment"]
-  description = description.lower().translate(str.maketrans('', '', string.punctuation))
-  missingInDescription = []
-  missingInPhotos = []
+    original_stdout = sys.stdout
+    with open('output_roomType.txt', 'w') as f:
+        sys.stdout = f  # Change the standard output to the file we created.
+        importantRoomType = ["bedroom,bedrooms", "bathroom,bathrooms,toilet,shower", "kitchen,cuisine", "living room,livingroom,living-room,lounge,salon",
+                             "building,exterior,house,apartment"]
+        description = description.lower().translate(str.maketrans('', '', string.punctuation))
+        missingInDescription = []
+        missingInPhotos = []
 
-  predictionsList = predictAllPhotos()
+        predictionsList = predictAllPhotos()
 
-  for type in importantRoomType:
-    types = type.split(",")
-    firstType = types[0]
+        for type in importantRoomType:
+          types = type.split(",")
+          firstType = types[0]
 
-    isInDescription = typeIsInObj(types, description)
-    isInPredictionsList = typeIsInObj(types, predictionsList)
+          isInDescription = typeIsInObj(types, description)
+          isInPredictionsList = typeIsInObj(types, predictionsList)
 
-    if isInDescription and not isInPredictionsList: # is in description but not in images
-      missingInPhotos.append(firstType)
-    elif isInPredictionsList and not isInDescription: # is in images but not in description
-      missingInDescription.append(firstType)
+          if isInDescription and not isInPredictionsList: # is in description but not in images
+            missingInPhotos.append(firstType)
+          elif isInPredictionsList and not isInDescription: # is in images but not in description
+            missingInDescription.append(firstType)
 
-  response = buildResponse(missingInDescription, missingInPhotos)
-  return response
+        response = buildResponse(missingInDescription, missingInPhotos)
+        sys.stdout = original_stdout
+      os.remove('output_roomType.txt')
+      return response
