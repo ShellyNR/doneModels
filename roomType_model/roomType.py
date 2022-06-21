@@ -6,15 +6,49 @@ import os
 import string
 import sys
 
+
+def isinList(type, list):
+    if type in list:
+        return 0
+    return 1
+
+def getResList(missingInDescription, missingInPhotos):
+    responseInText = []
+    responseInPhotos = []
+    roomType = set(missingInDescription + missingInPhotos)
+    for type in roomType:
+        responseInText.append(isinList(type, missingInDescription))
+        responseInPhotos.append(isinList(type, missingInPhotos))
+    return roomType, responseInText, responseInPhotos
+
+def getResText(missingInDescription, missingInPhotos):
+    response = ""
+    if len(missingInDescription) != 0:
+        response = "We saw that you attached a photo of: " + ', '.join(
+            missingInDescription) + " - but you didn't mention it in the description.\r\n"
+    if len(missingInPhotos) != 0:
+        response = response + "We saw that in the description you mentioned: " + ', '.join(
+            missingInPhotos) + " - but we didn't see matching image attached.\r\n"
+    if response != "":
+        response = response + "We recommend you to complete this information."
+    else:
+        response = "Great job! There is no mismatching between your room type that mentioned in the text and in the photos."
+    return response
+
 def buildResponse(missingInDescription, missingInPhotos):
-  response = ""
-  if len(missingInDescription) != 0:
-    response = "We saw that you attached a photo of: " + ', '.join(missingInDescription) + " - but you didn't mention it in the description.\r\n"
-  if len(missingInPhotos) != 0:
-    response = response + "We saw that in the description you mentioned: " + ', '.join(missingInPhotos) + " - but we didn't see matching image attached.\r\n"
-  if response != "":
-    response = response + "We recommend you to complete this information."
-  return response
+    response = []
+    responseText = getResText(missingInDescription, missingInPhotos)
+    response.append(responseText)
+    if responseText == "":
+        response.append([])
+        response.append([])
+        response.append([])
+        return response
+    roomType, responseInText, responseInPhotos = getResList(missingInDescription, missingInPhotos)
+    response.append(roomType)
+    response.append(responseInText)
+    response.append(responseInPhotos)
+    return response
 
 def typeIsInObj(types, obj):
   for t in types:
@@ -52,7 +86,6 @@ def roomType_model(description):
         description = description.lower().translate(str.maketrans('', '', string.punctuation))
         missingInDescription = []
         missingInPhotos = []
-
         predictionsList = predictAllPhotos()
 
         for type in importantRoomType:
