@@ -4,6 +4,7 @@
 from monk.gluon_prototype import prototype
 import os
 import string
+import sys
 
 def buildResponse(missingInDescription, missingInPhotos):
   response = ""
