@@ -68,5 +68,5 @@ def roomType_model(description):
 
         response = buildResponse(missingInDescription, missingInPhotos)
         sys.stdout = original_stdout
-      os.remove('output_roomType.txt')
-      return response
+    os.remove('output_roomType.txt')
+    return response
