@@ -6,22 +6,7 @@ import os
 import string
 import sys
 
-
-def isinList(type, list):
-    if type in list:
-        return 0
-    return 1
-
-def getResList(missingInDescription, missingInPhotos):
-    responseInText = []
-    responseInPhotos = []
-    roomType = set(missingInDescription + missingInPhotos)
-    for type in roomType:
-        responseInText.append(isinList(type, missingInDescription))
-        responseInPhotos.append(isinList(type, missingInPhotos))
-    return roomType, responseInText, responseInPhotos
-
-def getResText(missingInDescription, missingInPhotos):
+def buildResponse(missingInDescription, missingInPhotos):
     response = ""
     if len(missingInDescription) != 0:
         response = "We saw that you attached a photo of: " + ', '.join(
@@ -33,22 +18,6 @@ def getResText(missingInDescription, missingInPhotos):
         response = response + "We recommend you to complete this information."
     else:
         response = "Great job! There is no mismatching between your room type that mentioned in the text and in the photos."
-    return response
-
-def buildResponse(missingInDescription, missingInPhotos):
-    responseText = getResText(missingInDescription, missingInPhotos)
-    return responseText
-    # response = []
-    # response.append(responseText)
-    # if responseText == "":
-    #     response.append([])
-    #     response.append([])
-    #     response.append([])
-    #     return response
-    # roomType, responseInText, responseInPhotos = getResList(missingInDescription, missingInPhotos)
-    # response.append(roomType)
-    # response.append(responseInText)
-    # response.append(responseInPhotos)
     return response
 
 def typeIsInObj(types, obj):
@@ -87,6 +56,7 @@ def roomType_model(description):
         description = description.lower().translate(str.maketrans('', '', string.punctuation))
         missingInDescription = []
         missingInPhotos = []
+        response = []
         predictionsList = predictAllPhotos()
 
         for type in importantRoomType:
