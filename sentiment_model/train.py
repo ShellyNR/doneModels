@@ -34,18 +34,17 @@ def split_data(values):
     values['x_train'], values['x_test'], values['y_train'], values['y_test'] = \
         train_test_split(values['x'], values['y'], random_state=1, test_size=TEST_SIZE)
 
-    # Using CountVectorizer to convert text into tokens/features
-    vector = CountVectorizer(stop_words=LANGUAGE, ngram_range=(1, 1), max_df=MAX_DF, min_df=MIN_DF)
+    # Using CountVectorizer to convert the text into tokens/features
+    vector = CountVectorizer(stop_words=LANGUAGE, max_df=MAX_DF, min_df=MIN_DF)
     vector.fit(values['x_train'])
     values['x_train_dtm'] = vector.transform(values['x_train'])
     values['x_test_dtm'] = vector.transform(values['x_test'])
-    values['vector'] = vector
 
 
 # loads the data from the dataset and defines the train and validation
 def load_data():
     values = dict()
-    data = pd.read_table(DATASET_PATH, header=None, skiprows=1, names=['Sentiment', 'Review'])
+    data = pd.read_table(DATASET_PATH, names=['Sentiment', 'Review'])
     values['x'] = data.Review
     values['y'] = data.Sentiment
 
@@ -64,7 +63,7 @@ def train_model(values, model, model_name):
 # Train the best performing model (Logistic Regression)
 def logistic_regression_train():
     values = load_data()
-    training_vector = CountVectorizer(stop_words=LANGUAGE, ngram_range=(1, 1), max_df=MAX_DF, min_df=MIN_DF)
+    training_vector = CountVectorizer(stop_words=LANGUAGE, max_df=MAX_DF, min_df=MIN_DF)
     training_vector.fit(values['x'])
     x_dtm = training_vector.transform(values['x'])
 
