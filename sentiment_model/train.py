@@ -21,7 +21,7 @@ MAX_DF = .80
 MIN_DF = 5
 RANDOM_STATE = 1
 
-# train all optional models and prints their accuracies
+# Train all optional models and prints their accuracies
 def train_all_models():
     values = load_data()
     split_data(values)
@@ -46,7 +46,7 @@ def split_data(values):
     values['x_train'], values['x_test'], values['y_train'], values['y_test'] = \
         train_test_split(values['x'], values['y'], random_state=RANDOM_STATE, test_size=TEST_SIZE)
 
-    # Using CountVectorizer to convert the text into tokens/features
+    # Using CountVectorizer to convert the text into tokens
     vector = CountVectorizer(stop_words=LANGUAGE, max_df=MAX_DF, min_df=MIN_DF)
     vector.fit(values['x_train'])
     values['x_train_dtm'] = vector.transform(values['x_train'])
@@ -62,7 +62,7 @@ def train_model(values, model, model_name):
     print('Accuracy Score: ', accuracy, '%', sep='')
 
 
-# Train the best performing model (Logistic Regression)
+# Train Logistic Regression on all the data set
 def logistic_regression_train():
     values = load_data()
     training_vector = CountVectorizer(stop_words=LANGUAGE, max_df=MAX_DF, min_df=MIN_DF)
