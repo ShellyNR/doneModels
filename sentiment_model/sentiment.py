@@ -18,7 +18,7 @@ def infer(description, training_vector, logistic_regression):
     prediction = logistic_regression.predict_proba(text_dtm)
 
     prediction = prediction[0]
-    # prediction = [Negative,Positive]
+    # prediction is [Negative,Positive]
     return prediction[1]
 
 

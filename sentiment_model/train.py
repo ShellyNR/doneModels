@@ -30,6 +30,7 @@ def train_all_models():
     train_model(values, KNeighborsClassifier(n_neighbors=K_KNN), 'K Nearest Neighbors')
 
 
+# Splits the data to train and validation
 def split_data(values):
     values['x_train'], values['x_test'], values['y_train'], values['y_test'] = \
         train_test_split(values['x'], values['y'], random_state=1, test_size=TEST_SIZE)
@@ -41,7 +42,7 @@ def split_data(values):
     values['x_test_dtm'] = vector.transform(values['x_test'])
 
 
-# loads the data from the dataset and defines the train and validation
+# Loads the data from the dataset and define x and y
 def load_data():
     values = dict()
     data = pd.read_table(DATASET_PATH, names=['Sentiment', 'Review'])
