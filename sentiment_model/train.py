@@ -10,7 +10,7 @@ import pickle
 
 
 # Constants
-PATH = 'sentiment_data/opinions.tsv'
+PATH = 'sentiment_model/sentiment_data/opinions.tsv'
 LANGUAGE = 'english'
 PERCENTAGES = 100
 HIGH_DESCRIPTION = "The description sentiment is great!"
