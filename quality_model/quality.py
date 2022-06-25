@@ -21,8 +21,6 @@ def get_response(grade):
         response = "The image quality is not good, you should consider taking another photo."
     return response
 
-# def predict_image_quality(model_weights_path, image_path):
-#     image = Image.open(image_path)
 def predict_image_quality(model_weights_path):
     model = create_triq_model(n_quality_levels=5)
     model.load_weights(model_weights_path)
@@ -50,23 +48,9 @@ def predict_image_quality(model_weights_path):
     keras.backend.clear_session()
     return triq_rates
 
-
-if __name__ == '__main__':
-    image_path = r'.\examples\sample_data\640px-Natchez-Trace-Parkway-Highsmith.jpeg'
-    # image_path = r'examples/sample_data/example_image_2 (mos=2.865).jpg'
-    # model_weights_path = r'C:\Users\snahir\Desktop\uni\3A\סדנה פרוייקטים\transformer\quality_model\quality_model\src\pretrained_weights\resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
-    model_weights_path=r'.\pretrained_weights\TRIQ.h5'
-    predict_mos = predict_image_quality(model_weights_path, image_path)
-    # print('Predicted MOS: {}'.format(predict_mos))
-
 def quality_model():
-    original_stdout = sys.stdout
-    with open('output_triq.txt', 'w') as f:
-        sys.stdout = f  # Change the standard output to the file we created.
-        model_weights_path = r'quality_model/pretrained_weights/TRIQ.h5'
-        predict_mos = predict_image_quality(model_weights_path)
-        sys.stdout = original_stdout
-    os.remove('output_triq.txt')
+    model_weights_path = r'quality_model/pretrained_weights/TRIQ.h5'
+    predict_mos = predict_image_quality(model_weights_path)
     return predict_mos
 
     
