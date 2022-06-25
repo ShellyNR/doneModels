@@ -24,10 +24,6 @@ def train_all_models():
     train_model(values, LinearSVC(), 'Support Vector Machine (SVM)')
     train_model(values, KNeighborsClassifier(n_neighbors=K_KNN), 'K Nearest Neighbors')
 
-    # naive_bayes_model(values)
-    # logistic_regression_model(values)
-    # svm_model(values)
-    # knn_model(values)
     return values['x'], values['y']
 
 # loads the data from the dataset and defines the train and validation
@@ -74,5 +70,3 @@ def logistic_regression_train():
 
     logistic_regression_filename = 'logistic_regression.sav'
     pickle.dump(logistic_regression, open(logistic_regression_filename, 'wb'))
-
-train_all_models()
