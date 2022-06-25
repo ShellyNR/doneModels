@@ -19,6 +19,7 @@ K_KNN = 3
 TEST_SIZE = 0.2
 MAX_DF = .80
 MIN_DF = 5
+RANDOM_STATE = 1
 
 # train all optional models and prints their accuracies
 def train_all_models():
@@ -33,7 +34,7 @@ def train_all_models():
 # Splits the data to train and validation
 def split_data(values):
     values['x_train'], values['x_test'], values['y_train'], values['y_test'] = \
-        train_test_split(values['x'], values['y'], random_state=1, test_size=TEST_SIZE)
+        train_test_split(values['x'], values['y'], random_state=RANDOM_STATE, test_size=TEST_SIZE)
 
     # Using CountVectorizer to convert the text into tokens/features
     vector = CountVectorizer(stop_words=LANGUAGE, max_df=MAX_DF, min_df=MIN_DF)

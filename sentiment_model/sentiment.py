@@ -11,18 +11,18 @@ TRAINING_VECTOR_FILENAME = 'sentiment_model/training_vector.sav'
 LOGISTIC_REGRESSION_FILENAME = 'sentiment_model/logistic_regression.sav'
 
 
-# infer function on given description
+# Infer function on given description
 def infer(description, training_vector, logistic_regression):
     text = [description]
     text_dtm = training_vector.transform(text)
     prediction = logistic_regression.predict_proba(text_dtm)
-
     prediction = prediction[0]
+
     # prediction is [Negative,Positive]
     return prediction[1]
 
 
-# the function gets a grade (0 - 1) and returns a sentence regarding the grade
+# The function gets a grade (0 - 1) and returns a sentence regarding the grade
 def sentence_grade(grade):
     grade = grade * PERCENTAGES
     if grade > HIGH_GRADE:
@@ -33,6 +33,7 @@ def sentence_grade(grade):
         return LOW_DESCRIPTION
 
 
+# The function gets a description and returns a list with a grade and corresponding text response
 def sentiments_model(description):
     training_vector = pickle.load(open(TRAINING_VECTOR_FILENAME, 'rb'))
     logistic_regression = pickle.load(open(LOGISTIC_REGRESSION_FILENAME, 'rb'))
