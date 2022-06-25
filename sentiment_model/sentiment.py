@@ -7,6 +7,8 @@ MEDIUM_GRADE = 60
 HIGH_DESCRIPTION = "The description sentiment is great!"
 MEDIUM_DESCRIPTION = "The description sentiment is positive, but you can consider improving it a little."
 LOW_DESCRIPTION = "The description sentiment is negative, try using positive words to describe the property."
+TRAINING_VECTOR_FILENAME = 'sentiment_model/training_vector.sav'
+LOGISTIC_REGRESSION_FILENAME = 'sentiment_model/logistic_regression.sav'
 
 
 # infer function on given description
@@ -32,11 +34,8 @@ def sentence_grade(grade):
 
 
 def sentiments_model(description):
-    training_vector_filename = 'sentiment_model/training_vector.sav'
-    training_vector = pickle.load(open(training_vector_filename, 'rb'))
-
-    logistic_regression_filename = 'sentiment_model/logistic_regression.sav'
-    logistic_regression = pickle.load(open(logistic_regression_filename, 'rb'))
+    training_vector = pickle.load(open(TRAINING_VECTOR_FILENAME, 'rb'))
+    logistic_regression = pickle.load(open(LOGISTIC_REGRESSION_FILENAME, 'rb'))
 
     grade = infer(description, training_vector, logistic_regression)
     return [grade, sentence_grade(grade)]

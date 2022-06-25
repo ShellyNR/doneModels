@@ -19,10 +19,15 @@ TEST_SIZE = 0.2
 # train all optional models and prints their accuracies
 def train_all_models():
     values = load_data()
-    naive_bayes_model(values)
-    logistic_regression_model(values)
-    svm_model(values)
-    knn_model(values)
+    train_model(values, MultinomialNB(), 'Naive Bayes')
+    train_model(values, LogisticRegression(), 'Logistic Regression')
+    train_model(values, LinearSVC(), 'Support Vector Machine (SVM)')
+    train_model(values, KNeighborsClassifier(n_neighbors=K_KNN), 'K Nearest Neighbors')
+
+    # naive_bayes_model(values)
+    # logistic_regression_model(values)
+    # svm_model(values)
+    # knn_model(values)
     return values['x'], values['y']
 
 # loads the data from the dataset and defines the train and validation
@@ -46,45 +51,15 @@ def load_data():
 
     return values
 
-# Accuracy using Naive Bayes Model
-def naive_bayes_model(values):
-    naive_bayes = MultinomialNB()
-    naive_bayes.fit(values['x_train_dtm'], values['y_train'])
-    y_prediction = naive_bayes.predict(values['x_test_dtm'])
-    accuracy = metrics.accuracy_score(values['y_test'], y_prediction) * PERCENTAGES
-    print('\nNaive Bayes')
-    print('Accuracy Score: ', accuracy, '%', sep='')
-    return accuracy, naive_bayes, y_prediction
 
-# Accuracy using Logistic Regression Model
-def logistic_regression_model(values):
-    logistic_regression = LogisticRegression()
-    logistic_regression.fit(values['x_train_dtm'], values['y_train'])
-    y_prediction = logistic_regression.predict(values['x_test_dtm'])
+# Accuracy using a given model
+def train_model(values, model, model_name):
+    model.fit(values['x_train_dtm'], values['y_train'])
+    y_prediction = model.predict(values['x_test_dtm'])
     accuracy = metrics.accuracy_score(values['y_test'], y_prediction) * PERCENTAGES
-    print('\nLogistic Regression')
+    print('\n' + model_name)
     print('Accuracy Score: ', accuracy, '%', sep='')
-    return accuracy
 
-# Accuracy using SVM Model
-def svm_model(values):
-    SVM = LinearSVC()
-    SVM.fit(values['x_train_dtm'], values['y_train'])
-    y_prediction = SVM.predict(values['x_test_dtm'])
-    accuracy = metrics.accuracy_score(values['y_test'], y_prediction) * PERCENTAGES
-    print('\nSupport Vector Machine')
-    print('Accuracy Score: ', accuracy, '%', sep='')
-    return accuracy
-
-# Accuracy using KNN Model
-def knn_model(values):
-    KNN = KNeighborsClassifier(n_neighbors=K_KNN)
-    KNN.fit(values['x_train_dtm'], values['y_train'])
-    y_prediction = KNN.predict(values['x_test_dtm'])
-    accuracy = metrics.accuracy_score(values['y_test'], y_prediction) * PERCENTAGES
-    print('\nK Nearest Neighbors (NN = ' + str(K_KNN) + ')')
-    print('Accuracy Score: ', accuracy, '%', sep='')
-    return accuracy
 
 # Train the best performing model (Logistic Regression)
 def logistic_regression_train():
@@ -99,3 +74,5 @@ def logistic_regression_train():
 
     logistic_regression_filename = 'logistic_regression.sav'
     pickle.dump(logistic_regression, open(logistic_regression_filename, 'wb'))
+
+train_all_models()
