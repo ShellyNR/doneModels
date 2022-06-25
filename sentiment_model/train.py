@@ -13,15 +13,10 @@ import pickle
 PATH = 'sentiment_model/sentiment_data/opinions.tsv'
 LANGUAGE = 'english'
 PERCENTAGES = 100
-HIGH_DESCRIPTION = "The description sentiment is great!"
-MEDIUM_DESCRIPTION = "The description sentiment is positive, but you can consider improving it a little."
-LOW_DESCRIPTION = "The description sentiment is negative, try using positive words to describe the property."
-HIGH_GRADE = 85
-MEDIUM_GRADE = 60
 K_KNN = 3
 TEST_SIZE = 0.2
 
-
+# train all optional models and prints their accuracies
 def train_all_models():
     values = load_data()
     naive_bayes_model(values)
@@ -104,4 +99,3 @@ def logistic_regression_train():
 
     logistic_regression_filename = 'logistic_regression.sav'
     pickle.dump(logistic_regression, open(logistic_regression_filename, 'wb'))
-
