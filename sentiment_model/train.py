@@ -31,6 +31,16 @@ def train_all_models():
     train_model(values, KNeighborsClassifier(n_neighbors=K_KNN), 'K Nearest Neighbors')
 
 
+# Loads the data from the dataset and define x and y
+def load_data():
+    values = dict()
+    data = pd.read_table(DATASET_PATH, names=['Sentiment', 'Review'])
+    values['x'] = data.Review
+    values['y'] = data.Sentiment
+
+    return values
+
+
 # Splits the data to train and validation
 def split_data(values):
     values['x_train'], values['x_test'], values['y_train'], values['y_test'] = \
@@ -41,16 +51,6 @@ def split_data(values):
     vector.fit(values['x_train'])
     values['x_train_dtm'] = vector.transform(values['x_train'])
     values['x_test_dtm'] = vector.transform(values['x_test'])
-
-
-# Loads the data from the dataset and define x and y
-def load_data():
-    values = dict()
-    data = pd.read_table(DATASET_PATH, names=['Sentiment', 'Review'])
-    values['x'] = data.Review
-    values['y'] = data.Sentiment
-
-    return values
 
 
 # Accuracy using a given model
