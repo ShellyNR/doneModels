@@ -40,11 +40,10 @@ def sentence_grade(grade):
 
 
 def sentiments_model(description):
-
-    training_vector_filename = 'training_vector.sav'
+    training_vector_filename = 'sentiment_model/training_vector.sav'
     training_vector = pickle.load(open(training_vector_filename, 'rb'))
 
-    logistic_regression_filename = 'logistic_regression.sav'
+    logistic_regression_filename = 'sentiment_model/logistic_regression.sav'
     logistic_regression = pickle.load(open(logistic_regression_filename, 'rb'))
 
     grade = infer(description, training_vector, logistic_regression)
