@@ -15,6 +15,8 @@ HIGH_GRADE = 90
 MEDIUM_GRADE = 70
 LOW_GRADE = 50
 
+BASE_MODEL = Xception(include_top=False, weights='imagenet', pooling='avg')
+
 def resize(image):
     h, w, c = image.shape
     cropped = image
@@ -70,11 +72,10 @@ def normalizeData(images):
 
 def predict(images):
     runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
-    base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
     predictions = []
     for img in images:
         img_test = numpy.expand_dims(img, axis=0)
-        features = base_model(img_test, training=False)
+        features = BASE_MODEL(img_test, training=False)
         data = numpy.array(features.numpy())
         payload = json.dumps(data.tolist())
         response = runtime.invoke_endpoint(EndpointName=ENDPOINT_NAME, ContentType='application/json', Body=payload)
