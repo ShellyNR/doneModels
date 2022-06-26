@@ -7,40 +7,50 @@ import numpy as np
 from PIL import Image
 
 from scipy.stats import norm
-import sys
-import os
+
+HIGH_GRADE = 85
+MEDIUM_GRADE = 0.75
+LOW_GRADE = 0.6
+
+MAX_QUALITY_LEVEL = 5
+MIN_QUALITY_LEVEL = 5
+
+RGB_MAX = 255
+
+MEAN = 3
+DEVIATION = 0.6666666666666666666666666666666
+
+MODEL_WEIGHTS_PATH=r'quality_model/pretrained_weights/TRIQ.h5'
 
 def get_response(grade):
-    if grade > 0.85:
+    if grade > HIGH_GRADE:
         response = "The image quality is great!"
-    elif grade > 0.75:
+    elif grade > MEDIUM_GRADE:
         response = "The image quality is good."
-    elif grade > 0.6:
+    elif grade > LOW_GRADE:
         response = "The image quality is not good."
     else:
         response = "The image quality is not good, you should consider taking another photo."
     return response
 
-def predict_image_quality(model_weights_path):
-    model = create_triq_model(n_quality_levels=5)
-    model.load_weights(model_weights_path)
+def predict_image_quality():
+    model = create_triq_model(MAX_QUALITY_LEVEL)
+    model.load_weights(MODEL_WEIGHTS_PATH)
 
     triq_rates = []
 
     for i, path in enumerate(glob.glob("temp/*")):
         image = Image.open(path)
         image = np.asarray(image, dtype=np.float32)
-        image /= 127.5
+        image /= (RGB_MAX/2.0)
         image -= 1.
 
         prediction = model.predict(np.expand_dims(image, axis=0))
 
-        mos_scales = np.array([1, 2, 3, 4, 5])
+        mos_scales = np.arange(1, MAX_QUALITY_LEVEL + 1)
         predicted_mos = (np.sum(np.multiply(mos_scales, prediction[0])))
-        # print('Predicted MOS: {}'.format(predicted_mos))
-        pdf = norm.cdf(predicted_mos, loc=3, scale=0.6666666666666666666666666666666)
-        if pdf > 3:
-            pdf = 1 - pdf
+
+        pdf = norm.cdf(predicted_mos, loc=MEAN, scale=DEVIATION)
         grade = np.float64(pdf)
         response = get_response(grade)
         path = path.replace("temp/", "images\\")
@@ -49,8 +59,7 @@ def predict_image_quality(model_weights_path):
     return triq_rates
 
 def quality_model():
-    model_weights_path = r'quality_model/pretrained_weights/TRIQ.h5'
-    predict_mos = predict_image_quality(model_weights_path)
+    predict_mos = predict_image_quality()
     return predict_mos
 
     
