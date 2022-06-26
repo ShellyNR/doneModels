@@ -7,9 +7,15 @@ import boto3
 import json
 
 imagesPath = 'images'
+IMG_SIZE = 299  # match Xception input size
+
+ENDPOINT_NAME = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
+
+HIGH_GRADE = 90
+MEDIUM_GRADE = 70
+LOW_GRADE = 50
 
 def resize(image):
-    img_size = 299  # match Xception input size
     h, w, c = image.shape
     cropped = image
     if h < w:
@@ -20,10 +26,10 @@ def resize(image):
         cropped = image[diff: (diff + w), :, :]
 
     h, w, c = cropped.shape
-    if h > img_size:    # shrink
-        return cv.resize(cropped, (img_size, img_size), interpolation=cv.INTER_AREA)
-    elif h < img_size:  # enlarge
-        return cv.resize(cropped, (img_size, img_size), interpolation=cv.INTER_CUBIC)
+    if h > IMG_SIZE:    # shrink
+        return cv.resize(cropped, (IMG_SIZE, IMG_SIZE), interpolation=cv.INTER_AREA)
+    elif h < IMG_SIZE:  # enlarge
+        return cv.resize(cropped, (IMG_SIZE, IMG_SIZE), interpolation=cv.INTER_CUBIC)
     else:
         return cropped
 
@@ -57,12 +63,12 @@ def normalizeData(images):
     channel_mean = numpy.array([110.73151039, 122.90935242, 136.82249855])
     channel_std = numpy.array([69.39734207, 67.48444001, 66.66808662])
     images = images.astype('float32')
-    for j in range(3):
+    channels = 3
+    for j in range(channels):
         images[:, :, :, j] = (images[:, :, :, j] - channel_mean[j]) / channel_std[j]
     return images
 
 def predict(images):
-    endpoint_name = 'sagemaker-tensorflow-serving-2022-06-17-11-47-25-306'
     runtime = boto3.Session().client(service_name='runtime.sagemaker', region_name='us-east-1')
     base_model = Xception(include_top=False, weights='imagenet', pooling='avg')
     predictions = []
@@ -71,18 +77,18 @@ def predict(images):
         features = base_model(img_test, training=False)
         data = numpy.array(features.numpy())
         payload = json.dumps(data.tolist())
-        response = runtime.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=payload)
+        response = runtime.invoke_endpoint(EndpointName=ENDPOINT_NAME, ContentType='application/json', Body=payload)
         result = json.loads(response['Body'].read().decode())
         res = result['predictions']
         predictions.append(res[0][0])
     return predictions
 
 def getTextPerGrade(grade):
-    if 90 <= grade:
+    if HIGH_GRADE <= grade:
         return "Your room is very neat!"
-    if 70 <= grade:
+    if MEDIUM_GRADE <= grade:
         return "Your room needs a little bit of work."
-    if 50 <= grade:
+    if LOW_GRADE <= grade:
         return "Your room is quite messy."
     return "Your room is messy - we recommend that you tidy up the room and upload a new picture."
 

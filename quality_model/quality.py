@@ -13,7 +13,7 @@ MEDIUM_GRADE = 0.75
 LOW_GRADE = 0.6
 
 MAX_QUALITY_LEVEL = 5
-MIN_QUALITY_LEVEL = 5
+MIN_QUALITY_LEVEL = 1
 
 RGB_MAX = 255
 
@@ -47,7 +47,7 @@ def predict_image_quality():
 
         prediction = model.predict(np.expand_dims(image, axis=0))
 
-        mos_scales = np.arange(1, MAX_QUALITY_LEVEL + 1)
+        mos_scales = np.arange(MIN_QUALITY_LEVEL, MAX_QUALITY_LEVEL + 1)
         predicted_mos = (np.sum(np.multiply(mos_scales, prediction[0])))
 
         pdf = norm.cdf(predicted_mos, loc=MEAN, scale=DEVIATION)
